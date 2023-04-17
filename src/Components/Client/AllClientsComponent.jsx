@@ -1,28 +1,12 @@
 import React from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Table from "react-bootstrap/esm/Table";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  getAllClient,
-  getAllClientPage,
-} from "../../redux/actions/clientAction";
 import Pagination from "../Utils/Pagination";
+import AllClientComponentHook from "../../hook/client/all-client-component-hook";
 
 const AllClientsComponent = ({ data, loading, pageCount }) => {
-  const dispatch = useDispatch();
-
-  // when pressed page
-  const getPage = (page) => {
-    dispatch(getAllClientPage(page));
-    // console.log(page);
-  };
-
-  // when change limit
-  const handleLimitChange = (e) => {
-    dispatch(getAllClient(e.target.value));
-    // console.log(e.target.value);
-  };
+  const [getPage, handleLimitChange] = AllClientComponentHook();
 
   return (
     <div className="row small-spacing">
@@ -116,19 +100,19 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
                       <td className="h5 text-center">
                         <Link
                           to={"/clients-edit"}
-                          className="btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          className="mx-3 btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-eye"></i> عرض
                         </Link>
                         <Link
                           to={"/clients-edit"}
-                          className="btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-edit"></i> تعديل
                         </Link>
                         <Link
                           to={"#"}
-                          className="btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-trash"></i> حذف
                         </Link>

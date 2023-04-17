@@ -1,66 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createClient } from "../../redux/actions/clientAction";
+import React from "react";
 import Spinner from "react-bootstrap/esm/Spinner";
-import notify from "../../hook/useNotification";
+import AddClientHook from "../../hook/client/add-client-hook";
 
 const AddClientComponent = () => {
-  const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [nationality, setNationality] = useState("");
-  const [identificationNumber, setIdentificationNumber] = useState("");
-  const [phone, setPhone] = useState("");
-  const [gender, setGender] = useState("ذكر");
-  const [address, setAddress] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [notes, setNotes] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [isPress, setIsPress] = useState(false);
-
-  const res = useSelector((state) => state.allClient.client);
-
-  // save data in database
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = {
-      name,
-      email,
-      nationality,
-      identificationNumber,
-      phone,
-      gender,
-      address,
-      companyName,
-      notes,
-    };
-    setLoading(true);
-    setIsPress(true);
-    await dispatch(createClient(formData));
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    if (loading === false) {
-      setName("");
-      setEmail("");
-      setNationality("");
-      setIdentificationNumber("");
-      setPhone("");
-      setGender("");
-      setAddress("");
-      setCompanyName("");
-      setNotes("");
-      setLoading(true);
-      setTimeout(() => setIsPress(false), 1000);
-      if (res.status === 201) {
-        notify("تمت عملية الاضافة بنجاح", "success");
-      } else {
-        notify("هناك مشكله فى عملية الاضافة", "error");
-      }
-    }
-  }, [loading, res]);
-
+  const [name, email, nationality, identificationNumber, phone, gender, address, companyName, notes, loading, isPress, handleSubmit, onChangeName, onChangeEmail, onChangeNationality, onChangeIdentificationNumber, onChangePhone, onChangeGender, onChangeAddress, onChangeCompanyName, onChangeNotes] = AddClientHook();
+  
   return (
     <div className="row small-spacing">
       <div className="col-xs-12">
@@ -83,7 +27,7 @@ const AddClientComponent = () => {
                     name="name"
                     id="name"
                     placeholder="اسم العميل"
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={onChangeName}
                     value={name}
                   />
                   <div className="margin-top-20">
@@ -97,7 +41,7 @@ const AddClientComponent = () => {
                       className="form-control"
                       id="email"
                       placeholder="البريد الإلكتروني"
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={onChangeEmail}
                       value={email}
                     />
                   </div>
@@ -112,7 +56,7 @@ const AddClientComponent = () => {
                       className="form-control"
                       id="nationality"
                       placeholder="الجنسية"
-                      onChange={(e) => setNationality(e.target.value)}
+                      onChange={onChangeNationality}
                       value={nationality}
                     />
                   </div>
@@ -127,7 +71,7 @@ const AddClientComponent = () => {
                       className="form-control"
                       id="identificationNumber"
                       placeholder="رقم الهوية"
-                      onChange={(e) => setIdentificationNumber(e.target.value)}
+                      onChange={onChangeIdentificationNumber}
                       value={identificationNumber}
                     />
                   </div>
@@ -143,7 +87,7 @@ const AddClientComponent = () => {
                       className="form-control"
                       id="phone"
                       placeholder="رقم الهاتف"
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={onChangePhone}
                       value={phone}
                     />
                   </div>
@@ -156,7 +100,7 @@ const AddClientComponent = () => {
                   </h5>
                   <select
                     className="form-control select2_1"
-                    onChange={(e) => setGender(e.target.value)}
+                    onChange={onChangeGender}
                     value={gender}
                   >
                     <optgroup label="نوع الجنس">
@@ -175,7 +119,7 @@ const AddClientComponent = () => {
                       className="form-control"
                       id="address"
                       placeholder="العنوان"
-                      onChange={(e) => setAddress(e.target.value)}
+                      onChange={onChangeAddress}
                       value={address}
                     />
                   </div>
@@ -190,7 +134,7 @@ const AddClientComponent = () => {
                       className="form-control"
                       id="companyName"
                       placeholder="اسم الوظيفة أو الشركة التابع لها"
-                      onChange={(e) => setCompanyName(e.target.value)}
+                      onChange={onChangeCompanyName}
                       value={companyName}
                     />
                   </div>
@@ -204,7 +148,7 @@ const AddClientComponent = () => {
                       maxLength={225}
                       rows={2}
                       placeholder="الملاحظات التي تخص العميل"
-                      onChange={(e) => setNotes(e.target.value)}
+                      onChange={onChangeNotes}
                       // value={name}
                       defaultValue={notes}
                     />
@@ -215,7 +159,7 @@ const AddClientComponent = () => {
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="btn btn-primary"
+                  className="btn btn-primary mx-4 btn-xs waves-effect waves-light"
                 >
                   حفظ
                 </button>
