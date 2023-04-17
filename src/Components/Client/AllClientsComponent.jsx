@@ -55,6 +55,7 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
               >
                 <i className="ico fa fa-plus"></i> إضافة عميل
               </Link>
+      
               <input
                 type="search"
                 className="form-control input-sm my-3"
@@ -155,7 +156,7 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
             <Pagination pageCount={pageCount} onPress={getPage} />
           ) : null}
         </div>
-      </div>
+      </div>      
     </div>
   );
 };

@@ -65,10 +65,9 @@ const AddClientComponent = () => {
     <div className="row small-spacing">
       <div className="col-xs-12">
         <div className="box-content">
-          <h4 className="box-title d-flex justify-content-center">
+          <h4 className="box-title text-center">
             إضافة عميل جديد
           </h4>
-
           <div className="row">
             <div className="card-content">
               {/* <from action="#"> */}
@@ -211,12 +210,12 @@ const AddClientComponent = () => {
                     />
                   </div>
                 </div>
-              </div>
-              <div className="col-md-12 d-flex justify-content-start">
+              </div> 
+              <div className="col-md-12">
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
+                  className="btn btn-primary"
                 >
                   حفظ
                 </button>
