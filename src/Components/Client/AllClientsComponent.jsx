@@ -96,41 +96,41 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
                 data ? (
                   data.map((client) => (
                     <tr key={client._id}>
-                      <td className="h5 text-center text-muted">
+                      <td className="h5 text-center">
                         {client.name}
                       </td>
-                      <td className="h5 text-center text-muted">
+                      <td className="h5 text-center">
                         {client.phone}
                       </td>
-                      <td className="h5 text-center text-muted">
+                      <td className="h5 text-center">
                         {client.nationality}
                       </td>
-                      <td className="h5 text-center text-muted">
+                      <td className="h5 text-center">
                         {client.identificationNumber}
                       </td>
-                      <td className="h5 text-center text-muted">{"2"}</td>
-                      <td className="h5 text-center text-muted">{"1500"}</td>
-                      <td className="h5 text-center text-muted">{"700"}</td>
-                      <td className="h5 text-center text-muted">{"800"}</td>
-                      <td className="h5 text-center text-muted d-flex justify-content-evenly">
+                      <td className="h5 text-center">{"2"}</td>
+                      <td className="h5 text-center">{"1500"}</td>
+                      <td className="h5 text-center">{"700"}</td>
+                      <td className="h5 text-center">{"800"}</td>
+                      <td className="h5 text-center">
                         <Link
                           to={"/clients-edit"}
-                          className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          className="btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-eye"></i> عرض
                         </Link>
                         <Link
                           to={"/clients-edit"}
-                          className="h5 text-center btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          className="btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-edit"></i> تعديل
                         </Link>
-                        <button
-                          type="button"
-                          className="h5 text-center btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                        <Link
+                          to={"#"}
+                          className="btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-trash"></i> حذف
-                        </button>
+                        </Link>
                       </td>
                     </tr>
                   ))
@@ -151,7 +151,9 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
               )}
             </tbody>
           </Table>
-          <Pagination pageCount={pageCount} onPress={getPage} />
+          {pageCount > 1 ? (
+            <Pagination pageCount={pageCount} onPress={getPage} />
+          ) : null}
         </div>
       </div>
     </div>

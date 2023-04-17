@@ -1,4 +1,4 @@
-import { GET_ALL_CLIENT, GET_ERROR } from "../type";
+import { CREATE_CLIENT, GET_ALL_CLIENT, GET_ERROR } from "../type";
 
 const initial = {
   client: [],
@@ -9,6 +9,11 @@ const clientReducer = (state = initial, action) => {
     case GET_ALL_CLIENT:
       return {
         ...state,
+        client: action.payload,
+        loading: false
+      }
+    case CREATE_CLIENT:
+      return {
         client: action.payload,
         loading: false
       }

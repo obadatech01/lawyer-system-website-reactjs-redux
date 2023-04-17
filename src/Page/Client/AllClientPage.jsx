@@ -15,6 +15,7 @@ const AllClientPage = () => {
     get();
   }, [dispatch]);
 
+  // to get state from redux
   const clients = useSelector((state) => state.allClient.client);
   const loading = useSelector((state) => state.allClient.loading);
 
