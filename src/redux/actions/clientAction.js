@@ -1,6 +1,8 @@
+import { useDeleteDataToken } from "../../hooks/useDeleteData";
 import { useGetDataToken } from "../../hooks/useGetData";
-import { userInsertDataToken } from "../../hooks/useInsertData";
-import { CREATE_CLIENT, GET_ALL_CLIENT, GET_ERROR } from "../type";
+import { useInsertDataToken } from "../../hooks/useInsertData";
+import { useUpdateDataToken } from "../../hooks/useUpdateData";
+import { CREATE_CLIENT, DELETE_CLIENT, GET_ALL_CLIENT, GET_ERROR, GET_ONE_CLIENT, UPDATE_CLIENT } from "../type";
 // import baseURL from '../../Api/baseURL';
 
 // get all clients with limit
@@ -42,7 +44,7 @@ export const getAllClientPage = (page) => async (dispatch) => {
 // create new client
 export const createClient = (formData) => async (dispatch) => {
   try {
-    const res = await userInsertDataToken(`/api/v1/clients`, formData);
+    const res = await useInsertDataToken(`/api/v1/clients`, formData);
     dispatch({
       type: CREATE_CLIENT,
       payload: res,
@@ -50,6 +52,59 @@ export const createClient = (formData) => async (dispatch) => {
     });
   } catch (err) {
     // console.log(err);
+    dispatch({
+      type: GET_ERROR,
+      payload: "Error " + err,
+    });
+  }
+};
+
+// delete client with id
+export const deleteClient = (id) => async (dispatch) => {
+  try {
+    const res = await useDeleteDataToken(`/api/v1/clients/${id}`);
+    dispatch({
+      type: DELETE_CLIENT,
+      payload: res,
+      loading: true
+    });
+  } catch (err) {
+    // console.log(err);
+    dispatch({
+      type: GET_ERROR,
+      payload: "Error " + err,
+    });
+  }
+};
+
+// update client with id
+export const updateClient = (id, data) => async (dispatch) => {
+  try {
+    const res = await useUpdateDataToken(`/api/v1/clients/${id}`, data);
+    dispatch({
+      type: UPDATE_CLIENT,
+      payload: res,
+      loading: true
+    });
+  } catch (err) {
+    // console.log(err);
+    dispatch({
+      type: GET_ERROR,
+      payload: "Error " + err,
+    });
+  }
+};
+
+// get one client by id
+export const getOneClient = (id) => async (dispatch) => {
+  try {
+    const res = await useGetDataToken(`/api/v1/clients/${id}`);
+    dispatch({
+      type: GET_ONE_CLIENT,
+      payload: res,
+      loading: true
+    });
+  } catch (err) {
     dispatch({
       type: GET_ERROR,
       payload: "Error " + err,

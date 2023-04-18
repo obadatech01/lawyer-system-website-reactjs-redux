@@ -1,28 +1,57 @@
-import { CREATE_CLIENT, GET_ALL_CLIENT, GET_ERROR } from "../type";
+import {
+  CREATE_CLIENT,
+  DELETE_CLIENT,
+  GET_ALL_CLIENT,
+  GET_ERROR,
+  GET_ONE_CLIENT,
+  UPDATE_CLIENT,
+} from "../type";
 
 const initial = {
-  client: [],
-  loading: true
+  clients: [],
+  oneClient: [],
+  deleteClient: [],
+  updateClient: [],
+  loading: true,
 };
 const clientReducer = (state = initial, action) => {
   switch (action.type) {
     case GET_ALL_CLIENT:
       return {
         ...state,
-        client: action.payload,
-        loading: false
-      }
+        clients: action.payload,
+        loading: false,
+      };
+    case GET_ONE_CLIENT:
+      return {
+        ...state,
+        oneClient: action.payload,
+        loading: false,
+      };
     case CREATE_CLIENT:
       return {
-        client: action.payload,
-        loading: false
-      }
+        ...state,
+        clients: action.payload,
+        loading: false,
+      };
+    case UPDATE_CLIENT:
+      return {
+        ...state,
+        updateClient: action.payload,
+        loading: false,
+      };
+    case DELETE_CLIENT:
+      return {
+        ...state,
+        deleteClient: action.payload,
+        loading: false,
+      };
     case GET_ERROR:
       return {
         loading: true,
-        client: action.payload
-      }
-  
+        client: action.payload,
+      };
+
     default:
       return state;
   }

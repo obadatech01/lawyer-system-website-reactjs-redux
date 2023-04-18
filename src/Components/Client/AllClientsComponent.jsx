@@ -4,9 +4,18 @@ import Table from "react-bootstrap/esm/Table";
 import { Link } from "react-router-dom";
 import Pagination from "../Utils/Pagination";
 import AllClientComponentHook from "../../hook/client/all-client-component-hook";
+import { useDispatch } from "react-redux";
+import { deleteClient } from "../../redux/actions/clientAction";
+import notify from "../../hook/useNotification";
 
 const AllClientsComponent = ({ data, loading, pageCount }) => {
   const [getPage, handleLimitChange] = AllClientComponentHook();
+  const dispatch = useDispatch();
+  const handelDelete = async (id) => {
+    await dispatch(deleteClient(id));
+    notify("تم حذف العميل بنجاح", "success");  
+    window.location.reload();
+  };
 
   return (
     <div className="row small-spacing">
@@ -39,7 +48,7 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
               >
                 <i className="ico fa fa-plus"></i> إضافة عميل
               </Link>
-      
+
               <input
                 type="search"
                 className="form-control input-sm my-3"
@@ -81,15 +90,9 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
                 data ? (
                   data.map((client) => (
                     <tr key={client._id}>
-                      <td className="h5 text-center">
-                        {client.name}
-                      </td>
-                      <td className="h5 text-center">
-                        {client.phone}
-                      </td>
-                      <td className="h5 text-center">
-                        {client.nationality}
-                      </td>
+                      <td className="h5 text-center">{client.name}</td>
+                      <td className="h5 text-center">{client.phone}</td>
+                      <td className="h5 text-center">{client.nationality}</td>
                       <td className="h5 text-center">
                         {client.identificationNumber}
                       </td>
@@ -99,23 +102,23 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
                       <td className="h5 text-center">{"800"}</td>
                       <td className="h5 text-center">
                         <Link
-                          to={"/clients-edit"}
+                          to={`/clients-profile/${client._id}`}
                           className="mx-3 btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-eye"></i> عرض
                         </Link>
                         <Link
-                          to={"/clients-edit"}
+                          to={`/clients-edit/${client._id}`}
                           className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-edit"></i> تعديل
                         </Link>
-                        <Link
-                          to={"#"}
+                        <button
+                          onClick={()=>handelDelete(client._id)}
                           className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-trash"></i> حذف
-                        </Link>
+                        </button>
                       </td>
                     </tr>
                   ))
@@ -140,7 +143,7 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
             <Pagination pageCount={pageCount} onPress={getPage} />
           ) : null}
         </div>
-      </div>      
+      </div>
     </div>
   );
 };

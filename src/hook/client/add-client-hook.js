@@ -17,7 +17,7 @@ const AddClientHook = () => {
   const [loading, setLoading] = useState(true);
   const [isPress, setIsPress] = useState(false);
 
-  const res = useSelector((state) => state.allClient.client);
+  const res = useSelector((state) => state.allClient.clients);
 
   //to change name state
   const onChangeName = (e) => {

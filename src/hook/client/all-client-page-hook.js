@@ -7,14 +7,11 @@ const AllClientPageHook = () => {
 
   // when first load
   useEffect(() => {
-    const get = () => {
-      dispatch(getAllClient(3));
-    };
-    get();
+    dispatch(getAllClient(3));
   }, [dispatch]);
 
   // to get state from redux
-  const clients = useSelector((state) => state.allClient.client);
+  const clients = useSelector((state) => state.allClient.clients);
   const loading = useSelector((state) => state.allClient.loading);
 
   let pageCount = 0;

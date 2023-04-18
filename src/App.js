@@ -45,8 +45,8 @@ function App() {
           {/* clients routes */}
           <Route exact  path="/clients" element={<AllClientPage />} />
           <Route exact  path="/clients-add" element={<AddClientPage />} />
-          <Route exact  path="/clients-edit" element={<EditClientPage />} />
-          <Route exact  path="/clients-profile" element={<ProfileClientPage />} />
+          <Route exact  path="/clients-edit/:id" element={<EditClientPage />} />
+          <Route exact  path="/clients-profile/:id" element={<ProfileClientPage />} />
                     
           {/* documents routes */}
           <Route exact  path="/documents" element={<AllDocumentPage />} />
