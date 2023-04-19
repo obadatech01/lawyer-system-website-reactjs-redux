@@ -48,7 +48,7 @@ const ProfileClientComponent = () => {
                 <tr>
                   <td>أُضيف بواسطة</td>
                   <td>
-                    <span className="notice notice-danger">
+                    <span className="label label-success p-2">
                       {item.createdBy?.name}
                     </span>
                   </td>

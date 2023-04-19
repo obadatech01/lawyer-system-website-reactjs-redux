@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneClient, updateClient } from "../../redux/actions/clientAction";
 import notify from "../useNotification";
+import { useNavigate } from "react-router-dom";
 
 const EditClientHook = (id) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     const run = async () => {
       await dispatch(getOneClient(id));
@@ -153,6 +155,9 @@ const EditClientHook = (id) => {
         if (client.status === 200) {
           notify("تمت عملية التعديل بنجاح", "success");
           window.location.replace('/clients');
+          setTimeout(() => {
+            navigate('/clients')
+        }, 2000);
         } else {
           notify("هناك مشكلة فى عملية التعديل", "error");
         }

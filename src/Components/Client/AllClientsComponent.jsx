@@ -87,7 +87,7 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
             </tfoot>
             <tbody>
               {loading === false ? (
-                data ? (
+                data.length > 0 ? (
                   data.map((client) => (
                     <tr key={client._id}>
                       <td className="h5 text-center">{client.name}</td>
@@ -124,8 +124,8 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
                   ))
                 ) : (
                   <tr>
-                    <td valign="top" colSpan="9" className="h4 text-center p-3">
-                      لا يوجد عناصر{" "}
+                    <td valign="top" colSpan="9" className="h4 text-center text-danger p-3">
+                      لا يوجد قضايا بعد!{" "}
                     </td>
                   </tr>
                 )

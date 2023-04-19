@@ -1,7 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
+import LoginHook from "../../hook/auth/login-hook";
+import { ToastContainer } from "react-toastify";
 
 const LoginPage = () => {
+  const [
+    email,
+    password,
+    loading,
+    onChangeEmail,
+    onChangePassword,
+    onSubmit,
+    isPress
+  ] = LoginHook();
+
   return (
     <div id="single-wrapper">
       <form action="#" className="frm-single">
@@ -13,6 +26,8 @@ const LoginPage = () => {
 
           <div className="frm-input">
             <input
+              value={email}
+              onChange={onChangeEmail}
               type="email"
               placeholder="أدخل البريد الإلكتروني"
               className="frm-inp"
@@ -22,6 +37,8 @@ const LoginPage = () => {
 
           <div className="frm-input">
             <input
+              value={password}
+              onChange={onChangePassword}
               type="password"
               placeholder="أدخل كلمة السر"
               className="frm-inp"
@@ -31,17 +48,23 @@ const LoginPage = () => {
 
           <div className="clearfix margin-bottom-20">
             <div className="pull-right">
-              <Link href="page-recoverpw.html" className="a-link">
+              <Link to={"/forget-password"} className="a-link">
                 <i className="fa fa-unlock-alt"></i>هل نسيت كلمة السر؟
               </Link>
-            </div>
+            </div>{" "}
+            {isPress === true ? (
+              loading === true ? (
+                <Spinner animation="border" role="status"></Spinner>
+              ) : null
+            ) : null}
           </div>
-          <button type="submit" className="frm-submit">
+          <button type="submit" onClick={onSubmit} className="frm-submit">
             تسجيل دخول<i className="fa fa-arrow-circle-right"></i>
           </button>
           <div className="frm-footer">obadatech01 © 2023.</div>
         </div>
       </form>
+      <ToastContainer rtl="true" />
     </div>
   );
 };

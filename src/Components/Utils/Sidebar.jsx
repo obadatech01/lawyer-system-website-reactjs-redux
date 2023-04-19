@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import notify from "../../hook/useNotification";
 
 const Sidebar = () => {
+  const [user, setUser] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("user"))
+      setUser(JSON.parse(localStorage.getItem("user")));
+  }, []);
+
+  const logout = () => {
+    notify("تم تسجيل الخروج بنجاح", "warn");
+    setTimeout(() => {
+      window.location.href = "/login";
+    }, 1000);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  };
+
   return (
     <div className="main-menu">
       <header className="header">
@@ -16,13 +32,13 @@ const Sidebar = () => {
         ></button>
         <div className="user">
           <Link to="#" className="avatar">
-            <img src="assets/images/avatar-sm-5.jpg" alt="" />
+            <img src={user?.profileImg} alt={user?.name} />
             <span className="status online"></span>
           </Link>
           <h5 className="name">
-            <Link to="#">عبادة أبو مسامح</Link>
+            <Link to="#">{user?.name}</Link>
           </h5>
-          <h5 className="position">الآدمن</h5>
+          <h5 className="position">{user?.role}</h5>
           <div className="control-wrap js__drop_down">
             <i className="fa fa-caret-down js__drop_down_button"></i>
             <div className="control-list">
@@ -37,7 +53,7 @@ const Sidebar = () => {
                 </Link>
               </div>
               <div className="control-item">
-                <Link to="#">
+                <Link to={"#"} onClick={logout}>
                   <i className="fa fa-sign-out"></i> تسجيل خروج
                 </Link>
               </div>
