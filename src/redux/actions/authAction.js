@@ -12,19 +12,19 @@ import {
 // login  user 
 export const loginUser = (data) => async (dispatch) => {
   try {
-      const response = await useInsertDataToken(`/api/v1/auth/login`, data);
+      const response = await useInsertData(`/api/v1/auth/login`, data);
       // console.log(response);
       dispatch({
-          type: LOGIN_USER,
-          payload: response,
-          loading: true
+        type: LOGIN_USER,
+        payload: response,
+        loading: true
       })
 
   } catch (e) {
     // console.log(e.response.data.errors);
       dispatch({
-          type: LOGIN_USER,
-          payload: e.response,
+        type: LOGIN_USER,
+        payload: e.response,
       })
   }
 }

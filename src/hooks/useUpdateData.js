@@ -1,4 +1,4 @@
-import baseUrl from "../Api/baseURL";
+import baseURL from "../Api/baseURL";
 
 const useUpdateDataToken = async (url, params) => {
   const config = {
@@ -7,7 +7,7 @@ const useUpdateDataToken = async (url, params) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
-  const res = await baseUrl.put(url, params, config);
+  const res = await baseURL.put(url, params, config);
   return res;
 };
 
@@ -15,7 +15,7 @@ const useInsUpdateData = async (url, parmas) => {
   const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
   }
-  const res = await baseUrl.put(url, parmas, config);
+  const res = await baseURL.put(url, parmas, config);
   return res;
 }
 
@@ -26,7 +26,7 @@ const useUpdateDataWithImageToken = async (url, params) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
-  const res = await baseUrl.put(url, params, config);
+  const res = await baseURL.put(url, params, config);
   return res;
 };
 

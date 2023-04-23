@@ -1,4 +1,4 @@
-import baseUrl from "../Api/baseURL";
+import baseURL from "../Api/baseURL";
 
 const useDeleteDataToken = async (url) => {
   const config = {
@@ -6,7 +6,7 @@ const useDeleteDataToken = async (url) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
-  const res = await baseUrl.delete(url, config);
+  const res = await baseURL.delete(url, config);
   return res.data;
 };
 

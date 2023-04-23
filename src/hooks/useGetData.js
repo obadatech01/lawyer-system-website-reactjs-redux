@@ -1,7 +1,7 @@
-import baseUrl from "../Api/baseURL";
+import baseURL from "../Api/baseURL";
 
 const useGetData = async (url) => {
-  const res = await baseUrl.get(url);
+  const res = await baseURL.get(url);
   return res.data;
 };
 
@@ -12,7 +12,7 @@ const useGetDataToken = async (url) => {
     },
   };
   
-  const res = await baseUrl.get(url, config);
+  const res = await baseURL.get(url, config);
   return res.data;
 };
 

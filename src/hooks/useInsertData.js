@@ -1,7 +1,8 @@
-import baseUrl from "../Api/baseURL";
+import baseURL from "../Api/baseURL";
 
 const useInsertData = async (url, params) => {
-  const res = await baseUrl.post(url, params);
+  const res = await baseURL.post(url, params);
+  // console.log(res);
   return res;
 };
 
@@ -12,7 +13,7 @@ const useInsertDataToken = async (url, params) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
-  const res = await baseUrl.post(url, params, config);
+  const res = await baseURL.post(url, params, config);
   return res;
 };
 
@@ -23,7 +24,7 @@ const useInsertDataWithImageToken = async (url, params) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
-  const res = await baseUrl.post(url, params, config);
+  const res = await baseURL.post(url, params, config);
   return res;
 };
 

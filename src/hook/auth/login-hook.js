@@ -25,7 +25,6 @@ const LoginHook = () => {
     if (!email) notify("الرجاء قم بإدخال البريد الإلكتروني", "error");
 
     if (!password) notify("الرجاء قم بإدخال كلمة السر", "error");
-
     setIsPress(true);
     setLoading(true);
     await dispatch(
@@ -33,7 +32,8 @@ const LoginHook = () => {
         email,
         password,
       })
-    );
+      );
+      console.log(email, password);
     
     setLoading(false);
     setIsPress(false);
@@ -51,6 +51,8 @@ const LoginHook = () => {
             window.location.href = "/";
           }, 1500);
         } else {
+          // console.log(res.data);
+          res.data.errors.map(err => notify(err.msg, "error"))
           localStorage.removeItem("token");
           localStorage.removeItem("user");
         }

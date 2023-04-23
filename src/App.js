@@ -1,92 +1,174 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';  
-import LoginPage from './Page/Auth/LoginPage';
-import AllCasePage from './Page/Case/AllCasePage';
-import AddCasePage from './Page/Case/AddCasePage';
-import EditCasePage from './Page/Case/EditCasePage';
-import AllClientPage from './Page/Client/AllClientPage';
-import AddClientPage from './Page/Client/AddClientPage';
-import EditClientPage from './Page/Client/EditClientPage';
-import ProfileClientPage from './Page/Client/ProfileClientPage';
-import AllDocumentPage from './Page/Document/AllDocumentPage';
-import AddDocumentPage from './Page/Document/AddDocumentPage';
-import EditDocumentPage from './Page/Document/EditDocumentPage';
-import AllExpensePage from './Page/Expense/AllExpensePage';
-import AddExpensePage from './Page/Expense/AddExpensePage';
-import EditExpensePage from './Page/Expense/EditExpensePage';
-import HomePage from './Page/Home/HomePage';
-import NotFoundPage from './Page/NotFound/NotFoundPage';
-import AllPaymentPage from './Page/Payment/AllPaymentPage';
-import AddPaymentPage from './Page/Payment/AddPaymentPage';
-import EditPaymentPage from './Page/Payment/EditPaymentPage';
-import AllPermissionPage from './Page/Permission/AllPermissionPage';
-import AddPermissionPage from './Page/Permission/AddPermissionPage';
-import EditPermissionPage from './Page/Permission/EditPermissionPage';
-import AllSessionPage from './Page/Session/AllSessionPage';
-import AddSessionPage from './Page/Session/AddSessionPage';
-import EditSessionPage from './Page/Session/EditSessionPage';
-import AllUserPage from './Page/User/AllUserPage';
-import AddUserPage from './Page/User/AddUserPage';
-import EditUserPage from './Page/User/EditUserPage';
-import ProfileUserPage from './Page/User/ProfileUserPage';
-import ForgetPasswordPage from './Page/Auth/ForgetPasswordPage';
-import VerifyPasswordPage from './Page/Auth/VerifyPasswordPage';
-import ResetPasswordPage from './Page/Auth/ResetPasswordPage';
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProtectedRoute from "./Components/Utils/ProtectedRoute";
+import ForgetPasswordPage from "./Page/Auth/ForgetPasswordPage";
+import LoginPage from "./Page/Auth/LoginPage";
+import ResetPasswordPage from "./Page/Auth/ResetPasswordPage";
+import VerifyPasswordPage from "./Page/Auth/VerifyPasswordPage";
+import AddCasePage from "./Page/Case/AddCasePage";
+import AllCasePage from "./Page/Case/AllCasePage";
+import EditCasePage from "./Page/Case/EditCasePage";
+import AddClientPage from "./Page/Client/AddClientPage";
+import AllClientPage from "./Page/Client/AllClientPage";
+import EditClientPage from "./Page/Client/EditClientPage";
+import ProfileClientPage from "./Page/Client/ProfileClientPage";
+import AddDocumentPage from "./Page/Document/AddDocumentPage";
+import AllDocumentPage from "./Page/Document/AllDocumentPage";
+import EditDocumentPage from "./Page/Document/EditDocumentPage";
+import AddExpensePage from "./Page/Expense/AddExpensePage";
+import AllExpensePage from "./Page/Expense/AllExpensePage";
+import EditExpensePage from "./Page/Expense/EditExpensePage";
+import HomePage from "./Page/Home/HomePage";
+import NotFoundPage from "./Page/NotFound/NotFoundPage";
+import AddPaymentPage from "./Page/Payment/AddPaymentPage";
+import AllPaymentPage from "./Page/Payment/AllPaymentPage";
+import EditPaymentPage from "./Page/Payment/EditPaymentPage";
+import AddPermissionPage from "./Page/Permission/AddPermissionPage";
+import AllPermissionPage from "./Page/Permission/AllPermissionPage";
+import EditPermissionPage from "./Page/Permission/EditPermissionPage";
+import AddSessionPage from "./Page/Session/AddSessionPage";
+import AllSessionPage from "./Page/Session/AllSessionPage";
+import EditSessionPage from "./Page/Session/EditSessionPage";
+import AddUserPage from "./Page/User/AddUserPage";
+import AllUserPage from "./Page/User/AllUserPage";
+import EditUserPage from "./Page/User/EditUserPage";
+import ProfileUserPage from "./Page/User/ProfileUserPage";
+import ProtectedRouteHook from "./hook/auth/protected-route-hook";
 
 function App() {
+  const [
+    userData,
+    isOwner,
+    isUsersPermission,
+    isClientsPermission,
+    isCasesPermission,
+    isSessionsPermission,
+    isDocumentsPermission,
+    isExpensesPermission,
+    isPaymentsPermission,
+    isRolesPermission,
+  ] = ProtectedRouteHook();
+
   return (
     <div className="font color-body">
       <BrowserRouter>
         <Routes>
-          <Route index element={<HomePage />} />
+          <Route exact path="/" element={<HomePage />} />
 
           {/* cases routes */}
-          <Route exact path="/cases" element={<AllCasePage />} />
-          <Route exact path="/cases-add" element={<AddCasePage />} />
-          <Route exact path="/cases-edit" element={<EditCasePage />} />
-          
+          <Route
+            element={<ProtectedRoute auth={isOwner || isCasesPermission} />}
+          >
+            <Route exact path="/cases" element={<AllCasePage />} />
+            <Route exact path="/cases-add" element={<AddCasePage />} />
+            <Route exact path="/cases-edit" element={<EditCasePage />} />
+          </Route>
+
           {/* clients routes */}
-          <Route exact path="/clients" element={<AllClientPage />} />
-          <Route exact path="/clients-add" element={<AddClientPage />} />
-          <Route exact path="/clients-edit/:id" element={<EditClientPage />} />
-          <Route exact path="/clients-profile/:id" element={<ProfileClientPage />} />
-                    
+          <Route
+            element={<ProtectedRoute auth={isOwner || isClientsPermission} />}
+          >
+            <Route exact path="/clients" element={<AllClientPage />} />
+            <Route exact path="/clients-add" element={<AddClientPage />} />
+            <Route
+              exact
+              path="/clients-edit/:id"
+              element={<EditClientPage />}
+            />
+            <Route
+              exact
+              path="/clients-profile/:id"
+              element={<ProfileClientPage />}
+            />
+          </Route>
+
           {/* documents routes */}
-          <Route exact path="/documents" element={<AllDocumentPage />} />
-          <Route exact path="/documents-add" element={<AddDocumentPage />} />
-          <Route exact path="/documents-edit" element={<EditDocumentPage />} />
-          
+          <Route
+            element={<ProtectedRoute auth={isOwner || isDocumentsPermission} />}
+          >
+            <Route exact path="/documents" element={<AllDocumentPage />} />
+            <Route exact path="/documents-add" element={<AddDocumentPage />} />
+            <Route
+              exact
+              path="/documents-edit"
+              element={<EditDocumentPage />}
+            />
+          </Route>
+
           {/* expenses routes */}
-          <Route exact path="/expenses" element={<AllExpensePage />} />
-          <Route exact path="/expenses-add" element={<AddExpensePage />} />
-          <Route exact path="/expenses-edit" element={<EditExpensePage />} />
-          
+          <Route
+            element={<ProtectedRoute auth={isOwner || isExpensesPermission} />}
+          >
+            <Route exact path="/expenses" element={<AllExpensePage />} />
+            <Route exact path="/expenses-add" element={<AddExpensePage />} />
+            <Route exact path="/expenses-edit" element={<EditExpensePage />} />
+          </Route>
+
           {/* payments routes */}
-          <Route exact path="/payments" element={<AllPaymentPage />} />
-          <Route exact path="/payments-add" element={<AddPaymentPage />} />
-          <Route exact path="/payments-edit" element={<EditPaymentPage />} />
-          
+          <Route
+            element={<ProtectedRoute auth={isOwner || isPaymentsPermission} />}
+          >
+            <Route exact path="/payments" element={<AllPaymentPage />} />
+            <Route exact path="/payments-add" element={<AddPaymentPage />} />
+            <Route exact path="/payments-edit" element={<EditPaymentPage />} />
+          </Route>
+
           {/* permissions routes */}
-          <Route exact path="/permissions" element={<AllPermissionPage />} />
-          <Route exact path="/permissions-add" element={<AddPermissionPage />} />
-          <Route exact path="/permissions-edit" element={<EditPermissionPage />} />
+          <Route
+            element={<ProtectedRoute auth={isOwner || isRolesPermission} />}
+          >
+            <Route exact path="/permissions" element={<AllPermissionPage />} />
+            <Route
+              exact
+              path="/permissions-add"
+              element={<AddPermissionPage />}
+            />
+            <Route
+              exact
+              path="/permissions-edit"
+              element={<EditPermissionPage />}
+            />
+          </Route>
 
           {/* sessions routes */}
-          <Route exact path="/sessions" element={<AllSessionPage />} />
-          <Route exact path="/sessions-add" element={<AddSessionPage />} />
-          <Route exact path="/sessions-edit" element={<EditSessionPage />} />
+          <Route
+            element={<ProtectedRoute auth={isOwner || isSessionsPermission} />}
+          >
+            <Route exact path="/sessions" element={<AllSessionPage />} />
+            <Route exact path="/sessions-add" element={<AddSessionPage />} />
+            <Route exact path="/sessions-edit" element={<EditSessionPage />} />
+          </Route>
 
           {/* users routes */}
-          <Route exact path="/users" element={<AllUserPage />} />
-          <Route exact path="/users-add" element={<AddUserPage />} />
-          <Route exact path="/users-edit" element={<EditUserPage />} />
-          <Route exact path="/users-profile" element={<ProfileUserPage />} />
-          
+          <Route
+            element={<ProtectedRoute auth={isOwner || isUsersPermission} />}
+          >
+            <Route exact path="/users" element={<AllUserPage />} />
+            <Route exact path="/users-add" element={<AddUserPage />} />
+            <Route exact path="/users-edit" element={<EditUserPage />} />
+            <Route exact path="/users-profile" element={<ProfileUserPage />} />
+          </Route>
+
           {/* auth routes */}
-          <Route exact path="/login" element={<LoginPage />} />
-          <Route exact path="/forget-password" element={<ForgetPasswordPage />} />
-          <Route exact path="/verify-code" element={<VerifyPasswordPage />} />
-          <Route exact path="/reset-password" element={<ResetPasswordPage />} />
+          {userData === null ? (
+            <>
+              <Route exact path="/login" element={<LoginPage />} />
+              <Route
+                exact
+                path="/forget-password"
+                element={<ForgetPasswordPage />}
+              />
+              <Route
+                exact
+                path="/verify-code"
+                element={<VerifyPasswordPage />}
+              />
+              <Route
+                exact
+                path="/reset-password"
+                element={<ResetPasswordPage />}
+              />
+            </>
+          ) : null}
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
