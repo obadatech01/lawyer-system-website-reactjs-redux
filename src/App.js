@@ -52,102 +52,6 @@ function App() {
     <div className="font color-body">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
-
-          {/* cases routes */}
-          <Route
-            element={<ProtectedRoute auth={isOwner || isCasesPermission} />}
-          >
-            <Route exact path="/cases" element={<AllCasePage />} />
-            <Route exact path="/cases-add" element={<AddCasePage />} />
-            <Route exact path="/cases-edit" element={<EditCasePage />} />
-          </Route>
-
-          {/* clients routes */}
-          <Route
-            element={<ProtectedRoute auth={isOwner || isClientsPermission} />}
-          >
-            <Route exact path="/clients" element={<AllClientPage />} />
-            <Route exact path="/clients-add" element={<AddClientPage />} />
-            <Route
-              exact
-              path="/clients-edit/:id"
-              element={<EditClientPage />}
-            />
-            <Route
-              exact
-              path="/clients-profile/:id"
-              element={<ProfileClientPage />}
-            />
-          </Route>
-
-          {/* documents routes */}
-          <Route
-            element={<ProtectedRoute auth={isOwner || isDocumentsPermission} />}
-          >
-            <Route exact path="/documents" element={<AllDocumentPage />} />
-            <Route exact path="/documents-add" element={<AddDocumentPage />} />
-            <Route
-              exact
-              path="/documents-edit"
-              element={<EditDocumentPage />}
-            />
-          </Route>
-
-          {/* expenses routes */}
-          <Route
-            element={<ProtectedRoute auth={isOwner || isExpensesPermission} />}
-          >
-            <Route exact path="/expenses" element={<AllExpensePage />} />
-            <Route exact path="/expenses-add" element={<AddExpensePage />} />
-            <Route exact path="/expenses-edit" element={<EditExpensePage />} />
-          </Route>
-
-          {/* payments routes */}
-          <Route
-            element={<ProtectedRoute auth={isOwner || isPaymentsPermission} />}
-          >
-            <Route exact path="/payments" element={<AllPaymentPage />} />
-            <Route exact path="/payments-add" element={<AddPaymentPage />} />
-            <Route exact path="/payments-edit" element={<EditPaymentPage />} />
-          </Route>
-
-          {/* permissions routes */}
-          <Route
-            element={<ProtectedRoute auth={isOwner || isRolesPermission} />}
-          >
-            <Route exact path="/permissions" element={<AllPermissionPage />} />
-            <Route
-              exact
-              path="/permissions-add"
-              element={<AddPermissionPage />}
-            />
-            <Route
-              exact
-              path="/permissions-edit"
-              element={<EditPermissionPage />}
-            />
-          </Route>
-
-          {/* sessions routes */}
-          <Route
-            element={<ProtectedRoute auth={isOwner || isSessionsPermission} />}
-          >
-            <Route exact path="/sessions" element={<AllSessionPage />} />
-            <Route exact path="/sessions-add" element={<AddSessionPage />} />
-            <Route exact path="/sessions-edit" element={<EditSessionPage />} />
-          </Route>
-
-          {/* users routes */}
-          <Route
-            element={<ProtectedRoute auth={isOwner || isUsersPermission} />}
-          >
-            <Route exact path="/users" element={<AllUserPage />} />
-            <Route exact path="/users-add" element={<AddUserPage />} />
-            <Route exact path="/users-edit" element={<EditUserPage />} />
-            <Route exact path="/users-profile" element={<ProfileUserPage />} />
-          </Route>
-
           {/* auth routes */}
           {userData === null ? (
             <>
@@ -167,10 +71,155 @@ function App() {
                 path="/reset-password"
                 element={<ResetPasswordPage />}
               />
-            </>
-          ) : null}
 
-          <Route path="*" element={<NotFoundPage />} />
+              <Route path="*" element={<LoginPage />} />
+            </>
+          ) : (
+            <>
+              <Route exact path="/" element={<HomePage />} />
+
+              {/* cases routes */}
+              <Route
+                element={<ProtectedRoute auth={isOwner || isCasesPermission} />}
+              >
+                <Route exact path="/cases" element={<AllCasePage />} />
+                <Route exact path="/cases-add" element={<AddCasePage />} />
+                <Route exact path="/cases-edit" element={<EditCasePage />} />
+              </Route>
+
+              {/* clients routes */}
+              <Route
+                element={
+                  <ProtectedRoute auth={isOwner || isClientsPermission} />
+                }
+              >
+                <Route exact path="/clients" element={<AllClientPage />} />
+                <Route exact path="/clients-add" element={<AddClientPage />} />
+                <Route
+                  exact
+                  path="/clients-edit/:id"
+                  element={<EditClientPage />}
+                />
+                <Route
+                  exact
+                  path="/clients-profile/:id"
+                  element={<ProfileClientPage />}
+                />
+              </Route>
+
+              {/* documents routes */}
+              <Route
+                element={
+                  <ProtectedRoute auth={isOwner || isDocumentsPermission} />
+                }
+              >
+                <Route exact path="/documents" element={<AllDocumentPage />} />
+                <Route
+                  exact
+                  path="/documents-add"
+                  element={<AddDocumentPage />}
+                />
+                <Route
+                  exact
+                  path="/documents-edit"
+                  element={<EditDocumentPage />}
+                />
+              </Route>
+
+              {/* expenses routes */}
+              <Route
+                element={
+                  <ProtectedRoute auth={isOwner || isExpensesPermission} />
+                }
+              >
+                <Route exact path="/expenses" element={<AllExpensePage />} />
+                <Route
+                  exact
+                  path="/expenses-add"
+                  element={<AddExpensePage />}
+                />
+                <Route
+                  exact
+                  path="/expenses-edit"
+                  element={<EditExpensePage />}
+                />
+              </Route>
+
+              {/* payments routes */}
+              <Route
+                element={
+                  <ProtectedRoute auth={isOwner || isPaymentsPermission} />
+                }
+              >
+                <Route exact path="/payments" element={<AllPaymentPage />} />
+                <Route
+                  exact
+                  path="/payments-add"
+                  element={<AddPaymentPage />}
+                />
+                <Route
+                  exact
+                  path="/payments-edit"
+                  element={<EditPaymentPage />}
+                />
+              </Route>
+
+              {/* permissions routes */}
+              <Route
+                element={<ProtectedRoute auth={isOwner || isRolesPermission} />}
+              >
+                <Route
+                  exact
+                  path="/permissions"
+                  element={<AllPermissionPage />}
+                />
+                <Route
+                  exact
+                  path="/permissions-add"
+                  element={<AddPermissionPage />}
+                />
+                <Route
+                  exact
+                  path="/permissions-edit"
+                  element={<EditPermissionPage />}
+                />
+              </Route>
+
+              {/* sessions routes */}
+              <Route
+                element={
+                  <ProtectedRoute auth={isOwner || isSessionsPermission} />
+                }
+              >
+                <Route exact path="/sessions" element={<AllSessionPage />} />
+                <Route
+                  exact
+                  path="/sessions-add"
+                  element={<AddSessionPage />}
+                />
+                <Route
+                  exact
+                  path="/sessions-edit"
+                  element={<EditSessionPage />}
+                />
+              </Route>
+
+              {/* users routes */}
+              <Route
+                element={<ProtectedRoute auth={isOwner || isUsersPermission} />}
+              >
+                <Route exact path="/users" element={<AllUserPage />} />
+                <Route exact path="/users-add" element={<AddUserPage />} />
+                <Route exact path="/users-edit" element={<EditUserPage />} />
+                <Route
+                  exact
+                  path="/users-profile"
+                  element={<ProfileUserPage />}
+                />
+              </Route>
+              <Route path="*" element={<NotFoundPage />} />
+            </>
+          )}
         </Routes>
       </BrowserRouter>
     </div>

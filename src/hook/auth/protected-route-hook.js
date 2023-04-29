@@ -22,44 +22,46 @@ const ProtectedRouteHook = () => {
         setIsOwner(false);
       }
 
-      userData.permissions.permissions.map((permission) => {
-        switch (permission) {
-          case "users-permission":
-            setIsUsersPermission(true);
-            break;
-
-          case "clients-permission":
-            setIsClientsPermission(true);
-            break;
-
-          case "cases-permission":
-            setIsCasesPermission(true);
-            break;
-
-          case "sessions-permission":
-            setIsSessionsPermission(true);
-            break;
-
-          case "documents-permission":
-            setIsDocumentsPermission(true);
-            break;
-
-          case "expenses-permission":
-            setIsExpensesPermission(true);
-            break;
-
-          case "payments-permission":
-            setIsPaymentsPermission(true);
-            break;
-
-          case "roles-permission":
-            setIsRolesPermission(true);
-            break;
-
-          default:
-            break;
-        }
-      });
+      if(userData.permissions) {
+        userData.permissions.permissions.map((permission) => {
+          switch (permission) {
+            case "users-permission":
+              setIsUsersPermission(true);
+              break;
+  
+            case "clients-permission":
+              setIsClientsPermission(true);
+              break;
+  
+            case "cases-permission":
+              setIsCasesPermission(true);
+              break;
+  
+            case "sessions-permission":
+              setIsSessionsPermission(true);
+              break;
+  
+            case "documents-permission":
+              setIsDocumentsPermission(true);
+              break;
+  
+            case "expenses-permission":
+              setIsExpensesPermission(true);
+              break;
+  
+            case "payments-permission":
+              setIsPaymentsPermission(true);
+              break;
+  
+            case "roles-permission":
+              setIsRolesPermission(true);
+              break;
+  
+            default:
+              break;
+          }
+        });
+      }
     } else {
       setIsOwner(false);
       setIsUsersPermission(false);

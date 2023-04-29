@@ -1,3 +1,8 @@
+export const GET_ALL_CASE = "GET_ALL_CASE";
+export const GET_ONE_CASE = "GET_ONE_CASE";
+export const CREATE_CASE = "CREATE_CASE";
+export const UPDATE_CASE = "UPDATE_CASE";
+export const DELETE_CASE = "DELETE_CASE";
 export const GET_ALL_CLIENT = "GET_ALL_CLIENT";
 export const GET_ONE_CLIENT = "GET_ONE_CLIENT";
 export const CREATE_CLIENT = "CREATE_CLIENT";

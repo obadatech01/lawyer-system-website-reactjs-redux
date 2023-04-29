@@ -17,6 +17,8 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
     window.location.reload();
   };
 
+  console.log(data);
+
   return (
     <div className="row small-spacing">
       <div className="col-xs-12">

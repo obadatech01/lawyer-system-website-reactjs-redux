@@ -75,7 +75,8 @@ const AddClientHook = () => {
 
   // save data in database
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();  
+    
     const formData = {
       name,
       email,
@@ -109,7 +110,7 @@ const AddClientHook = () => {
       if (res.status === 201) {
         notify("تمت عملية الاضافة بنجاح", "success");
       } else {
-        notify("هناك مشكله فى عملية الاضافة", "error");
+        res.data.errors.map(err => notify(err.msg, "error"));
       }
     }
   }, [loading, res]);

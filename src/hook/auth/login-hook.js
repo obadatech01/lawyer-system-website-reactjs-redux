@@ -33,7 +33,7 @@ const LoginHook = () => {
         password,
       })
       );
-      console.log(email, password);
+      // console.log(email, password);
     
     setLoading(false);
     setIsPress(false);
@@ -42,7 +42,7 @@ const LoginHook = () => {
   useEffect(() => {
     if (loading === false) {
       if (res) {
-        console.log(res);
+        // console.log(res);
         if (res.data.token) {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("user", JSON.stringify(res.data.data));

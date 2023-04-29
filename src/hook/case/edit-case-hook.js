@@ -4,7 +4,7 @@ import { getOneClient, updateClient } from "../../redux/actions/clientAction";
 import notify from "../useNotification";
 import { useNavigate } from "react-router-dom";
 
-const EditClientHook = (id) => {
+const EditCaseHook = (id) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -159,16 +159,14 @@ const EditClientHook = (id) => {
             navigate('/clients')
         }, 2000);
         } else {
-          // console.log(client);
-          // client.data.errors.map(err => notify(err.msg, "error"));
           notify("هناك مشكلة فى عملية التعديل", "error");
         }
       }
     }
-  }, [loading, client]);
+  }, [loading, client, navigate]);
 
   return [name, email, nationality, identificationNumber, phone, gender, address, companyName, notes, handleSubmit, onChangeName, onChangeEmail, onChangeNationality, onChangeIdentificationNumber, onChangePhone, onChangeGender, onChangeAddress, onChangeCompanyName, onChangeNotes];
 
 };
 
-export default EditClientHook;
+export default EditCaseHook;

@@ -30,6 +30,7 @@ const LoginPage = () => {
               onChange={onChangeEmail}
               type="email"
               placeholder="أدخل البريد الإلكتروني"
+              autoComplete="true"
               className="frm-inp"
             />
             <i className="fa fa-envelope frm-ico"></i>

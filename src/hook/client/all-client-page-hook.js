@@ -17,7 +17,7 @@ const AllClientPageHook = () => {
   let pageCount = 0;
   if (clients.paginationResult)
     pageCount = clients.paginationResult.numberOfPages;
-
+  
   return [clients, loading, pageCount];
 };
 

@@ -2,7 +2,7 @@ import { useDeleteDataToken } from "../../hooks/useDeleteData";
 import { useGetDataToken } from "../../hooks/useGetData";
 import { useInsertDataToken } from "../../hooks/useInsertData";
 import { useUpdateDataToken } from "../../hooks/useUpdateData";
-import { CREATE_CLIENT, DELETE_CLIENT, GET_ALL_CLIENT, GET_ERROR, GET_ONE_CLIENT, UPDATE_CLIENT } from "../type";
+import { CREATE_CLIENT, DELETE_CLIENT, GET_ALL_CLIENT, GET_ONE_CLIENT, UPDATE_CLIENT } from "../type";
 // import baseURL from '../../Api/baseURL';
 
 // get all clients with limit
@@ -17,8 +17,8 @@ export const getAllClient = (limit) => async (dispatch) => {
   } catch (err) {
     // console.log(err);
     dispatch({
-      type: GET_ERROR,
-      payload: "Error " + err,
+      type: GET_ALL_CLIENT,
+      payload: err.response,
     });
   }
 };
@@ -35,8 +35,8 @@ export const getAllClientPage = (page) => async (dispatch) => {
   } catch (err) {
     // console.log(err);
     dispatch({
-      type: GET_ERROR,
-      payload: "Error " + err,
+      type: GET_ALL_CLIENT,
+      payload: err.response,
     });
   }
 };
@@ -53,8 +53,8 @@ export const createClient = (formData) => async (dispatch) => {
   } catch (err) {
     // console.log(err);
     dispatch({
-      type: GET_ERROR,
-      payload: "Error " + err,
+      type: CREATE_CLIENT,
+      payload: err.response,
     });
   }
 };
@@ -71,8 +71,8 @@ export const deleteClient = (id) => async (dispatch) => {
   } catch (err) {
     // console.log(err);
     dispatch({
-      type: GET_ERROR,
-      payload: "Error " + err,
+      type: DELETE_CLIENT,
+      payload: err.response,
     });
   }
 };
@@ -89,8 +89,8 @@ export const updateClient = (id, data) => async (dispatch) => {
   } catch (err) {
     // console.log(err);
     dispatch({
-      type: GET_ERROR,
-      payload: "Error " + err,
+      type: UPDATE_CLIENT,
+      payload: err.response,
     });
   }
 };
@@ -106,8 +106,8 @@ export const getOneClient = (id) => async (dispatch) => {
     });
   } catch (err) {
     dispatch({
-      type: GET_ERROR,
-      payload: "Error " + err,
+      type: GET_ONE_CLIENT,
+      payload: err.response,
     });
   }
 };
