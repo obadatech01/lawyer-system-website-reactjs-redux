@@ -1,55 +1,55 @@
 import {
-  CREATE_CASE,
-  DELETE_CASE,
-  GET_ALL_CASE,
+  CREATE_USER,
+  DELETE_USER,
+  GET_ALL_USER,
   GET_ERROR,
-  GET_ONE_CASE,
-  UPDATE_CASE,
+  GET_ONE_USER,
+  UPDATE_USER,
 } from "../type";
 
 const initial = {
-  cases: [],
-  oneCase: [],
-  deleteCase: [],
-  updateCase: [],
+  users: [],
+  oneUser: [],
+  deleteUser: [],
+  updateUser: [],
   loading: true,
 };
-const caseReducer = (state = initial, action) => {
+const userReducer = (state = initial, action) => {
   switch (action.type) {
-    case GET_ALL_CASE:
+    case GET_ALL_USER:
       return {
         ...state,
-        cases: action.payload,
+        users: action.payload,
         loading: false,
       };
-    case GET_ONE_CASE:
+    case GET_ONE_USER:
       return {
         ...state,
-        oneCase: action.payload,
+        oneUser: action.payload,
         loading: false,
       };
-    case CREATE_CASE:
+    case CREATE_USER:
       return {
         ...state,
-        cases: action.payload,
+        users: action.payload,
         loading: false,
       };
-    case UPDATE_CASE:
+    case UPDATE_USER:
       return {
         ...state,
-        updateCase: action.payload,
+        updateUser: action.payload,
         loading: false,
       };
-    case DELETE_CASE:
+    case DELETE_USER:
       return {
         ...state,
-        deleteCase: action.payload,
+        deleteUser: action.payload,
         loading: false,
       };
     case GET_ERROR:
       return {
         loading: true,
-        cases: action.payload,
+        users: action.payload,
       };
 
     default:
@@ -57,4 +57,4 @@ const caseReducer = (state = initial, action) => {
   }
 };
 
-export default caseReducer;
+export default userReducer;

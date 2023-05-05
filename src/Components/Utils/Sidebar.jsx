@@ -95,6 +95,12 @@ const Sidebar = () => {
               </Link>
             </li>
             <li>
+              <Link className="waves-effect" to={"/documents"}>
+                <i className="menu-icon mdi mdi-view-dashboard"></i>
+                <span>الملفات</span>
+              </Link>
+            </li>
+            <li>
               <Link className="waves-effect" to={"/payments"}>
                 <i className="menu-icon mdi mdi-view-dashboard"></i>
                 <span>المدفوعات</span>

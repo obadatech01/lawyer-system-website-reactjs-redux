@@ -49,7 +49,7 @@ const clientReducer = (state = initial, action) => {
     case GET_ERROR:
       return {
         loading: true,
-        client: action.payload,
+        clients: action.payload,
       };
 
     default:

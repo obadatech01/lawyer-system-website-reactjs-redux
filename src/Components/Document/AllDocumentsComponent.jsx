@@ -1,7 +1,7 @@
 import React from "react";
-import Pagination from "../Utils/Pagination";
 import Table from "react-bootstrap/esm/Table";
 import { Link } from "react-router-dom";
+import Pagination from "../Utils/Pagination";
 
 const AllDocumentsComponent = () => {
   return (
@@ -10,7 +10,7 @@ const AllDocumentsComponent = () => {
         <div className="box-content">
           <div className="d-flex justify-content-between">
             <div className="d-flex flex-column">
-              <h4 className="box-title">عرض جميع المصروفات</h4>
+              <h4 className="box-title">عرض جميع الملفات</h4>
               <div className="h4">
                 {"عرض "}
                 <select name="limitation" id="lang" className="select px-2 ">
@@ -27,7 +27,7 @@ const AllDocumentsComponent = () => {
                 to={"/documents-add"}
                 className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
               >
-                <i className="ico fa fa-plus"></i> إضافة مصروفات
+                <i className="ico fa fa-plus"></i> إضافة ملفات
               </Link>
               <input
                 type="search"
@@ -42,36 +42,31 @@ const AllDocumentsComponent = () => {
             <thead>
               <tr>
                 <th className="h5 text-center">#</th>
-                <th className="h5 text-center">اسم الدفعة </th>
-                <th className="h5 text-center"> طريقة الدفع</th>
-                <th className="h5 text-center"> الكمية </th>
-                <th className="h5 text-center">  التاريخ</th>
-                <th className="h5 text-center">اسم المحامي</th>
+                <th className="h5 text-center">اسم الملف </th>
+                <th className="h5 text-center"> عنوان القضية</th>
+                <th className="h5 text-center"> أضيف بواسطة </th>
+                <th className="h5 text-center"> الملف</th>
                 <th className="h5 text-center"> أكشن</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
                 <th className="h5 text-center">#</th>
-                <th className="h5 text-center">اسم الدفعة </th>
-                <th className="h5 text-center"> طريقة الدفع</th>
-                <th className="h5 text-center"> الكمية </th>
-                <th className="h5 text-center">  التاريخ</th>
-                <th className="h5 text-center">اسم المحامي</th>
+                <th className="h5 text-center">اسم الملف </th>
+                <th className="h5 text-center"> عنوان القضية</th>
+                <th className="h5 text-center"> أضيف بواسطة </th>
+                <th className="h5 text-center"> الملف</th>
                 <th className="h5 text-center"> أكشن</th>
               </tr>
             </tfoot>
             <tbody>
               <tr>
                 <th className="h5 text-center">1</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
+                <td className="h5 text-center text-muted"> دفعة أولى</td>
                 <td className="h5 text-center text-muted">كاش</td>
                 <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
                 <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
+                <td className="h5 text-center text-muted d-flex justify-content-evenly">
                   <Link
                     to={"/documents-edit"}
                     className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
@@ -91,17 +86,14 @@ const AllDocumentsComponent = () => {
                     <i className="ico fa fa-trash"></i> حذف
                   </button>
                 </td>
-              </tr>               
+              </tr>
               <tr>
                 <th className="h5 text-center">2</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
+                <td className="h5 text-center text-muted"> دفعة أولى</td>
                 <td className="h5 text-center text-muted">كاش</td>
                 <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
                 <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
+                <td className="h5 text-center text-muted d-flex justify-content-evenly">
                   <Link
                     to={"/documents-edit"}
                     className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
@@ -121,17 +113,14 @@ const AllDocumentsComponent = () => {
                     <i className="ico fa fa-trash"></i> حذف
                   </button>
                 </td>
-              </tr>               
+              </tr>
               <tr>
                 <th className="h5 text-center">3</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
+                <td className="h5 text-center text-muted"> دفعة أولى</td>
                 <td className="h5 text-center text-muted">كاش</td>
                 <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
                 <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
+                <td className="h5 text-center text-muted d-flex justify-content-evenly">
                   <Link
                     to={"/documents-edit"}
                     className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
@@ -151,17 +140,14 @@ const AllDocumentsComponent = () => {
                     <i className="ico fa fa-trash"></i> حذف
                   </button>
                 </td>
-              </tr>               
+              </tr>
               <tr>
                 <th className="h5 text-center">4</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
+                <td className="h5 text-center text-muted"> دفعة أولى</td>
                 <td className="h5 text-center text-muted">كاش</td>
                 <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
                 <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
+                <td className="h5 text-center text-muted d-flex justify-content-evenly">
                   <Link
                     to={"/documents-edit"}
                     className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
@@ -181,7 +167,7 @@ const AllDocumentsComponent = () => {
                     <i className="ico fa fa-trash"></i> حذف
                   </button>
                 </td>
-              </tr>               
+              </tr>
             </tbody>
           </Table>
           <Pagination />
