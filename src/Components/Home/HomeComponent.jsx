@@ -1,7 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const HomeComponent = () => {
+const HomeComponent = ({ cases, loadingCase, sessions, loadingSession }) => {
+  // console.log(cases);
   return (
     <>
       <div className="row small-spacing">
@@ -82,9 +83,7 @@ const HomeComponent = () => {
           <div className="box-content bg-orange text-white">
             <div className="statistics-box with-icon">
               <i className="ico small fa fa-diamond"></i>
-              <p className="text text-white h3">
-                المصروفات المتبقية
-              </p>
+              <p className="text text-white h3">المصروفات المتبقية</p>
               <h2 className="counter">72943</h2>
             </div>
           </div>
@@ -94,150 +93,44 @@ const HomeComponent = () => {
       <div className="row small-spacing">
         <div className="col-lg-6 col-xs-12">
           <div className="box-content">
-            <h4 className="box-title">Purchases</h4>
-            <div className="dropdown js__drop_down">
-              <Link
-                to="#"
-                className="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"
-              ></Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="#">Product</Link>
-                </li>
-                <li>
-                  <Link to="#">Another action</Link>
-                </li>
-                <li>
-                  <Link to="#">Something else there</Link>
-                </li>
-                <li className="split"></li>
-                <li>
-                  <Link to="#">Separated link</Link>
-                </li>
-              </ul>
-            </div>
+            <h4 className="box-title">آخر القضايا</h4>
             <div className="table-responsive table-purchases">
               <table className="table table-striped margin-bottom-10">
                 <thead>
                   <tr>
-                    <th style={{ width: "40%" }}>Product</th>
-                    <th>Price</th>
-                    <th>Date</th>
-                    <th>State</th>
-                    <th style={{ width: "5%" }}></th>
+                    <th style={{ width: "30%" }}>عنوان القضية</th>
+                    <th>اسم المحكمة</th>
+                    <th>اسم القاضي</th>
+                    <th>رقم القضية</th>
+                    <th>حالة القضية</th>
+                    <th style={{ width: "5%" }}>أكشن</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Amaza Themes</td>
-                    <td>$71</td>
-                    <td>Nov 12,2016</td>
-                    <td className="text-success">Completed</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
+                  {loadingCase ? null : cases.length > 0 ? (
+                    cases.map((item) => (
+                      <tr>
+                        <td>{item.title}</td>
+                        <td>{item.courtName}</td>
+                        <td>{item.judgeName}</td>
+                        <td>{item.courtCaseNumber}</td>
+                        <td className="text-danger">{item.status}</td>
+                        <td>
+                          <Link to={`/cases/${item._id}`}>
+                            <i className="fa fa-plus-circle"></i>
+                          </Link>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <td
+                      valign="top"
+                      colSpan="9"
+                      className="h4 text-center text-danger p-3"
+                    >
+                      لا يوجد قضايا بعد!{" "}
                     </td>
-                  </tr>
-                  <tr>
-                    <td>Macbook</td>
-                    <td>$142</td>
-                    <td>Nov 10,2016</td>
-                    <td className="text-danger">Cancelled</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Samsung TV</td>
-                    <td>$200</td>
-                    <td>Nov 01,2016</td>
-                    <td className="text-warning">Pending</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Ninja Admin</td>
-                    <td>$200</td>
-                    <td>Oct 28,2016</td>
-                    <td className="text-warning">Pending</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Galaxy Note 5</td>
-                    <td>$200</td>
-                    <td>Oct 28,2016</td>
-                    <td className="text-success">Completed</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>CleanUp Themes</td>
-                    <td>$71</td>
-                    <td>Oct 22,2016</td>
-                    <td className="text-success">Completed</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Facebook WP Plugin</td>
-                    <td>$10</td>
-                    <td>Oct 15,2016</td>
-                    <td className="text-success">Completed</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Iphone 7</td>
-                    <td>$100</td>
-                    <td>Oct 12,2016</td>
-                    <td className="text-warning">Pending</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Nova House</td>
-                    <td>$100</td>
-                    <td>Oct 12,2016</td>
-                    <td className="text-warning">Pending</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Repair Cars</td>
-                    <td>$35</td>
-                    <td>Oct 12,2016</td>
-                    <td className="text-warning">Pending</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -245,150 +138,44 @@ const HomeComponent = () => {
         </div>
         <div className="col-lg-6 col-xs-12">
           <div className="box-content">
-            <h4 className="box-title">Purchases</h4>
-            <div className="dropdown js__drop_down">
-              <Link
-                to="#"
-                className="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"
-              ></Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="#">Product</Link>
-                </li>
-                <li>
-                  <Link to="#">Another action</Link>
-                </li>
-                <li>
-                  <Link to="#">Something else there</Link>
-                </li>
-                <li className="split"></li>
-                <li>
-                  <Link to="#">Separated link</Link>
-                </li>
-              </ul>
-            </div>
+            <h4 className="box-title">آخر الجلسات</h4>
             <div className="table-responsive table-purchases">
               <table className="table table-striped margin-bottom-10">
                 <thead>
                   <tr>
-                    <th style={{ width: "40%" }}>Product</th>
-                    <th>Price</th>
-                    <th>Date</th>
-                    <th>State</th>
-                    <th style={{ width: "5%" }}></th>
+                    <th>رقم القضية</th>
+                    <th style={{ width: "30%" }}>عنوان القضية</th>
+                    <th>عنوان الجلسة</th>
+                    <th>تاريخ الجلسة</th>
+                    <th>محامي الجلسة</th>
+                    <th style={{ width: "5%" }}>أكشن</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Amaza Themes</td>
-                    <td>$71</td>
-                    <td>Nov 12,2016</td>
-                    <td className="text-success">Completed</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
+                  {loadingSession ? null : sessions.length > 0 ? (
+                    sessions.map((item) => (
+                      <tr>
+                        <td>{item.case.courtCaseNumber}</td>
+                        <td>{item.case.title}</td>
+                        <td>{item.title}</td>
+                        <td>{item.sessionDate}</td>
+                        <td className="text-danger">{item.lawyerName}</td>
+                        <td>
+                          <Link to={`/cases/${item._id}`}>
+                            <i className="fa fa-plus-circle"></i>
+                          </Link>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <td
+                      valign="top"
+                      colSpan="9"
+                      className="h4 text-center text-danger p-3"
+                    >
+                      لا توجد جلسات بعد!{" "}
                     </td>
-                  </tr>
-                  <tr>
-                    <td>Macbook</td>
-                    <td>$142</td>
-                    <td>Nov 10,2016</td>
-                    <td className="text-danger">Cancelled</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Samsung TV</td>
-                    <td>$200</td>
-                    <td>Nov 01,2016</td>
-                    <td className="text-warning">Pending</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Ninja Admin</td>
-                    <td>$200</td>
-                    <td>Oct 28,2016</td>
-                    <td className="text-warning">Pending</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Galaxy Note 5</td>
-                    <td>$200</td>
-                    <td>Oct 28,2016</td>
-                    <td className="text-success">Completed</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>CleanUp Themes</td>
-                    <td>$71</td>
-                    <td>Oct 22,2016</td>
-                    <td className="text-success">Completed</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Facebook WP Plugin</td>
-                    <td>$10</td>
-                    <td>Oct 15,2016</td>
-                    <td className="text-success">Completed</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Iphone 7</td>
-                    <td>$100</td>
-                    <td>Oct 12,2016</td>
-                    <td className="text-warning">Pending</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Nova House</td>
-                    <td>$100</td>
-                    <td>Oct 12,2016</td>
-                    <td className="text-warning">Pending</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Repair Cars</td>
-                    <td>$35</td>
-                    <td>Oct 12,2016</td>
-                    <td className="text-warning">Pending</td>
-                    <td>
-                      <Link to="#">
-                        <i className="fa fa-plus-circle"></i>
-                      </Link>
-                    </td>
-                  </tr>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -396,7 +183,7 @@ const HomeComponent = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default HomeComponent;

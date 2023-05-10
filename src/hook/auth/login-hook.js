@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import notify from "./../useNotification";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/actions/authAction";
+import notify from "./../useNotification";
 
 const LoginHook = () => {
   const dispatch = useDispatch();
@@ -21,10 +21,9 @@ const LoginHook = () => {
     setPassword(e.target.value);
   };
 
-  const onSubmit = async () => {
-    if (!email) notify("الرجاء قم بإدخال البريد الإلكتروني", "error");
-
-    if (!password) notify("الرجاء قم بإدخال كلمة السر", "error");
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    
     setIsPress(true);
     setLoading(true);
     await dispatch(
@@ -32,9 +31,9 @@ const LoginHook = () => {
         email,
         password,
       })
-      );
-      // console.log(email, password);
-    
+    );
+    // console.log(email, password);
+
     setLoading(false);
     setIsPress(false);
   };
@@ -52,7 +51,7 @@ const LoginHook = () => {
           }, 1500);
         } else {
           // console.log(res.data);
-          res.data.errors.map(err => notify(err.msg, "error"))
+          res.data.errors.map((err) => notify(err.msg, "error"));
           localStorage.removeItem("token");
           localStorage.removeItem("user");
         }
