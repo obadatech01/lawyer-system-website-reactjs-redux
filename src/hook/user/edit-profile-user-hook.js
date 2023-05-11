@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneClient, updateClient } from "../../redux/actions/clientAction";
+import { getOneClient, updateClient } from "../../redux/actions/userAction";
 import notify from "../useNotification";
 import { useNavigate } from "react-router-dom";
 
-const EditClientHook = (id) => {
+const EditProfileUserHook = (id) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -18,28 +18,28 @@ const EditClientHook = (id) => {
   const item = useSelector((state) => state.allClient.oneClient);
 
   // value state
+  const defaultDocument = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg";
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [nationality, setNationality] = useState("");
   const [identificationNumber, setIdentificationNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [profileImg, setProfileImg] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
   const [phone, setPhone] = useState("");
-  const [gender, setGender] = useState("ذكر");
+  const [whatsapp, setWhatsapp] = useState("");
   const [address, setAddress] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [notes, setNotes] = useState("");
+  const [permissions, setPermissions] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (item.data) {
       setName(item.data.name);
       setEmail(item.data.email);
-      setNationality(item.data.nationality);
       setIdentificationNumber(item.data.identificationNumber);
+      setProfileImg(item.data.profileImg);
       setPhone(item.data.phone);
-      setGender(item.data.gender);
+      setWhatsapp(item.data.whatsapp);
       setAddress(item.data.address);
-      setCompanyName(item.data.companyName);
-      setNotes(item.data.notes);
+      setPermissions(item.data.permissions);
       setLoading(true);
     }
   }, [item]);
@@ -47,56 +47,54 @@ const EditClientHook = (id) => {
   //to change name state
   const onChangeName = (e) => {
     e.persist();
-    setName(e.target.value);
-  };
+    setName(e.target.value)
+  }
 
   //to change email state
   const onChangeEmail = (e) => {
     e.persist();
-    setEmail(e.target.value);
-  };
-
-  //to change nationality state
-  const onChangeNationality = (e) => {
-    e.persist();
-    setNationality(e.target.value);
-  };
+    setEmail(e.target.value)
+  }
 
   //to change identificationNumber state
   const onChangeIdentificationNumber = (e) => {
     e.persist();
-    setIdentificationNumber(e.target.value);
-  };
+    setIdentificationNumber(e.target.value)
+  }
 
   //to change phone state
   const onChangePhone = (e) => {
     e.persist();
-    setPhone(e.target.value);
-  };
+    setPhone(e.target.value)
+  }
 
-  //to change gender state
-  const onChangeGender = (e) => {
+  //to change whatsApp state
+  const onChangeWhatsApp = (e) => {
     e.persist();
-    setGender(e.target.value);
-  };
+    setWhatsapp(e.target.value)
+  }
 
   //to change address state
   const onChangeAddress = (e) => {
     e.persist();
-    setAddress(e.target.value);
-  };
+    setAddress(e.target.value)
+  }
 
-  //to change companyName state
-  const onChangeCompanyName = (e) => {
+  //to change profileImg state
+  const onChangeProfileImg = (e) => {
     e.persist();
-    setCompanyName(e.target.value);
-  };
+    if (e.target.files && e.target.files[0]) {
+      console.log(e.target.files[0]);
+      setProfileImg(URL.createObjectURL(e.target.files[0]))
+      setSelectedFile(e.target.files[0]);
+    }
+  }
 
-  //to change notes state
-  const onChangeNotes = (e) => {
+  //to change permissions state
+  const onChangePermissions = (e) => {
     e.persist();
-    setNotes(e.target.value);
-  };
+    setPermissions(e.target.value)
+  }
 
   //to save data
   const handleSubmit = async (e) => {
@@ -104,29 +102,26 @@ const EditClientHook = (id) => {
     if (
       !name ||
       !email ||
-      !nationality ||
       !identificationNumber ||
       !phone ||
-      !gender ||
+      !whatsapp ||
+      !profileImg ||
       !address ||
-      !companyName ||
-      !notes
+      !permissions
     ) {
       notify("من فضلك أكمل البيانات", "warn");
       return;
     }
 
-    const formData = {
-      name,
-      email,
-      nationality,
-      identificationNumber,
-      phone,
-      gender,
-      address,
-      companyName,
-      notes,
-    };
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("identificationNumber", identificationNumber);
+    formData.append("profileImg", profileImg);
+    formData.append("phone", phone);
+    formData.append("whatsapp", whatsapp);
+    formData.append("address", address);
+    formData.append("permissions", permissions);
 
     setTimeout(async () => {
       setLoading(true);
@@ -142,15 +137,15 @@ const EditClientHook = (id) => {
     if (loading === false) {
       setName("");
       setEmail("");
-      setNationality("");
       setIdentificationNumber("");
+      setProfileImg(defaultDocument);
+      setSelectedFile(null);
       setPhone("");
-      setGender("");
+      setWhatsapp("");
       setAddress("");
-      setCompanyName("");
-      setNotes("");
+      setPermissions("");
       setTimeout(() => setLoading(true), 1500);
-      
+
       if(client) {
         if (client.status === 200) {
           notify("تمت عملية التعديل بنجاح", "success");
@@ -165,10 +160,10 @@ const EditClientHook = (id) => {
         }
       }
     }
-  }, [loading, client]);
+  }, [loading, client, navigate]);
 
-  return [name, email, nationality, identificationNumber, phone, gender, address, companyName, notes, handleSubmit, onChangeName, onChangeEmail, onChangeNationality, onChangeIdentificationNumber, onChangePhone, onChangeGender, onChangeAddress, onChangeCompanyName, onChangeNotes];
+  return [name, email, identificationNumber, profileImg, phone, whatsapp, address, permissions, loading, handleSubmit, onChangeName, onChangeEmail, onChangeIdentificationNumber, onChangeProfileImg, onChangePhone, onChangeWhatsApp, onChangeAddress, onChangePermissions];
 
 };
 
-export default EditClientHook;
+export default EditProfileUserHook;

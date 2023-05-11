@@ -150,7 +150,7 @@ const EditClientHook = (id) => {
       setCompanyName("");
       setNotes("");
       setTimeout(() => setLoading(true), 1500);
-      
+
       if(client) {
         if (client.status === 200) {
           notify("تمت عملية التعديل بنجاح", "success");
@@ -165,7 +165,7 @@ const EditClientHook = (id) => {
         }
       }
     }
-  }, [loading, client]);
+  }, [loading, client, navigate]);
 
   return [name, email, nationality, identificationNumber, phone, gender, address, companyName, notes, handleSubmit, onChangeName, onChangeEmail, onChangeNationality, onChangeIdentificationNumber, onChangePhone, onChangeGender, onChangeAddress, onChangeCompanyName, onChangeNotes];
 
