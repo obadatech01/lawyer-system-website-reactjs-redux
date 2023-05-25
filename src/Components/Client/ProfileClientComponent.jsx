@@ -1,10 +1,23 @@
-import React from "react";
-import ViewClientProfileHook from "../../hook/client/view-client-profile-hook";
+import React, { useEffect, useState } from "react";
+import Table from "react-bootstrap/esm/Table";
 import { Link, useParams } from "react-router-dom";
+import ViewClientProfileHook from "../../hook/client/view-client-profile-hook";
+import { useGetDataToken } from "../../hooks/useGetData";
 
 const ProfileClientComponent = () => {
   const { id } = useParams();
   const [item] = ViewClientProfileHook(id);
+  const [cases, setCases] = useState([]);
+
+  useEffect(() => {
+    const getAllCasesForClient = async () => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const res = await useGetDataToken(`/api/v1/cases?limit=6&client=${id}`);
+      setCases(res.data);
+    };
+
+    getAllCasesForClient();
+  }, [id]);
 
   return (
     <>
@@ -48,7 +61,7 @@ const ProfileClientComponent = () => {
                 <tr>
                   <td>أُضيف بواسطة</td>
                   <td>
-                    <span className="label label-success p-2">
+                    <span className="label label-success p-2 h6">
                       {item.createdBy?.name}
                     </span>
                   </td>
@@ -69,154 +82,85 @@ const ProfileClientComponent = () => {
                 </h4>
                 {/* /.box-title */}
                 <div className="dropdown js__drop_down">
-                  <Link
-                    href="#"
-                    className="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"
-                  />
-                  <ul className="sub-menu">
-                    <li>
-                      <Link href="#">Action</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Another action</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Something else there</Link>
-                    </li>
-                    <li className="split" />
-                    <li>
-                      <Link href="#">Separated link</Link>
-                    </li>
-                  </ul>
-                  {/* /.sub-menu */}
+                  <span className="label label-primary h5">{cases.length}</span>
                 </div>
                 {/* /.dropdown js__dropdown */}
                 <div className="card-content">
                   <div className="row">
-                    <div className="col-md-6">
-                      <div className="row">
-                        <div className="col-xs-5">
-                          <label>First Name:</label>
-                        </div>
-                        {/* /.col-xs-5 */}
-                        <div className="col-xs-7">Betty</div>
-                        {/* /.col-xs-7 */}
-                      </div>
-                      {/* /.row */}
-                    </div>
-                    {/* /.col-md-6 */}
-                    <div className="col-md-6">
-                      <div className="row">
-                        <div className="col-xs-5">
-                          <label>Last Name:</label>
-                        </div>
-                        {/* /.col-xs-5 */}
-                        <div className="col-xs-7">Simmons</div>
-                        {/* /.col-xs-7 */}
-                      </div>
-                      {/* /.row */}
-                    </div>
-                    {/* /.col-md-6 */}
-                    <div className="col-md-6">
-                      <div className="row">
-                        <div className="col-xs-5">
-                          <label>User Name:</label>
-                        </div>
-                        {/* /.col-xs-5 */}
-                        <div className="col-xs-7">Betty</div>
-                        {/* /.col-xs-7 */}
-                      </div>
-                      {/* /.row */}
-                    </div>
-                    {/* /.col-md-6 */}
-                    <div className="col-md-6">
-                      <div className="row">
-                        <div className="col-xs-5">
-                          <label>Email:</label>
-                        </div>
-                        {/* /.col-xs-5 */}
-                        <div className="col-xs-7">youremail@gmail.com</div>
-                        {/* /.col-xs-7 */}
-                      </div>
-                      {/* /.row */}
-                    </div>
-                    {/* /.col-md-6 */}
-                    <div className="col-md-6">
-                      <div className="row">
-                        <div className="col-xs-5">
-                          <label>City:</label>
-                        </div>
-                        {/* /.col-xs-5 */}
-                        <div className="col-xs-7">Los Angeles</div>
-                        {/* /.col-xs-7 */}
-                      </div>
-                      {/* /.row */}
-                    </div>
-                    {/* /.col-md-6 */}
-                    <div className="col-md-6">
-                      <div className="row">
-                        <div className="col-xs-5">
-                          <label>Country:</label>
-                        </div>
-                        {/* /.col-xs-5 */}
-                        <div className="col-xs-7">United States</div>
-                        {/* /.col-xs-7 */}
-                      </div>
-                      {/* /.row */}
-                    </div>
-                    {/* /.col-md-6 */}
-                    <div className="col-md-6">
-                      <div className="row">
-                        <div className="col-xs-5">
-                          <label>Birthday:</label>
-                        </div>
-                        {/* /.col-xs-5 */}
-                        <div className="col-xs-7">Jan 22, 1984</div>
-                        {/* /.col-xs-7 */}
-                      </div>
-                      {/* /.row */}
-                    </div>
-                    {/* /.col-md-6 */}
-                    <div className="col-md-6">
-                      <div className="row">
-                        <div className="col-xs-5">
-                          <label>Interests:</label>
-                        </div>
-                        {/* /.col-xs-5 */}
-                        <div className="col-xs-7">
-                          Basketball, Web, Design, etc.
-                        </div>
-                        {/* /.col-xs-7 */}
-                      </div>
-                      {/* /.row */}
-                    </div>
-                    {/* /.col-md-6 */}
-                    <div className="col-md-6">
-                      <div className="row">
-                        <div className="col-xs-5">
-                          <label>Website:</label>
-                        </div>
-                        {/* /.col-xs-5 */}
-                        <div className="col-xs-7">
-                          <Link href="#">yourwebsite.com</Link>
-                        </div>
-                        {/* /.col-xs-7 */}
-                      </div>
-                      {/* /.row */}
-                    </div>
-                    {/* /.col-md-6 */}
-                    <div className="col-md-6">
-                      <div className="row">
-                        <div className="col-xs-5">
-                          <label>Phone:</label>
-                        </div>
-                        {/* /.col-xs-5 */}
-                        <div className="col-xs-7">+1-234-5678</div>
-                        {/* /.col-xs-7 */}
-                      </div>
-                      {/* /.row */}
-                    </div>
-                    {/* /.col-md-6 */}
+                    <Table striped bordered hover>
+                      <thead>
+                        <tr>
+                          <th className="h5 text-center">رقم القضية</th>
+                          <th className="h5 text-center"> عنوان القضية</th>
+                          <th className="h5 text-center"> اسم المحكمة </th>
+                          <th className="h5 text-center"> اسم القاضي </th>
+                          <th className="h5 text-center">اسم العميل</th>
+                          <th className="h5 text-center"> اجمالي المبلغ</th>
+                          <th className="h5 text-center"> المتبقي</th>
+                          <th className="h5 text-center"> حالة القضية</th>
+                          <th className="h5 text-center"> أكشن</th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <th className="h5 text-center">رقم القضية</th>
+                          <th className="h5 text-center"> عنوان القضية</th>
+                          <th className="h5 text-center"> اسم المحكمة </th>
+                          <th className="h5 text-center"> اسم القاضي </th>
+                          <th className="h5 text-center">اسم العميل</th>
+                          <th className="h5 text-center"> اجمالي المبلغ</th>
+                          <th className="h5 text-center"> المتبقي</th>
+                          <th className="h5 text-center"> حالة القضية</th>
+                          <th className="h5 text-center"> أكشن</th>
+                        </tr>
+                      </tfoot>
+                      <tbody>
+                        {cases.length > 0 ? (
+                          cases.map((cases) => (
+                            <tr key={cases._id}>
+                              <td className="h5 text-center">
+                                {cases.courtCaseNumber}
+                              </td>
+                              <td className="h5 text-center">{cases.title}</td>
+                              <td className="h5 text-center">
+                                {cases.courtName}
+                              </td>
+                              <td className="h5 text-center">
+                                {cases.judgeName}
+                              </td>
+                              <td className="h5 text-center">
+                                {cases.client.name}
+                              </td>
+                              <td className="h5 text-center">{"1500"}</td>
+                              <td className="h5 text-center">{"700"}</td>
+                              <td className="h5 text-center">
+                                <span className="label label-danger">
+                                  {cases.status}
+                                </span>
+                              </td>
+                              <td className="h5 text-center">
+                                <Link
+                                  to={`/cases-profile/${cases._id}`}
+                                  className="mx-3 btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                                >
+                                  <i className="ico fa fa-eye"></i> عرض
+                                </Link>
+                              </td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>
+                            <td
+                              valign="top"
+                              colSpan="9"
+                              className="h4 text-center text-danger p-3"
+                            >
+                              لا يوجد قضايا لهذا العميل!{" "}
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </Table>
                   </div>
                   {/* /.row */}
                 </div>

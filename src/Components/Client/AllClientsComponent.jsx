@@ -13,11 +13,9 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
   const dispatch = useDispatch();
   const handelDelete = async (id) => {
     await dispatch(deleteClient(id));
-    notify("تم حذف العميل بنجاح", "success");  
+    notify("تم حذف العميل بنجاح", "success");
     window.location.reload();
   };
-
-  console.log(data);
 
   return (
     <div className="row small-spacing">
