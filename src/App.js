@@ -22,9 +22,6 @@ import NotFoundPage from "./Page/NotFound/NotFoundPage";
 import AddPaymentPage from "./Page/Payment/AddPaymentPage";
 import AllPaymentPage from "./Page/Payment/AllPaymentPage";
 import EditPaymentPage from "./Page/Payment/EditPaymentPage";
-import AddPermissionPage from "./Page/Permission/AddPermissionPage";
-import AllPermissionPage from "./Page/Permission/AllPermissionPage";
-import EditPermissionPage from "./Page/Permission/EditPermissionPage";
 import AddSessionPage from "./Page/Session/AddSessionPage";
 import AllSessionPage from "./Page/Session/AllSessionPage";
 import EditSessionPage from "./Page/Session/EditSessionPage";
@@ -38,14 +35,10 @@ function App() {
   const [
     userData,
     isOwner,
-    isUsersPermission,
-    isClientsPermission,
-    isCasesPermission,
-    isSessionsPermission,
-    isDocumentsPermission,
-    isExpensesPermission,
-    isPaymentsPermission,
-    isRolesPermission,
+    isVicePresident,
+    isSecretary,
+    isAccountant,
+    isLawyer,
   ] = ProtectedRouteHook();
 
   return (
@@ -79,10 +72,10 @@ function App() {
               <Route exact path="/" element={<HomePage />} />
 
               {/* cases routes */}
+              <Route exact path="/cases" element={<AllCasePage />} />
               <Route
-                element={<ProtectedRoute auth={isOwner || isCasesPermission} />}
+                element={<ProtectedRoute auth={isOwner || isVicePresident} />}
               >
-                <Route exact path="/cases" element={<AllCasePage />} />
                 <Route exact path="/cases-add" element={<AddCasePage />} />
                 <Route exact path="/cases-edit" element={<EditCasePage />} />
               </Route>
@@ -90,7 +83,7 @@ function App() {
               {/* clients routes */}
               <Route
                 element={
-                  <ProtectedRoute auth={isOwner || isClientsPermission} />
+                  <ProtectedRoute auth={isOwner || isVicePresident} />
                 }
               >
                 <Route exact path="/clients" element={<AllClientPage />} />
@@ -110,7 +103,7 @@ function App() {
               {/* documents routes */}
               <Route
                 element={
-                  <ProtectedRoute auth={isOwner || isDocumentsPermission} />
+                  <ProtectedRoute auth={isOwner || isVicePresident} />
                 }
               >
                 <Route exact path="/documents" element={<AllDocumentPage />} />
@@ -129,7 +122,7 @@ function App() {
               {/* expenses routes */}
               <Route
                 element={
-                  <ProtectedRoute auth={isOwner || isExpensesPermission} />
+                  <ProtectedRoute auth={isOwner || isVicePresident} />
                 }
               >
                 <Route exact path="/expenses" element={<AllExpensePage />} />
@@ -148,7 +141,7 @@ function App() {
               {/* payments routes */}
               <Route
                 element={
-                  <ProtectedRoute auth={isOwner || isPaymentsPermission} />
+                  <ProtectedRoute auth={isOwner || isVicePresident} />
                 }
               >
                 <Route exact path="/payments" element={<AllPaymentPage />} />
@@ -164,31 +157,10 @@ function App() {
                 />
               </Route>
 
-              {/* permissions routes */}
-              <Route
-                element={<ProtectedRoute auth={isOwner || isRolesPermission} />}
-              >
-                <Route
-                  exact
-                  path="/permissions"
-                  element={<AllPermissionPage />}
-                />
-                <Route
-                  exact
-                  path="/permissions-add"
-                  element={<AddPermissionPage />}
-                />
-                <Route
-                  exact
-                  path="/permissions-edit"
-                  element={<EditPermissionPage />}
-                />
-              </Route>
-
               {/* sessions routes */}
               <Route
                 element={
-                  <ProtectedRoute auth={isOwner || isSessionsPermission} />
+                  <ProtectedRoute auth={isOwner || isVicePresident} />
                 }
               >
                 <Route exact path="/sessions" element={<AllSessionPage />} />
@@ -206,7 +178,7 @@ function App() {
 
               {/* users routes */}
               <Route
-                element={<ProtectedRoute auth={isOwner || isUsersPermission} />}
+                element={<ProtectedRoute auth={isOwner} />}
               >
                 <Route exact path="/users" element={<AllUserPage />} />
                 <Route exact path="/users-add" element={<AddUserPage />} />

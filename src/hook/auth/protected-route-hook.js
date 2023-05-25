@@ -5,87 +5,53 @@ const ProtectedRouteHook = () => {
     JSON.parse(localStorage.getItem("user"))
   );
   const [isOwner, setIsOwner] = useState(false);
-  const [isUsersPermission, setIsUsersPermission] = useState(false);
-  const [isClientsPermission, setIsClientsPermission] = useState(false);
-  const [isCasesPermission, setIsCasesPermission] = useState(false);
-  const [isSessionsPermission, setIsSessionsPermission] = useState(false);
-  const [isDocumentsPermission, setIsDocumentsPermission] = useState(false);
-  const [isExpensesPermission, setIsExpensesPermission] = useState(false);
-  const [isPaymentsPermission, setIsPaymentsPermission] = useState(false);
-  const [isRolesPermission, setIsRolesPermission] = useState(false);
+  const [isVicePresident, setIsVicePresident] = useState(false);
+  const [isSecretary, setIsSecretary] = useState(false);
+  const [isAccountant, setIsAccountant] = useState(false);
+  const [isLawyer, setIsLawyer] = useState(false);
 
   useEffect(() => {
     if (userData != null) {
-      if (userData.role === "owner") {
-        setIsOwner(true);
-      } else {
-        setIsOwner(false);
-      }
+      switch (userData.role) {
+        case "مدير":
+          setIsOwner(true);
+          break;
 
-      if(userData.permissions) {
-        userData.permissions.permissions.map((permission) => {
-          switch (permission) {
-            case "users-permission":
-              setIsUsersPermission(true);
-              break;
-  
-            case "clients-permission":
-              setIsClientsPermission(true);
-              break;
-  
-            case "cases-permission":
-              setIsCasesPermission(true);
-              break;
-  
-            case "sessions-permission":
-              setIsSessionsPermission(true);
-              break;
-  
-            case "documents-permission":
-              setIsDocumentsPermission(true);
-              break;
-  
-            case "expenses-permission":
-              setIsExpensesPermission(true);
-              break;
-  
-            case "payments-permission":
-              setIsPaymentsPermission(true);
-              break;
-  
-            case "roles-permission":
-              setIsRolesPermission(true);
-              break;
-  
-            default:
-              break;
-          }
-        });
+        case "نائب مدير":
+          setIsVicePresident(true);
+          break;
+
+        case "سكرتير":
+          setIsSecretary(true);
+          break;
+
+        case "محاسب":
+          setIsAccountant(true);
+          break;
+
+        case "محامي":
+          setIsLawyer(true);
+          break;
+
+        default:
+          break;
       }
     } else {
       setIsOwner(false);
-      setIsUsersPermission(false);
-      setIsClientsPermission(false);
-      setIsCasesPermission(false);
-      setIsSessionsPermission(false);
-      setIsDocumentsPermission(false);
-      setIsExpensesPermission(false);
-      setIsPaymentsPermission(false);
-      setIsRolesPermission(false);
+      setIsVicePresident(false);
+      setIsSecretary(false);
+      setIsAccountant(false);
+      setIsLawyer(false);
     }
   }, [userData]);
 
   return [
     userData,
     isOwner,
-    isUsersPermission,
-    isClientsPermission,
-    isCasesPermission,
-    isSessionsPermission,
-    isDocumentsPermission,
-    isExpensesPermission,
-    isPaymentsPermission,
-    isRolesPermission,
+    isVicePresident,
+    isSecretary,
+    isAccountant,
+    isLawyer,
   ];
 };
 
