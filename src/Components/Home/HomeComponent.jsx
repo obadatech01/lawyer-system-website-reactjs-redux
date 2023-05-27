@@ -108,7 +108,7 @@ const HomeComponent = ({ cases, loadingCase, sessions, loadingSession }) => {
                 </thead>
                 <tbody>
                   {loadingCase ? null : cases.length > 0 ? (
-                    cases.map((item) => (
+                    cases.slice(0,5).map((item) => (
                       <tr>
                         <td>{item.title}</td>
                         <td>{item.courtName}</td>
@@ -153,7 +153,7 @@ const HomeComponent = ({ cases, loadingCase, sessions, loadingSession }) => {
                 </thead>
                 <tbody>
                   {loadingSession ? null : sessions.length > 0 ? (
-                    sessions.map((item) => (
+                    sessions.slice(0,5).map((item) => (
                       <tr>
                         <td>{item.case.courtCaseNumber}</td>
                         <td>{item.case.title}</td>

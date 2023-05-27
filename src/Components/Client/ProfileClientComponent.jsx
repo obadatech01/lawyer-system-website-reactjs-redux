@@ -12,7 +12,7 @@ const ProfileClientComponent = () => {
   useEffect(() => {
     const getAllCasesForClient = async () => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const res = await useGetDataToken(`/api/v1/cases?limit=6&client=${id}`);
+      const res = await useGetDataToken(`/api/v1/cases?limit=5&client=${id}`);
       setCases(res.data);
     };
 

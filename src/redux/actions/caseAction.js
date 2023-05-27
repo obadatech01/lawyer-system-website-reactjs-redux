@@ -25,7 +25,6 @@ export const getAllCase = (limit) => async (dispatch) => {
 
 // get all cases with pagination
 export const getAllCasePage = (page) => async (dispatch) => {
-
   try {
     const res = await useGetDataToken(`/api/v1/cases?limit=3&page=${page}`);
     dispatch({
