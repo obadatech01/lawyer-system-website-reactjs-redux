@@ -77,7 +77,7 @@ function App() {
                 element={<ProtectedRoute auth={isOwner || isVicePresident} />}
               >
                 <Route exact path="/cases-add" element={<AddCasePage />} />
-                <Route exact path="/cases-edit" element={<EditCasePage />} />
+                <Route exact path="/cases-edit/:id" element={<EditCasePage />} />
               </Route>
 
               {/* clients routes */}

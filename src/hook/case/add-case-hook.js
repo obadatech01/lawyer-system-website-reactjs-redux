@@ -14,8 +14,7 @@ const AddCaseHook = () => {
   const [clientType, setClientType] = useState("");
   const [cost, setCost] = useState("");
   const [opponentName, setOpponentName] = useState("");
-  const [opponentIdentificationNumber, setOpponentIdentificationNumber] =
-    useState("");
+  const [opponentIdentificationNumber, setOpponentIdentificationNumber] = useState("");
   const [opponentPhone, setOpponentPhone] = useState("");
   const [opponentAddress, setOpponentAddress] = useState("");
   const [opponentType, setOpponentType] = useState("");

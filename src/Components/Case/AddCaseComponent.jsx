@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/esm/Spinner";
 import AddCaseHook from "../../hook/case/add-case-hook";
+import { useGetDataToken } from "../../hooks/useGetData";
 
 const AddCaseComponent = () => {
   const [
@@ -41,6 +42,18 @@ const AddCaseComponent = () => {
     onChangeNotes,
   ] = AddCaseHook();
 
+  const [clients, setClients] = useState([]);
+
+  useEffect(() => {
+    const getAllCasesForClient = async () => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const res = await useGetDataToken(`/api/v1/clients`);
+      setClients(res.data);
+    };
+
+    getAllCasesForClient();
+  }, []);
+
   return (
     <div className="row small-spacing">
       <div className="col-xs-12">
@@ -73,7 +86,8 @@ const AddCaseComponent = () => {
                     onChange={onChangeType}
                     value={type}
                   >
-                    <optgroup label="نوع المحكمة">
+                    <optgroup label="نوع القضية">
+                      <option value="">اختر نوع القضية</option>
                       <option value="بداية">بداية</option>
                       <option value="صلح">صلح</option>
                     </optgroup>
@@ -132,8 +146,8 @@ const AddCaseComponent = () => {
                     value={client}
                   >
                     <optgroup label="اختر اسم العميل">
-                      <option value="العميل 01">العميل 01</option>
-                      <option value="العميل 02">العميل 02</option>
+                      <option value="">اختر اسم العميل</option>
+                      {clients.map(item => <option value={item._id} key={item._id}>{item.name}</option>)}
                     </optgroup>
                   </select>
                   </div>
@@ -147,6 +161,7 @@ const AddCaseComponent = () => {
                     value={clientType}
                   >
                     <optgroup label="نوع العميل">
+                      <option value="">اختر نوع العميل</option>
                       <option value="مدعي">مدعي</option>
                       <option value="مدعي عليه">مدعي عليه</option>
                     </optgroup>
@@ -238,6 +253,7 @@ const AddCaseComponent = () => {
                     value={opponentType}
                   >
                     <optgroup label="نوع الخصم">
+                      <option value="">اختر نوع الخصم</option>
                       <option value="مدعي">مدعي</option>
                       <option value="مدعي عليه">مدعي عليه</option>
                     </optgroup>
@@ -267,6 +283,7 @@ const AddCaseComponent = () => {
                     value={status}
                   >
                     <optgroup label="حالة القضية">
+                      <option value="">اختر حالة القضية</option>
                       <option value="مكتملة">مكتملة</option>
                       <option value="غير مكتملة">غير مكتملة</option>
                     </optgroup>

@@ -16,7 +16,6 @@ const AllCasesComponent = ({ data, loading, pageCount }) => {
     notify("تم حذف العميل بنجاح", "success");
     window.location.reload();
   };
-  console.log(data);
 
   return (
     <div className="row small-spacing">
