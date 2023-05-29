@@ -3,7 +3,7 @@ import { GET_HOME } from "../type";
 // import baseURL from '../../Api/baseURL';
 
 // get all data in home dashboard
-export const getAllCase = () => async (dispatch) => {
+export const getAllHome = () => async (dispatch) => {
 
   try {
     const res = await useGetDataToken('/api/v1/home');

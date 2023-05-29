@@ -19,5 +19,5 @@ export default combineReducers ({
   allPayment: paymentReducer,
   allSession: sessionReducer,
   allUser: userReducer,
-  home: homeReducer,
+  allHome: homeReducer,
 })
