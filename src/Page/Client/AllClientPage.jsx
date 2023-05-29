@@ -6,7 +6,6 @@ import AllClientPageHook from "../../hook/client/all-client-page-hook";
 const AllClientPage = () => {
   const [clients, loading, pageCount] = AllClientPageHook();
 
-
   return (
     <Starter>
       <AllClientsComponent

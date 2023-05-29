@@ -1,9 +1,22 @@
 import React from "react";
-import Pagination from "../Utils/Pagination";
+import Spinner from "react-bootstrap/Spinner";
 import Table from "react-bootstrap/esm/Table";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import AllExpenseComponentHook from "../../hook/expense/all-expense-component-hook";
+import notify from "../../hook/useNotification";
+import { deleteExpense } from "../../redux/actions/expenseAction";
+import Pagination from "../Utils/Pagination";
 
-const AllExpensesComponent = () => {
+const AllExpensesComponent = ({ data, loading, pageCount }) => {
+  const [getPage, handleLimitChange] = AllExpenseComponentHook();
+  const dispatch = useDispatch();
+  const handelDelete = async (id) => {
+    await dispatch(deleteExpense(id));
+    notify("تم الحذف بنجاح", "success");
+    window.location.reload();
+  };
+
   return (
     <div className="row small-spacing">
       <div className="col-xs-12">
@@ -13,7 +26,13 @@ const AllExpensesComponent = () => {
               <h4 className="box-title">عرض جميع المصروفات</h4>
               <div className="h4">
                 {"عرض "}
-                <select name="limitation" id="lang" className="select px-2 ">
+                <select
+                  name="limitation"
+                  id="lang"
+                  className="select px-2 "
+                  onChange={handleLimitChange}
+                >
+                  <option value="3">3</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="15">15</option>
@@ -41,150 +60,88 @@ const AllExpensesComponent = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th className="h5 text-center">#</th>
                 <th className="h5 text-center">اسم الدفعة </th>
                 <th className="h5 text-center"> طريقة الدفع</th>
                 <th className="h5 text-center"> الكمية </th>
-                <th className="h5 text-center">  التاريخ</th>
-                <th className="h5 text-center">اسم المحامي</th>
+                <th className="h5 text-center"> التاريخ</th>
+                <th className="h5 text-center">المصروف له</th>
                 <th className="h5 text-center"> أكشن</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <th className="h5 text-center">#</th>
                 <th className="h5 text-center">اسم الدفعة </th>
                 <th className="h5 text-center"> طريقة الدفع</th>
                 <th className="h5 text-center"> الكمية </th>
-                <th className="h5 text-center">  التاريخ</th>
-                <th className="h5 text-center">اسم المحامي</th>
+                <th className="h5 text-center"> التاريخ</th>
+                <th className="h5 text-center">المصروف له</th>
                 <th className="h5 text-center"> أكشن</th>
               </tr>
             </tfoot>
             <tbody>
-              <tr>
-                <th className="h5 text-center">1</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
-                <td className="h5 text-center text-muted">كاش</td>
-                <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
-                <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
-                  <Link
-                    to={"/expenses-edit"}
-                    className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-eye"></i> عرض
-                  </Link>
-                  <Link
-                    to={"/expenses-edit"}
-                    className="h5 text-center btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-edit"></i> تعديل
-                  </Link>
-                  <button
-                    type="button"
-                    className="h5 text-center btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-trash"></i> حذف
-                  </button>
-                </td>
-              </tr>               
-              <tr>
-                <th className="h5 text-center">2</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
-                <td className="h5 text-center text-muted">كاش</td>
-                <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
-                <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
-                  <Link
-                    to={"/expenses-edit"}
-                    className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-eye"></i> عرض
-                  </Link>
-                  <Link
-                    to={"/expenses-edit"}
-                    className="h5 text-center btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-edit"></i> تعديل
-                  </Link>
-                  <button
-                    type="button"
-                    className="h5 text-center btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-trash"></i> حذف
-                  </button>
-                </td>
-              </tr>               
-              <tr>
-                <th className="h5 text-center">3</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
-                <td className="h5 text-center text-muted">كاش</td>
-                <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
-                <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
-                  <Link
-                    to={"/expenses-edit"}
-                    className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-eye"></i> عرض
-                  </Link>
-                  <Link
-                    to={"/expenses-edit"}
-                    className="h5 text-center btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-edit"></i> تعديل
-                  </Link>
-                  <button
-                    type="button"
-                    className="h5 text-center btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-trash"></i> حذف
-                  </button>
-                </td>
-              </tr>               
-              <tr>
-                <th className="h5 text-center">4</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
-                <td className="h5 text-center text-muted">كاش</td>
-                <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
-                <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
-                  <Link
-                    to={"/expenses-edit"}
-                    className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-eye"></i> عرض
-                  </Link>
-                  <Link
-                    to={"/expenses-edit"}
-                    className="h5 text-center btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-edit"></i> تعديل
-                  </Link>
-                  <button
-                    type="button"
-                    className="h5 text-center btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-trash"></i> حذف
-                  </button>
-                </td>
-              </tr>               
+              {loading === false ? (
+                data.length > 0 ? (
+                  data.map((expense) => (
+                    <tr key={expense._id}>
+                      <td className="h5 text-center text-muted">
+                        {expense.title}
+                      </td>
+                      <td className="h5 text-center text-muted">
+                        {expense.exchangeMethod}
+                      </td>
+                      <td className="h5 text-center text-muted">
+                        {expense.amount}
+                      </td>
+                      <td className="h5 text-center text-muted">
+                        {
+                          new Date(expense.exchangeDate)
+                            .toISOString()
+                            .split("T")[0]
+                        }
+                      </td>
+                      <td className="h5 text-center text-muted">
+                        {expense.userName}
+                      </td>
+                      <td className="h5 text-center">
+                        <Link
+                          to={`/expenses-edit/${expense._id}`}
+                          className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                        >
+                          <i className="ico fa fa-edit"></i> تعديل
+                        </Link>
+                        <button
+                          onClick={() => handelDelete(expense._id)}
+                          className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                        >
+                          <i className="ico fa fa-trash"></i> حذف
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      valign="top"
+                      colSpan="9"
+                      className="h4 text-center text-danger p-3"
+                    >
+                      لا يوجد قضايا بعد!{" "}
+                    </td>
+                  </tr>
+                )
+              ) : (
+                <tr>
+                  <td valign="top" colSpan="9" className="h4 text-center p-3">
+                    جاري التحميل{" "}
+                    <Spinner animation="border" variant="primary" />
+                  </td>
+                </tr>
+              )}
             </tbody>
           </Table>
-          <Pagination />
+          {pageCount > 1 ? (
+            <Pagination pageCount={pageCount} onPress={getPage} />
+          ) : null}
         </div>
       </div>
     </div>

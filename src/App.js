@@ -133,7 +133,7 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/expenses-edit"
+                  path="/expenses-edit/:id"
                   element={<EditExpensePage />}
                 />
               </Route>

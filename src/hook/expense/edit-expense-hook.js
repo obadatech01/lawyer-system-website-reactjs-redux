@@ -134,7 +134,7 @@ const EditExpenseHook = (id) => {
     }
   }, [loading, expense, navigate]);
 
-  return [title, amount, exchangeDate, exchangeMethod, userName, notes, loading, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeExchangeMethod, onChangeUserName, onChangeNotes];
+  return [title, amount, exchangeDate, exchangeMethod, userName, notes, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeExchangeMethod, onChangeUserName, onChangeNotes];
 
 };
 
