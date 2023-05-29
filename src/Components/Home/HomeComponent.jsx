@@ -17,7 +17,7 @@ const HomeComponent = ({ data, loading }) => {
             <div className="col-lg-3 col-md-6 col-xs-12">
               <div className="box-content bg-success text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-diamond"></i>
+                  <i className="ico small fa fa-group"></i>
                   <p className="text text-white h3">{data.clients.name}</p>
                   <h2 className="counter">{data.clients.count}</h2>
                 </div>
@@ -26,7 +26,7 @@ const HomeComponent = ({ data, loading }) => {
             <div className="col-lg-3 col-md-6 col-xs-12">
               <div className="box-content bg-primary text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-diamond"></i>
+                  <i className="ico small fa fa-check-square-o"></i>
                   <p className="text text-white h3">
                     {data.casesCompleted.name}
                   </p>
@@ -37,7 +37,7 @@ const HomeComponent = ({ data, loading }) => {
             <div className="col-lg-3 col-md-6 col-xs-12">
               <div className="box-content bg-danger text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-diamond"></i>
+                  <i className="ico small fa fa-hourglass-1"></i>
                   <p className="text text-white h3">
                     {data.casesNotCompleted.name}
                   </p>
@@ -48,7 +48,7 @@ const HomeComponent = ({ data, loading }) => {
             <div className="col-lg-3 col-md-6 col-xs-12">
               <div className="box-content bg-warning text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-diamond"></i>
+                  <i className="ico small fa fa-clock-o"></i>
                   <p className="text text-white h3">{data.sessions.name}</p>
                   <h2 className="counter">{data.sessions.count}</h2>
                 </div>
@@ -57,7 +57,7 @@ const HomeComponent = ({ data, loading }) => {
             <div className="col-lg-3 col-md-6 col-xs-12">
               <div className="box-content bg-info text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-diamond"></i>
+                  <i className="ico small fa fa-usd"></i>
                   <p className="text text-white h3">{data.payments.name}</p>
                   <h2 className="counter">{data.payments.count}</h2>
                 </div>
@@ -66,7 +66,7 @@ const HomeComponent = ({ data, loading }) => {
             <div className="col-lg-3 col-md-6 col-xs-12">
               <div className="box-content bg-violet text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-diamond"></i>
+                  <i className="ico small fa fa-usd"></i>
                   <p className="text text-white h3">
                     {data.paymentsRemaining.name}
                   </p>
@@ -77,7 +77,7 @@ const HomeComponent = ({ data, loading }) => {
             <div className="col-lg-3 col-md-6 col-xs-12">
               <div className="box-content bg-custom text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-diamond"></i>
+                  <i className="ico small fa fa-usd"></i>
                   <p className="text text-white h3">{data.expenses.name}</p>
                   <h2 className="counter">{data.expenses.count}</h2>
                 </div>
@@ -86,7 +86,7 @@ const HomeComponent = ({ data, loading }) => {
             <div className="col-lg-3 col-md-6 col-xs-12">
               <div className="box-content bg-orange text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-diamond"></i>
+                  <i className="ico small fa fa-usd"></i>
                   <p className="text text-white h3">
                     {data.expensesRemaining.name}
                   </p>

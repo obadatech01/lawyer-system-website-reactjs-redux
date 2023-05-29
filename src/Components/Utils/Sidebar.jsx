@@ -139,12 +139,6 @@ const Sidebar = () => {
                 <span>المستخدمون</span>
               </Link>
             </li>
-            <li>
-              <Link className="waves-effect" to={"/permissions"}>
-                <i className="menu-icon mdi mdi-view-dashboard"></i>
-                <span>الصلاحيات</span>
-              </Link>
-            </li>
           </ul>
         </div>
       </div>

@@ -30,6 +30,7 @@ import AllUserPage from "./Page/User/AllUserPage";
 import EditUserPage from "./Page/User/EditUserPage";
 import ProfileUserPage from "./Page/User/ProfileUserPage";
 import ProtectedRouteHook from "./hook/auth/protected-route-hook";
+import ProfileCasePage from "./Page/Case/ProfileCasePage";
 
 function App() {
   const [
@@ -78,6 +79,7 @@ function App() {
               >
                 <Route exact path="/cases-add" element={<AddCasePage />} />
                 <Route exact path="/cases-edit/:id" element={<EditCasePage />} />
+                <Route exact path="/cases-profile/:id" element={<ProfileCasePage />} />
               </Route>
 
               {/* clients routes */}
