@@ -1,3 +1,4 @@
+export const GET_HOME = "GET_HOME";
 export const GET_ALL_CASE = "GET_ALL_CASE";
 export const GET_ONE_CASE = "GET_ONE_CASE";
 export const CREATE_CASE = "CREATE_CASE";

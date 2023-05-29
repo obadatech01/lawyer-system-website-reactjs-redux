@@ -7,6 +7,7 @@ import expenseReducer from './expenseReducer';
 import paymentReducer from './paymentReducer';
 import sessionReducer from './sessionReducer';
 import userReducer from './userReducer';
+import homeReducer from './homeReducer';
 
 
 export default combineReducers ({
@@ -18,4 +19,5 @@ export default combineReducers ({
   allPayment: paymentReducer,
   allSession: sessionReducer,
   allUser: userReducer,
+  home: homeReducer,
 })
