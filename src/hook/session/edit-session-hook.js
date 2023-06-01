@@ -73,7 +73,6 @@ const EditSessionHook = (id) => {
       !title ||
       !lawyerName ||
       !sessionDate ||
-      !caseId ||
       !notes
     ) {
       notify("من فضلك أكمل البيانات", "warn");
@@ -84,7 +83,7 @@ const EditSessionHook = (id) => {
       title,
       lawyerName,
       sessionDate,
-      caseId,
+      case: caseId._id,
       notes
     };
 
@@ -123,7 +122,7 @@ const EditSessionHook = (id) => {
     }
   }, [loading, session, navigate]);
 
-  return [title, lawyerName, sessionDate, caseId, notes, handleSubmit, onChangeTitle, onChangeLawyerName, onChangeSessionDate, onChangeCaseId, onChangeNotes];
+  return [title, lawyerName, sessionDate, notes, handleSubmit, onChangeTitle, onChangeLawyerName, onChangeSessionDate, onChangeCaseId, onChangeNotes];
 
 };
 

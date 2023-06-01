@@ -27,7 +27,7 @@ const AddSessionComponent = () => {
 
           <div className="row">
             <div className="card-content">
-              <from>
+              {/* <from> */}
                 <div className="col-md-6">
                   <div className="padding-20">
                     <h5>
@@ -115,7 +115,7 @@ const AddSessionComponent = () => {
                     حفظ
                   </button>
                 </div>
-              </from>
+              {/* </from> */}
             </div>
           </div>
           {isPress ? (

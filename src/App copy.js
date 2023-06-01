@@ -7,7 +7,6 @@ import VerifyPasswordPage from "./Page/Auth/VerifyPasswordPage";
 import AddCasePage from "./Page/Case/AddCasePage";
 import AllCasePage from "./Page/Case/AllCasePage";
 import EditCasePage from "./Page/Case/EditCasePage";
-import ProfileCasePage from "./Page/Case/ProfileCasePage";
 import AddClientPage from "./Page/Client/AddClientPage";
 import AllClientPage from "./Page/Client/AllClientPage";
 import EditClientPage from "./Page/Client/EditClientPage";
@@ -31,6 +30,7 @@ import AllUserPage from "./Page/User/AllUserPage";
 import EditUserPage from "./Page/User/EditUserPage";
 import ProfileUserPage from "./Page/User/ProfileUserPage";
 import ProtectedRouteHook from "./hook/auth/protected-route-hook";
+import ProfileCasePage from "./Page/Case/ProfileCasePage";
 
 function App() {
   const [
@@ -44,59 +44,49 @@ function App() {
 
   return (
     <div className="font color-body">
-      {/* <BrowserRouter> */}
-      {/* <Routes> */}
-      {/* auth routes */}
-      {userData === null ? (
-        <BrowserRouter>
-          <Routes>
-            <Route exact path="/login" element={<LoginPage />} />
-            <Route
-              exact
-              path="/forget-password"
-              element={<ForgetPasswordPage />}
-            />
-            <Route exact path="/verify-code" element={<VerifyPasswordPage />} />
-            <Route
-              exact
-              path="/reset-password"
-              element={<ResetPasswordPage />}
-            />
+      <BrowserRouter>
+        <Routes>
+          {/* auth routes */}
+          {userData === null ? (
+            <>
+              <Route exact path="/login" element={<LoginPage />} />
+              <Route
+                exact
+                path="/forget-password"
+                element={<ForgetPasswordPage />}
+              />
+              <Route
+                exact
+                path="/verify-code"
+                element={<VerifyPasswordPage />}
+              />
+              <Route
+                exact
+                path="/reset-password"
+                element={<ResetPasswordPage />}
+              />
 
-            <Route path="*" element={<LoginPage />} />
-          </Routes>
-        </BrowserRouter>
-      ) : (
-        <>
-          <BrowserRouter>
-            <Routes>
+              <Route path="*" element={<LoginPage />} />
+            </>
+          ) : (
+            <>
               <Route exact path="/" element={<HomePage />} />
-            </Routes>
-          </BrowserRouter>
 
-          <BrowserRouter>
-            <Routes>
               {/* cases routes */}
+              <Route exact path="/cases" element={<AllCasePage />} />
               <Route
                 element={<ProtectedRoute auth={isOwner || isVicePresident} />}
               >
-                <Route exact path="/cases" element={<AllCasePage />} />
                 <Route exact path="/cases-add" element={<AddCasePage />} />
-                <Route
-                  exact
-                  path="/cases-edit/:id"
-                  element={<EditCasePage />}
-                />
-                <Route
-                  exact
-                  path="/cases-profile/:id"
-                  element={<ProfileCasePage />}
-                />
+                <Route exact path="/cases-edit/:id" element={<EditCasePage />} />
+                <Route exact path="/cases-profile/:id" element={<ProfileCasePage />} />
               </Route>
 
               {/* clients routes */}
               <Route
-                element={<ProtectedRoute auth={isOwner || isVicePresident} />}
+                element={
+                  <ProtectedRoute auth={isOwner || isVicePresident} />
+                }
               >
                 <Route exact path="/clients" element={<AllClientPage />} />
                 <Route exact path="/clients-add" element={<AddClientPage />} />
@@ -114,7 +104,9 @@ function App() {
 
               {/* documents routes */}
               <Route
-                element={<ProtectedRoute auth={isOwner || isVicePresident} />}
+                element={
+                  <ProtectedRoute auth={isOwner || isVicePresident} />
+                }
               >
                 <Route exact path="/documents" element={<AllDocumentPage />} />
                 <Route
@@ -131,7 +123,9 @@ function App() {
 
               {/* expenses routes */}
               <Route
-                element={<ProtectedRoute auth={isOwner || isVicePresident} />}
+                element={
+                  <ProtectedRoute auth={isOwner || isVicePresident} />
+                }
               >
                 <Route exact path="/expenses" element={<AllExpensePage />} />
                 <Route
@@ -148,7 +142,9 @@ function App() {
 
               {/* payments routes */}
               <Route
-                element={<ProtectedRoute auth={isOwner || isVicePresident} />}
+                element={
+                  <ProtectedRoute auth={isOwner || isVicePresident} />
+                }
               >
                 <Route exact path="/payments" element={<AllPaymentPage />} />
                 <Route
@@ -165,7 +161,9 @@ function App() {
 
               {/* sessions routes */}
               <Route
-                element={<ProtectedRoute auth={isOwner || isVicePresident} />}
+                element={
+                  <ProtectedRoute auth={isOwner || isVicePresident} />
+                }
               >
                 <Route exact path="/sessions" element={<AllSessionPage />} />
                 <Route
@@ -181,7 +179,9 @@ function App() {
               </Route>
 
               {/* users routes */}
-              <Route element={<ProtectedRoute auth={isOwner} />}>
+              <Route
+                element={<ProtectedRoute auth={isOwner} />}
+              >
                 <Route exact path="/users" element={<AllUserPage />} />
                 <Route exact path="/users-add" element={<AddUserPage />} />
                 <Route exact path="/users-edit" element={<EditUserPage />} />
@@ -192,12 +192,10 @@ function App() {
                 />
               </Route>
               <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </BrowserRouter>
-        </>
-      )}
-      {/* </Routes> */}
-      {/* </BrowserRouter> */}
+            </>
+          )}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

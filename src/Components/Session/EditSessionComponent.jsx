@@ -1,81 +1,69 @@
 import React from "react";
+import EditSessionHook from "../../hook/session/edit-session-hook";
+import { useParams } from "react-router-dom";
 
 const EditSessionComponent = () => {
+  const { id } = useParams();
+  const [title, lawyerName, sessionDate, notes, handleSubmit, onChangeTitle, onChangeLawyerName, onChangeSessionDate, onChangeCaseId, onChangeNotes] = EditSessionHook(id);
   return (
     <div className="row small-spacing">
       <div className="col-xs-12">
         <div className="box-content">
           <h4 className="box-title d-flex justify-content-center">
-            تعديل هذه المصروفات
+            تعديل هذه الجلسة
           </h4>
 
           <div className="row">
             <div className="card-content">
-              <from>
-                <div className="col-md-6">
+              {/* <from> */}
+              <div className="col-md-6">
                   <div className="padding-20">
                     <h5>
-                      <b>اسم الصرف</b>
+                      <b>عنوان الجلسة</b>
                     </h5>
                     <input
                       type="text"
                       className="form-control"
                       maxLength={25}
-                      name="defaultconfig"
-                      id="defaultconfig"
-                      placeholder="اسم العميل"
+                      name="title"
+                      id="title"
+                      onChange={onChangeTitle}
+                      value={title}
+                      placeholder="عنوان الجلسة"
                     />
                     <div className="margin-top-20">
                       <h5>
-                        <b>طريقة الدفع</b>
-                      </h5>
-                      <select className="form-control select2_1">
-                        <optgroup label="طريقة الدفع">
-                          <option value="كاش">كاش</option>
-                          <option value="فيزا">فيزا</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                    <div className="margin-top-20">
-                      <h5>
-                        <b>الكمية</b>
+                        <b>تاريخ الجلسة</b>
                       </h5>
                       <input
-                        type="text"
+                        type="date"
                         maxLength={25}
-                        name="thresholdconfig"
+                        name="sessionDate"
                         className="form-control"
-                        id="thresholdconfig"
-                        placeholder="الجنسية"
+                        id="sessionDate"
+                        value={sessionDate}
+                        onChange={onChangeSessionDate}
+                        placeholder="تاريخ الجلسة"
                       />
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="padding-20">
-                    <h5>
-                      <b>التاريخ</b>
-                    </h5>
-                    <input
-                      type="text"
-                      maxLength={25}
-                      name="thresholdconfig"
-                      className="form-control"
-                      id="thresholdconfig"
-                      placeholder="الجنسية"
-                    />
-                    <div className="margin-top-20">
+                    <div className="margin-top-9">
                       <h5>
                         <b>اسم المحامي</b>
                       </h5>
-                      <select className="form-control select2_1">
-                        <optgroup label="اسم المحامي">
-                          <option value="عبادة أبو مسامح">
-                            عبادة أبو مسامح
-                          </option>
-                          <option value="باسل أبو شاب">باسل أبو شاب</option>
-                        </optgroup>
-                      </select>
+                      <input
+                        type="text"
+                        maxLength={25}
+                        name="lawyerName"
+                        className="form-control"
+                        id="lawyerName"
+                        value={lawyerName}
+                        onChange={onChangeLawyerName}
+                        placeholder="محامي الجلسة"
+                      />
                     </div>
                     <div className="margin-top-20">
                       <h5>
@@ -86,8 +74,9 @@ const EditSessionComponent = () => {
                         className="form-control"
                         maxLength={225}
                         rows={2}
-                        placeholder="الملاحظات التي تخص العميل"
-                        defaultValue={""}
+                        placeholder="الملاحظات التي تخص الجلسة"
+                        defaultValue={notes}
+                        onChange={onChangeNotes}
                       />
                     </div>
                   </div>
@@ -95,12 +84,13 @@ const EditSessionComponent = () => {
                 <div className="col-md-12 d-flex justify-content-start">
                   <button
                     type="submit"
+                    onClick={handleSubmit}
                     className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
                   >
                     تعديل
                   </button>
                 </div>
-              </from>
+              {/* </from> */}
             </div>
           </div>
         </div>
