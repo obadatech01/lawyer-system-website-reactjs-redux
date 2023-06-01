@@ -53,7 +53,7 @@ const AddSessionHook = () => {
       title,
       lawyerName,
       sessionDate,
-      caseId,
+      case: caseId,
       notes,
     };
     setLoading(true);

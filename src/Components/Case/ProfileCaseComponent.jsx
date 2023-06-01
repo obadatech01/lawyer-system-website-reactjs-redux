@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/esm/Table";
 import { Link, useParams } from "react-router-dom";
-import ViewClientProfileHook from "../../hook/client/view-client-profile-hook";
+import ViewCaseProfileHook from "../../hook/case/view-case-profile-hook";
 import { useGetDataToken } from "../../hooks/useGetData";
 
 const ProfileCaseComponent = () => {
   const { id } = useParams();
-  const [item] = ViewClientProfileHook(id);
-  const [cases, setCases] = useState([]);
+  const [item] = ViewCaseProfileHook(id);
+  const [sessions, setSessions] = useState([]);
 
   useEffect(() => {
-    const getAllCasesForClient = async () => {
+    const getAllSessionsForCase = async () => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const res = await useGetDataToken(`/api/v1/cases?limit=5&client=${id}`);
-      setCases(res.data);
+      const res = await useGetDataToken(`/api/v1/sessions?limit=5&case=${id}`);
+      setSessions(res.data);
     };
 
-    getAllCasesForClient();
+    getAllSessionsForCase();
   }, [id]);
 
   return (
@@ -26,37 +26,49 @@ const ProfileCaseComponent = () => {
           <div className="box-content bordered primary margin-bottom-20">
             <div className="profile-avatar">
               <h3>
-                الاسم: <strong>{item.name}</strong>
+                عنوان القضية: <strong>{item.title}</strong>
               </h3>
-              <h4>الشركة: {item.companyName}</h4>
+              <h4>نوع القضية: {item.type}</h4>
               <p>الملاحظات: {item.notes}</p>
             </div>
             {/* .profile-avatar */}
             <table className="table table-hover no-margin">
               <tbody>
                 <tr>
-                  <td>الجنسية</td>
-                  <td>{item.nationality}</td>
+                  <td>رقم القضية</td>
+                  <td>{item.courtCaseNumber}</td>
                 </tr>
                 <tr>
-                  <td>رقم الهوية</td>
-                  <td>{item.identificationNumber}</td>
+                  <td>اسم المحكمة</td>
+                  <td>{item.courtName}</td>
                 </tr>
                 <tr>
-                  <td>الجنس</td>
-                  <td>{item.gender}</td>
+                  <td>اسم القاضي</td>
+                  <td>{item.judgeName}</td>
                 </tr>
                 <tr>
-                  <td>البريد الإلكتروني</td>
-                  <td>{item.email}</td>
+                  <td>أتعاب القضية</td>
+                  <td>{item.cost}</td>
                 </tr>
                 <tr>
-                  <td>رقم الهاتف</td>
-                  <td>{item.phone}</td>
+                  <td>اسم الموكل</td>
+                  <td>{item.client?.name}</td>
                 </tr>
                 <tr>
-                  <td>العنوان</td>
-                  <td>{item.address}</td>
+                  <td>اسم الخصم</td>
+                  <td>{item.opponentName}</td>
+                </tr>
+                <tr>
+                  <td>اسم محامي الخصم</td>
+                  <td>{item.opponentLawyerName}</td>
+                </tr>
+                <tr>
+                  <td>حالة القضية</td>
+                  <td>
+                    <span className="label label-danger p-2 h6">
+                      {item.status}
+                    </span>
+                  </td>
                 </tr>
                 <tr>
                   <td>أُضيف بواسطة</td>
@@ -78,11 +90,11 @@ const ProfileCaseComponent = () => {
               <div className="box-content card">
                 <h4 className="box-title">
                   <i className="fa fa-user ico" />
-                  القضايا
+                  الجلسات
                 </h4>
                 {/* /.box-title */}
                 <div className="dropdown js__drop_down">
-                  <span className="label label-primary h5">{cases.length}</span>
+                  <span className="label label-primary h5">{sessions.length}</span>
                 </div>
                 {/* /.dropdown js__dropdown */}
                 <div className="card-content">
@@ -90,60 +102,51 @@ const ProfileCaseComponent = () => {
                     <Table striped bordered hover>
                       <thead>
                         <tr>
-                          <th className="h5 text-center">رقم القضية</th>
-                          <th className="h5 text-center"> عنوان القضية</th>
-                          <th className="h5 text-center"> اسم المحكمة </th>
-                          <th className="h5 text-center"> اسم القاضي </th>
-                          <th className="h5 text-center">اسم العميل</th>
-                          <th className="h5 text-center"> اجمالي المبلغ</th>
-                          <th className="h5 text-center"> المتبقي</th>
-                          <th className="h5 text-center"> حالة القضية</th>
+                          <th className="h5 text-center">تاريخ الجلسة</th>
+                          <th className="h5 text-center"> عنوان الجلسة</th>
+                          <th className="h5 text-center"> محامي الجلسة </th>
+                          <th className="h5 text-center"> أضيفت بواسطة </th>
                           <th className="h5 text-center"> أكشن</th>
                         </tr>
                       </thead>
                       <tfoot>
                         <tr>
-                          <th className="h5 text-center">رقم القضية</th>
-                          <th className="h5 text-center"> عنوان القضية</th>
-                          <th className="h5 text-center"> اسم المحكمة </th>
-                          <th className="h5 text-center"> اسم القاضي </th>
-                          <th className="h5 text-center">اسم العميل</th>
-                          <th className="h5 text-center"> اجمالي المبلغ</th>
-                          <th className="h5 text-center"> المتبقي</th>
-                          <th className="h5 text-center"> حالة القضية</th>
+                          <th className="h5 text-center">تاريخ الجلسة</th>
+                          <th className="h5 text-center"> عنوان الجلسة</th>
+                          <th className="h5 text-center"> محامي الجلسة </th>
+                          <th className="h5 text-center"> أضيفت بواسطة </th>
                           <th className="h5 text-center"> أكشن</th>
                         </tr>
                       </tfoot>
                       <tbody>
-                        {cases.length > 0 ? (
-                          cases.map((cases) => (
-                            <tr key={cases._id}>
+                        {sessions.length > 0 ? (
+                          sessions.map((session) => (
+                            <tr key={session._id}>
                               <td className="h5 text-center">
-                                {cases.courtCaseNumber}
+                                {new Date(session.sessionDate).toISOString().split("T")[0]}
                               </td>
-                              <td className="h5 text-center">{cases.title}</td>
+                              <td className="h5 text-center">{session.title}</td>
                               <td className="h5 text-center">
-                                {cases.courtName}
-                              </td>
-                              <td className="h5 text-center">
-                                {cases.judgeName}
+                                {session.title}
                               </td>
                               <td className="h5 text-center">
-                                {cases.client.name}
+                                {session.lawyerName}
                               </td>
-                              <td className="h5 text-center">{"1500"}</td>
-                              <td className="h5 text-center">{"700"}</td>
                               <td className="h5 text-center">
-                                <span className="label label-danger">
-                                  {cases.status}
-                                </span>
+                                {session.createdBy?.name}
                               </td>
                               <td className="h5 text-center">
                                 <Link
-                                  to={`/cases-profile/${cases._id}`}
-                                  className="mx-3 btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                                  to={`/sessions-edit/${session._id}`}
+                                  className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
                                 >
-                                  <i className="ico fa fa-eye"></i> عرض
+                                  <i className="ico fa fa-edit"></i> تعديل
+                                </Link>
+                                <Link
+                                  to={`/sessions-delete/${session._id}`}
+                                  className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                                >
+                                  <i className="ico fa fa-trash"></i> حذف
                                 </Link>
                               </td>
                             </tr>

@@ -1,25 +1,25 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneClient } from "../../redux/actions/clientAction";
+import { getOneCase } from "../../redux/actions/caseAction";
 
 const ViewCaseProfileHook = (id) => {
   const dispatch = useDispatch();
 
   // when first load
   useEffect(() => {
-    dispatch(getOneClient(id));
+    dispatch(getOneCase(id));
   }, [dispatch, id]);
 
   // to get state from redux
-  const oneClient = useSelector((state) => state.allClient.oneClient);
+  const oneCase = useSelector((state) => state.allCase.oneCase);
   let item = [];
-  if(oneClient.data) {
-    item = oneClient.data;
+  if(oneCase.data) {
+    item = oneCase.data;
   } else {
     item = [];
   }
   // console.log(item);
-  return [item]; 
+  return [item];
 }
 
 export default ViewCaseProfileHook;

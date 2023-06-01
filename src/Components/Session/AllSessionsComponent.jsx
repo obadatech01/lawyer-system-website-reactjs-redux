@@ -1,19 +1,38 @@
 import React from "react";
-import Pagination from "../Utils/Pagination";
+import Spinner from "react-bootstrap/esm/Spinner";
 import Table from "react-bootstrap/esm/Table";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import AllSessionComponentHook from "../../hook/session/all-session-component-hook";
+import notify from "../../hook/useNotification";
+import { deleteSession } from "../../redux/actions/sessionAction";
+import Pagination from "../Utils/Pagination";
 
-const AllSessionsComponent = () => {
+const AllSessionsComponent = ({ data, loading, pageCount }) => {
+  const [getPage, handleLimitChange] = AllSessionComponentHook();
+  const dispatch = useDispatch();
+  const handelDelete = async (id) => {
+    await dispatch(deleteSession(id));
+    notify("تم الحذف بنجاح", "success");
+    window.location.reload();
+  };
+
   return (
     <div className="row small-spacing">
       <div className="col-xs-12">
         <div className="box-content">
           <div className="d-flex justify-content-between">
             <div className="d-flex flex-column">
-              <h4 className="box-title">عرض جميع المصروفات</h4>
+              <h4 className="box-title">عرض جميع الجلسات</h4>
               <div className="h4">
                 {"عرض "}
-                <select name="limitation" id="lang" className="select px-2 ">
+                <select
+                  name="limitation"
+                  id="lang"
+                  className="select px-2 "
+                  onChange={handleLimitChange}
+                >
+                  <option value="3">3</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="15">15</option>
@@ -27,7 +46,7 @@ const AllSessionsComponent = () => {
                 to={"/sessions-add"}
                 className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
               >
-                <i className="ico fa fa-plus"></i> إضافة مصروفات
+                <i className="ico fa fa-plus"></i> إضافة جلسة
               </Link>
               <input
                 type="search"
@@ -41,150 +60,74 @@ const AllSessionsComponent = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th className="h5 text-center">#</th>
-                <th className="h5 text-center">اسم الدفعة </th>
-                <th className="h5 text-center"> طريقة الدفع</th>
-                <th className="h5 text-center"> الكمية </th>
-                <th className="h5 text-center">  التاريخ</th>
-                <th className="h5 text-center">اسم المحامي</th>
+                <th className="h5 text-center">عنوان القضية</th>
+                <th className="h5 text-center">عنوان الجلسة</th>
+                <th className="h5 text-center">تاريخ الجلسة</th>
+                <th className="h5 text-center"> محامي الجلسة </th>
+                <th className="h5 text-center"> أضيف بواسطة</th>
                 <th className="h5 text-center"> أكشن</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <th className="h5 text-center">#</th>
-                <th className="h5 text-center">اسم الدفعة </th>
-                <th className="h5 text-center"> طريقة الدفع</th>
-                <th className="h5 text-center"> الكمية </th>
-                <th className="h5 text-center">  التاريخ</th>
-                <th className="h5 text-center">اسم المحامي</th>
+                <th className="h5 text-center">عنوان القضية</th>
+                <th className="h5 text-center">عنوان الجلسة</th>
+                <th className="h5 text-center">تاريخ الجلسة</th>
+                <th className="h5 text-center"> محامي الجلسة </th>
+                <th className="h5 text-center"> أضيف بواسطة</th>
                 <th className="h5 text-center"> أكشن</th>
               </tr>
             </tfoot>
             <tbody>
-              <tr>
-                <th className="h5 text-center">1</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
-                <td className="h5 text-center text-muted">كاش</td>
-                <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
-                <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
-                  <Link
-                    to={"/sessions-edit"}
-                    className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-eye"></i> عرض
-                  </Link>
-                  <Link
-                    to={"/sessions-edit"}
-                    className="h5 text-center btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-edit"></i> تعديل
-                  </Link>
-                  <button
-                    type="button"
-                    className="h5 text-center btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-trash"></i> حذف
-                  </button>
-                </td>
-              </tr>               
-              <tr>
-                <th className="h5 text-center">2</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
-                <td className="h5 text-center text-muted">كاش</td>
-                <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
-                <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
-                  <Link
-                    to={"/sessions-edit"}
-                    className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-eye"></i> عرض
-                  </Link>
-                  <Link
-                    to={"/sessions-edit"}
-                    className="h5 text-center btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-edit"></i> تعديل
-                  </Link>
-                  <button
-                    type="button"
-                    className="h5 text-center btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-trash"></i> حذف
-                  </button>
-                </td>
-              </tr>               
-              <tr>
-                <th className="h5 text-center">3</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
-                <td className="h5 text-center text-muted">كاش</td>
-                <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
-                <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
-                  <Link
-                    to={"/sessions-edit"}
-                    className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-eye"></i> عرض
-                  </Link>
-                  <Link
-                    to={"/sessions-edit"}
-                    className="h5 text-center btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-edit"></i> تعديل
-                  </Link>
-                  <button
-                    type="button"
-                    className="h5 text-center btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-trash"></i> حذف
-                  </button>
-                </td>
-              </tr>               
-              <tr>
-                <th className="h5 text-center">4</th>
-                <td className="h5 text-center text-muted">  دفعة أولى</td>
-                <td className="h5 text-center text-muted">كاش</td>
-                <td className="h5 text-center text-muted">500</td>
-                <td className="h5 text-center text-muted">20-07-2022</td>
-                <td className="h5 text-center text-muted">عبادة أبو مسامح</td>
-                <td
-                  className="h5 text-center text-muted d-flex justify-content-evenly"
-                >
-                  <Link
-                    to={"/sessions-edit"}
-                    className="h5 text-center btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-eye"></i> عرض
-                  </Link>
-                  <Link
-                    to={"/sessions-edit"}
-                    className="h5 text-center btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-edit"></i> تعديل
-                  </Link>
-                  <button
-                    type="button"
-                    className="h5 text-center btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                  >
-                    <i className="ico fa fa-trash"></i> حذف
-                  </button>
-                </td>
-              </tr>               
+              {loading === false ? (
+                data.length > 0 ? (
+                  data.map((session) => (
+                    <tr key={session._id}>
+                      <td className="h5 text-center">{session.case?.title}</td>
+                      <td className="h5 text-center">{session.title}</td>
+                      <td className="h5 text-center">{new Date(session.sessionDate).toISOString().split("T")[0]}</td>
+                      <td className="h5 text-center">{session.lawyerName}</td>
+                      <td className="h5 text-center">{session.createdBy.name}</td>
+                      <td className="h5 text-center">
+                        <Link
+                          to={`/sessions-edit/${session._id}`}
+                          className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                        >
+                          <i className="ico fa fa-edit"></i> تعديل
+                        </Link>
+                        <button
+                          onClick={() => handelDelete(session._id)}
+                          className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                        >
+                          <i className="ico fa fa-trash"></i> حذف
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      valign="top"
+                      colSpan="9"
+                      className="h4 text-center text-danger p-3"
+                    >
+                      لا توجد جلسات بعد!{" "}
+                    </td>
+                  </tr>
+                )
+              ) : (
+                <tr>
+                  <td valign="top" colSpan="9" className="h4 text-center p-3">
+                    جاري التحميل{" "}
+                    <Spinner animation="border" variant="primary" />
+                  </td>
+                </tr>
+              )}
             </tbody>
           </Table>
-          <Pagination />
+          {pageCount > 1 ? (
+            <Pagination pageCount={pageCount} onPress={getPage} />
+          ) : null}
         </div>
       </div>
     </div>
