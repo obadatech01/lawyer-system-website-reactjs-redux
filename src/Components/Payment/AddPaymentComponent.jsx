@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Spinner from "react-bootstrap/esm/Spinner";
+import AddPaymentHook from "../../hook/payment/add-payment-hook";
+import { useGetDataToken } from "../../hooks/useGetData";
 
 const AddPaymentComponent = () => {
+  const [title, amount, exchangeDate, caseId, exchangeMethod, notes, loading, isPress, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeCaseId, onChangeExchangeMethod, onChangeNotes] = AddPaymentHook();
+
+  const [cases, setCases] = useState([]);
+
+  useEffect(() => {
+    const getAllCases = async () => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const res = await useGetDataToken(`/api/v1/cases`);
+      setCases(res.data);
+    };
+
+    getAllCases();
+  }, []);
+
   return (
     <div className="row small-spacing">
       <div className="col-xs-12">
@@ -11,28 +28,33 @@ const AddPaymentComponent = () => {
 
           <div className="row">
             <div className="card-content">
-              <from>
+              {/* <from> */}
                 <div className="col-md-6">
                   <div className="padding-20">
                     <h5>
-                      <b>اسم الدفعة</b>
+                      <b>عنوان الدفعة</b>
                     </h5>
                     <input
                       type="text"
                       className="form-control"
                       maxLength={25}
-                      name="defaultconfig"
-                      id="defaultconfig"
-                      placeholder="اسم العميل"
+                      name="title"
+                      id="title"
+                      onChange={onChangeTitle}
+                      value={title}
+                      placeholder="عنوان الدفعة"
                     />
                     <div className="margin-top-20">
                       <h5>
                         <b>طريقة الدفع</b>
                       </h5>
-                      <select className="form-control select2_1">
+                      <select className="form-control select2_1"
+                      onChange={onChangeExchangeMethod}
+                      value={exchangeMethod}>
                         <optgroup label="طريقة الدفع">
                           <option value="كاش">كاش</option>
                           <option value="فيزا">فيزا</option>
+                          <option value="شيك">شيك</option>
                         </optgroup>
                       </select>
                     </div>
@@ -41,50 +63,45 @@ const AddPaymentComponent = () => {
                         <b>الكمية</b>
                       </h5>
                       <input
-                        type="text"
-                        maxLength={25}
-                        name="thresholdconfig"
+                        type="number"
+                        min={0}
+                        name="amount"
                         className="form-control"
-                        id="thresholdconfig"
-                        placeholder="الجنسية"
-                      />
-                    </div>
-                    <div className="margin-top-20">
-                      <h5>
-                        <b>تاريخ الدفع</b>
-                      </h5>
-                      <input
-                        type="text"
-                        maxLength={25}
-                        name="thresholdconfig"
-                        className="form-control"
-                        id="thresholdconfig"
-                        placeholder="رقم الهوية"
+                        id="amount"
+                        onChange={onChangeAmount}
+                        value={amount}
+                        placeholder="الكمية"
                       />
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="padding-20">
-                    <h5>
-                      <b>اسم القضية</b>
-                    </h5>
-                    <select className="form-control select2_1">
-                      <optgroup label="اسم القضية">
-                        <option value="قضية بيع">قضية بيع</option>
-                        <option value="قضية استئجار">قضية استئجار</option>
-                      </optgroup>
-                    </select>
+                  <h5>
+                        <b>القضية</b>
+                      </h5>
+                      <select className="form-control select2_1" value={caseId} onChange={onChangeCaseId}>
+                        <optgroup label="اختر القضية">
+                          <option value="">اختر القضية</option>
+                          {
+                            cases.map(item => <option value={item._id} key={item._id}>{item.title}</option>)
+                          }
+                        </optgroup>
+                      </select>
                     <div className="margin-top-20">
                       <h5>
-                        <b>اسم المحامي</b>
+                        <b>تاريخ الدفع</b>
                       </h5>
-                      <select className="form-control select2_1">
-                      <optgroup label="اسم المحامي">
-                        <option value="عبادة أبو مسامح">عبادة أبو مسامح</option>
-                        <option value="باسل أبو شاب">باسل أبو شاب</option>
-                      </optgroup>
-                    </select>
+                      <input
+                        type="date"
+                        maxLength={25}
+                        name="exchangeDate"
+                        className="form-control"
+                        id="exchangeDate"
+                        onChange={onChangeExchangeDate}
+                        value={exchangeDate}
+                        placeholder="تاريخ الدفع"
+                      />
                     </div>
                     <div className="margin-top-20">
                       <h5>
@@ -95,8 +112,9 @@ const AddPaymentComponent = () => {
                         className="form-control"
                         maxLength={225}
                         rows={2}
-                        placeholder="الملاحظات التي تخص العميل"
-                        defaultValue={""}
+                        placeholder="الملاحظات التي تخص الدفع"
+                        defaultValue={notes}
+                        onChange={onChangeNotes}
                       />
                     </div>
                   </div>
@@ -104,14 +122,22 @@ const AddPaymentComponent = () => {
                 <div className="col-md-12 d-flex justify-content-start">
                   <button
                     type="submit"
+                    onClick={handleSubmit}
                     className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
                   >
                     حفظ
                   </button>
                 </div>
-              </from>
+              {/* </from> */}
             </div>
           </div>
+          {isPress ? (
+            loading ? (
+              <Spinner animation="border" variant="primary" />
+            ) : (
+              <h3 className="d-flex justify-content-center">تم الانتهاء</h3>
+            )
+          ) : null}
         </div>
       </div>
     </div>

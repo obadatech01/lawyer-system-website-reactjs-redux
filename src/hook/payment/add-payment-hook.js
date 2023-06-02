@@ -8,8 +8,8 @@ const AddPaymentHook = () => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [exchangeDate, setExchangeDate] = useState("");
+  const [caseId, setCaseId] = useState("");
   const [exchangeMethod, setExchangeMethod] = useState("كاش");
-  const [user, setUser] = useState("");
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(true);
   const [isPress, setIsPress] = useState(false);
@@ -34,16 +34,16 @@ const AddPaymentHook = () => {
     setExchangeDate(e.target.value)
   }
 
+  //to change caseId state
+  const onChangeCaseId = (e) => {
+    e.persist();
+    setCaseId(e.target.value)
+  }
+
   //to change exchangeMethod state
   const onChangeExchangeMethod = (e) => {
     e.persist();
     setExchangeMethod(e.target.value)
-  }
-
-  //to change user state
-  const onChangeUser = (e) => {
-    e.persist();
-    setUser(e.target.value)
   }
 
   //to change notes state
@@ -60,8 +60,8 @@ const AddPaymentHook = () => {
       title,
       amount,
       exchangeDate,
+      case: caseId,
       exchangeMethod,
-      user,
       notes,
     };
     setLoading(true);
@@ -75,8 +75,8 @@ const AddPaymentHook = () => {
       setTitle("");
       setAmount("");
       setExchangeDate("");
+      setCaseId("");
       setExchangeMethod("كاش");
-      setUser("");
       setNotes("");
       setLoading(true);
       setTimeout(() => setIsPress(false), 1000);
@@ -88,7 +88,8 @@ const AddPaymentHook = () => {
     }
   }, [loading, res]);
 
-  return [title, amount, exchangeDate, exchangeMethod, user, notes, loading, isPress, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeExchangeMethod, onChangeUser, onChangeNotes];
+  return [title, amount, exchangeDate, caseId, exchangeMethod, notes, loading, isPress, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeCaseId, onChangeExchangeMethod, onChangeNotes];
+
 };
 
 export default AddPaymentHook;
