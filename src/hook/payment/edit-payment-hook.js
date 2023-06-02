@@ -22,7 +22,6 @@ const EditPaymentHook = (id) => {
   const [amount, setAmount] = useState("");
   const [exchangeDate, setExchangeDate] = useState("");
   const [exchangeMethod, setExchangeMethod] = useState("كاش");
-  const [user, setUser] = useState("");
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -32,7 +31,6 @@ const EditPaymentHook = (id) => {
       setAmount(item.data.amount);
       setExchangeDate(item.data.exchangeDate);
       setExchangeMethod(item.data.exchangeMethod);
-      setUser(item.data.user);
       setNotes(item.data.notes);
       setLoading(true);
     }
@@ -62,12 +60,6 @@ const EditPaymentHook = (id) => {
     setExchangeMethod(e.target.value)
   }
 
-  //to change user state
-  const onChangeUser = (e) => {
-    e.persist();
-    setUser(e.target.value)
-  }
-
   //to change notes state
   const onChangeNotes = (e) => {
     e.persist();
@@ -82,7 +74,6 @@ const EditPaymentHook = (id) => {
       !amount ||
       !exchangeDate ||
       !exchangeMethod ||
-      !user ||
       !notes
     ) {
       notify("من فضلك أكمل البيانات", "warn");
@@ -94,7 +85,6 @@ const EditPaymentHook = (id) => {
       amount,
       exchangeDate,
       exchangeMethod,
-      user,
       notes,
     };
 
@@ -114,7 +104,6 @@ const EditPaymentHook = (id) => {
       setAmount("");
       setExchangeDate("");
       setExchangeMethod("كاش");
-      setUser("");
       setNotes("");
       setTimeout(() => setLoading(true), 1500);
 
@@ -134,8 +123,7 @@ const EditPaymentHook = (id) => {
     }
   }, [loading, payment, navigate]);
 
-  return [title, amount, exchangeDate, exchangeMethod, user, notes, loading, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeExchangeMethod, onChangeUser, onChangeNotes];
-
+  return [title, amount, exchangeDate, exchangeMethod, notes, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeExchangeMethod, onChangeNotes];
 };
 
 export default EditPaymentHook;
