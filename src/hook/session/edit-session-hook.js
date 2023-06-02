@@ -27,10 +27,10 @@ const EditSessionHook = (id) => {
 
   useEffect(() => {
     if (item.data) {
-      setTitle(item.data.name);
+      setTitle(item.data.title);
       setLawyerName(item.data.lawyerName);
       setSessionDate(item.data.sessionDate);
-      setCaseId(item.data.caseId);
+      setCaseId(item.data.case);
       setNotes(item.data.notes);
       setLoading(true);
     }
@@ -55,10 +55,10 @@ const EditSessionHook = (id) => {
   }
 
   //to change caseId state
-  const onChangeCaseId = (e) => {
-    e.persist();
-    setCaseId(e.target.value)
-  }
+  // cons = (e) => {
+  //   e.persist();
+  //   setCaseId(e.target.value)
+  // }
 
   //to change notes state
   const onChangeNotes = (e) => {
@@ -78,6 +78,8 @@ const EditSessionHook = (id) => {
       notify("من فضلك أكمل البيانات", "warn");
       return;
     }
+
+    console.log(caseId);
 
     const formData = {
       title,
@@ -102,7 +104,7 @@ const EditSessionHook = (id) => {
       setTitle("");
       setLawyerName("");
       setSessionDate("");
-      setCaseId("");
+      // setCaseId("");
       setNotes("");
       setTimeout(() => setLoading(true), 1500);
 
@@ -122,7 +124,7 @@ const EditSessionHook = (id) => {
     }
   }, [loading, session, navigate]);
 
-  return [title, lawyerName, sessionDate, notes, handleSubmit, onChangeTitle, onChangeLawyerName, onChangeSessionDate, onChangeCaseId, onChangeNotes];
+  return [title, lawyerName, sessionDate, notes, handleSubmit, onChangeTitle, onChangeLawyerName, onChangeSessionDate, onChangeNotes];
 
 };
 

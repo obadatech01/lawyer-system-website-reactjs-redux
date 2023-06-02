@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 
 const EditSessionComponent = () => {
   const { id } = useParams();
-  const [title, lawyerName, sessionDate, notes, handleSubmit, onChangeTitle, onChangeLawyerName, onChangeSessionDate, onChangeCaseId, onChangeNotes] = EditSessionHook(id);
+  const [title, lawyerName, sessionDate, notes, handleSubmit, onChangeTitle, onChangeLawyerName, onChangeSessionDate, onChangeNotes] = EditSessionHook(id);
+
   return (
     <div className="row small-spacing">
       <div className="col-xs-12">
@@ -36,12 +37,12 @@ const EditSessionComponent = () => {
                         <b>تاريخ الجلسة</b>
                       </h5>
                       <input
-                        type="date"
-                        maxLength={25}
+                        type="text"
+                        onFocus="(this.type='date')"
                         name="sessionDate"
                         className="form-control"
                         id="sessionDate"
-                        value={sessionDate}
+                        value={new Date(sessionDate).toLocaleDateString('en-GB')}
                         onChange={onChangeSessionDate}
                         placeholder="تاريخ الجلسة"
                       />
