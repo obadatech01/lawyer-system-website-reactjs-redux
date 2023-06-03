@@ -82,7 +82,7 @@ function App() {
           <Routes>
             <Route exact path="/users" element={<AllUserPage />} />
             <Route exact path="/users-add" element={<AddUserPage />} />
-            <Route exact path="/users-edit" element={<EditUserPage />} />
+            <Route exact path="/users-edit/:id" element={<EditUserPage />} />
             <Route exact path="/users-profile" element={<ProfileUserPage />} />
           </Routes>
         </BrowserRouter>
