@@ -6,7 +6,7 @@ const AddUserComponent = () => {
       <div className="col-xs-12">
         <div className="box-content">
           <h4 className="box-title d-flex justify-content-center">
-            إضافة عميل جديد
+            إضافة موظف جديد
           </h4>
 
           <div className="row">
@@ -15,7 +15,7 @@ const AddUserComponent = () => {
                 <div className="col-md-6">
                   <div className="padding-20">
                     <h5>
-                      <b>اسم العميل</b>
+                      <b>اسم الموظف</b>
                     </h5>
                     <input
                       type="text"
@@ -23,7 +23,7 @@ const AddUserComponent = () => {
                       maxLength={25}
                       name="defaultconfig"
                       id="defaultconfig"
-                      placeholder="اسم العميل"
+                      placeholder="اسم الموظف"
                     />
                     <div className="margin-top-20">
                       <h5>
@@ -32,23 +32,10 @@ const AddUserComponent = () => {
                       <input
                         type="email"
                         maxLength={25}
-                        name="thresholdconfig"
+                        name="email"
                         className="form-control"
-                        id="thresholdconfig"
+                        id="email"
                         placeholder="البريد الإلكتروني"
-                      />
-                    </div>
-                    <div className="margin-top-20">
-                      <h5>
-                        <b>الجنسية</b>
-                      </h5>
-                      <input
-                        type="text"
-                        maxLength={25}
-                        name="thresholdconfig"
-                        className="form-control"
-                        id="thresholdconfig"
-                        placeholder="الجنسية"
                       />
                     </div>
                     <div className="margin-top-20">
@@ -75,6 +62,19 @@ const AddUserComponent = () => {
                         className="form-control"
                         id="thresholdconfig"
                         placeholder="رقم الهاتف"
+                      />
+                    </div>
+                    <div className="margin-top-20">
+                      <h5>
+                        <b>رقم الواتساب</b>
+                      </h5>
+                      <input
+                        type="text"
+                        maxLength={25}
+                        name="whatsapp"
+                        className="form-control"
+                        id="whatsapp"
+                        placeholder="رقم الواتساب"
                       />
                     </div>
                   </div>
@@ -105,29 +105,44 @@ const AddUserComponent = () => {
                     </div>
                     <div className="margin-top-20">
                       <h5>
-                        <b>اسم الوظيفة أو الشركة التابع لها</b>
+                        <b>كلمة المرور</b>
                       </h5>
                       <input
-                        type="text"
+                        type="password"
                         maxLength={25}
-                        name="thresholdconfig"
+                        name="password"
                         className="form-control"
-                        id="thresholdconfig"
-                        placeholder="اسم الوظيفة أو الشركة التابع لها"
+                        id="password"
+                        placeholder="كلمة المرور"
                       />
                     </div>
                     <div className="margin-top-20">
-                      <h5>
-                        <b>الملاحظات</b>
-                      </h5>
-                      <textarea
-                        id="textarea"
-                        className="form-control"
-                        maxLength={225}
-                        rows={2}
-                        placeholder="الملاحظات التي تخص العميل"
-                        defaultValue={""}
+                    <h5>
+                      <b>الصلاحية</b>
+                    </h5>
+                    <select className="form-control select2_1">
+                      <optgroup label="اختر الصلاحية">
+                        <option value="">اختر الصلاحية</option>
+                        <option value="نائب مدير">نائب مدير</option>
+                        <option value="محامي">محامي</option>
+                        <option value="سكرتير">سكرتير</option>
+                        <option value="محاسب">محاسب</option>
+                      </optgroup>
+                    </select>
+                    </div>
+                    <div className="margin-top-20">
+                    <div className="box-content">
+                      <h4 className="box-title">قم بتحميل الصورة</h4>
+                      {/* /.box-title */}
+                      <input
+                        type="file"
+                        id="input-file-now-custom-1"
+                        className="dropify"
+                        // onChange={onChangeDocument}
+                        // data-default-file={document}
                       />
+                    </div>
+                    {/* /.box-content */}
                     </div>
                   </div>
                 </div>

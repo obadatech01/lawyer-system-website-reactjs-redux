@@ -14,7 +14,6 @@ const AddUserHook = () => {
   const [phone, setPhone] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [address, setAddress] = useState("");
-  const [permissions, setPermissions] = useState("");
   const [loading, setLoading] = useState(true);
   const [isPress, setIsPress] = useState(false);
 
@@ -66,12 +65,6 @@ const AddUserHook = () => {
     }
   }
 
-  //to change permissions state
-  const onChangePermissions = (e) => {
-    e.persist();
-    setPermissions(e.target.value)
-  }
-
   // save data in database
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,7 +77,6 @@ const AddUserHook = () => {
     formData.append("phone", phone);
     formData.append("whatsapp", whatsapp);
     formData.append("address", address);
-    formData.append("permissions", permissions);
 
     setLoading(true);
     setIsPress(true);
@@ -102,7 +94,6 @@ const AddUserHook = () => {
       setPhone("");
       setWhatsapp("");
       setAddress("");
-      setPermissions("");
       setLoading(true);
       setTimeout(() => setIsPress(false), 1000);
       if (res.status === 201) {
@@ -113,7 +104,7 @@ const AddUserHook = () => {
     }
   }, [loading, res]);
 
-  return [name, email, identificationNumber, profileImg, phone, whatsapp, address, permissions, loading, isPress, handleSubmit, onChangeName, onChangeEmail, onChangeIdentificationNumber, onChangeProfileImg, onChangePhone, onChangeWhatsApp, onChangeAddress, onChangePermissions];
+  return [name, email, identificationNumber, profileImg, phone, whatsapp, address, loading, isPress, handleSubmit, onChangeName, onChangeEmail, onChangeIdentificationNumber, onChangeProfileImg, onChangePhone, onChangeWhatsApp, onChangeAddress];
 };
 
 export default AddUserHook;

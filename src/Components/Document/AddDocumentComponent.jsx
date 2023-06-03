@@ -78,7 +78,7 @@ const AddDocumentComponent = () => {
                 <div className="col-md-6">
                   <div className="padding-20">
                     <div className="box-content">
-                      <h4 className="box-title">Default File</h4>
+                      <h4 className="box-title">قم بتحميل الملف</h4>
                       {/* /.box-title */}
                       <input
                         type="file"
