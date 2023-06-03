@@ -70,7 +70,7 @@ const ProfileCaseComponent = () => {
   return (
     <>
       <div className="row small-spacing">
-        <div className="col-md-3 col-xs-12">
+        <div className="col-md-3 col-xs-12 h4">
           <div className="box-content bordered primary margin-bottom-20">
             <div className="profile-avatar">
               <h3>
