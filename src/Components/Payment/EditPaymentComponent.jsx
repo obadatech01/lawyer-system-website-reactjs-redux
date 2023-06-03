@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import EditPaymentHook from "../../hook/payment/edit-payment-hook";
+import EditInputDate from "../UI/EditInputDate";
 
 const EditPaymentComponent = () => {
   const { id } = useParams();
@@ -80,19 +81,7 @@ const EditPaymentComponent = () => {
               <div className="col-md-6">
                 <div className="padding-20">
                   <div className="margin-top-20">
-                    <h5>
-                      <b>تاريخ الدفع</b>
-                    </h5>
-                    <input
-                      type="text"
-                      maxLength={25}
-                      name="exchangeDate"
-                      className="form-control"
-                      id="exchangeDate"
-                      onChange={onChangeExchangeDate}
-                      value={exchangeDate}
-                      placeholder="تاريخ الدفع"
-                    />
+                    <EditInputDate labelName="تاريخ الدفع" value={exchangeDate} onChangeInput={onChangeExchangeDate} />
                   </div>
                   <div className="margin-top-20">
                     <h5>

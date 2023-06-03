@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import EditExpenseHook from "../../hook/expense/edit-expense-hook";
+import EditInputDate from "../UI/EditInputDate";
 
 const EditExpenseComponent = () => {
   const { id } = useParams();
@@ -81,19 +82,7 @@ const EditExpenseComponent = () => {
               </div>
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
-                    <b>التاريخ</b>
-                  </h5>
-                  <input
-                    type="date"
-                    maxLength={25}
-                    name="expenseDate"
-                    className="form-control"
-                    id="expenseDate"
-                    placeholder="تاريخ الصرف"
-                    onChange={onChangeExchangeDate}
-                    value={exchangeDate}
-                  />
+                  <EditInputDate labelName="التاريخ" value={exchangeDate} onChangeInput={onChangeExchangeDate} />
                   <div className="margin-top-20">
                     <h5>
                       <b>اسم المصروف له</b>

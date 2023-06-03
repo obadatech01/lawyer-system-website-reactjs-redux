@@ -7,6 +7,7 @@ import AllPaymentComponentHook from "../../hook/payment/all-payment-component-ho
 import notify from "../../hook/useNotification";
 import { deletePayment } from "../../redux/actions/paymentAction";
 import Pagination from "../Utils/Pagination";
+import ShowFormatDate from "../Utils/ShowFormatDate";
 
 const AllPaymentsComponent = ({ data, loading, pageCount }) => {
   const [getPage, handleLimitChange] = AllPaymentComponentHook();
@@ -92,9 +93,7 @@ const AllPaymentsComponent = ({ data, loading, pageCount }) => {
                           payment.amount
                         }
                       </td>
-                      <td className="h5 text-center">{new Date(payment.exchangeDate)
-                            .toISOString()
-                            .split("T")[0]}</td>
+                      <td className="h5 text-center">{ShowFormatDate(payment.exchangeDate)}</td>
                       <td className="h5 text-center">
                         {payment.case.title}
                       </td>

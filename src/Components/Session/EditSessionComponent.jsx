@@ -1,6 +1,7 @@
 import React from "react";
 import EditSessionHook from "../../hook/session/edit-session-hook";
 import { useParams } from "react-router-dom";
+import EditInputDate from "../UI/EditInputDate";
 
 const EditSessionComponent = () => {
   const { id } = useParams();
@@ -33,19 +34,7 @@ const EditSessionComponent = () => {
                       placeholder="عنوان الجلسة"
                     />
                     <div className="margin-top-20">
-                      <h5>
-                        <b>تاريخ الجلسة</b>
-                      </h5>
-                      <input
-                        type="text"
-                        onFocus="(this.type='date')"
-                        name="sessionDate"
-                        className="form-control"
-                        id="sessionDate"
-                        value={new Date(sessionDate).toLocaleDateString('en-GB')}
-                        onChange={onChangeSessionDate}
-                        placeholder="تاريخ الجلسة"
-                      />
+                      <EditInputDate labelName="تاريخ الجلسة" value={sessionDate} onChangeInput={onChangeSessionDate} />
                     </div>
                   </div>
                 </div>

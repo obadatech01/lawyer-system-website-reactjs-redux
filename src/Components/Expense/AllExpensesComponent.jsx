@@ -7,6 +7,7 @@ import AllExpenseComponentHook from "../../hook/expense/all-expense-component-ho
 import notify from "../../hook/useNotification";
 import { deleteExpense } from "../../redux/actions/expenseAction";
 import Pagination from "../Utils/Pagination";
+import ShowFormatDate from "../Utils/ShowFormatDate";
 
 const AllExpensesComponent = ({ data, loading, pageCount }) => {
   const [getPage, handleLimitChange] = AllExpenseComponentHook();
@@ -93,11 +94,7 @@ const AllExpensesComponent = ({ data, loading, pageCount }) => {
                         {expense.amount}
                       </td>
                       <td className="h5 text-center text-muted">
-                        {
-                          new Date(expense.exchangeDate)
-                            .toISOString()
-                            .split("T")[0]
-                        }
+                        {ShowFormatDate(expense.exchangeDate)}
                       </td>
                       <td className="h5 text-center text-muted">
                         {expense.userName}

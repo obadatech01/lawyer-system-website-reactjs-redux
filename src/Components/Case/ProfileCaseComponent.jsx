@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { deleteSession } from "../../redux/actions/sessionAction";
 import { deletePayment } from "../../redux/actions/paymentAction";
 import { deleteDocument } from "../../redux/actions/documentAction";
+import ShowFormatDate from "../Utils/ShowFormatDate";
 
 const ProfileCaseComponent = () => {
   const { id } = useParams();
@@ -41,7 +42,6 @@ const ProfileCaseComponent = () => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const res = await useGetDataToken(`/api/v1/documents?case=${id}`);
       setDocuments(res.data);
-      console.log(res.data);
     };
 
     getAllDocumentsForCase();
@@ -171,7 +171,7 @@ const ProfileCaseComponent = () => {
                           sessions.slice(0,5).map((session) => (
                             <tr key={session._id}>
                               <td className="h5 text-center">
-                                {new Date(session.sessionDate).toISOString().split("T")[0]}
+                                {ShowFormatDate(session.sessionDate)}
                               </td>
                               <td className="h5 text-center">{session.title}</td>
                               <td className="h5 text-center">
@@ -250,7 +250,7 @@ const ProfileCaseComponent = () => {
                           payments.slice(0,5).map((payment) => (
                             <tr key={payment._id}>
                               <td className="h5 text-center">
-                                {new Date(payment.exchangeDate).toISOString().split("T")[0]}
+                                {ShowFormatDate(payment.exchangeDate)}
                               </td>
                               <td className="h5 text-center">{payment.title}</td>
                               <td className="h5 text-center">
@@ -291,7 +291,7 @@ const ProfileCaseComponent = () => {
             <div className="col-md-6 col-xs-12">
               <div className="box-content card">
                 <h4 className="box-title">
-                  <i className="fa fa-user ico" />
+                  <i className="fa fa-folder ico" />
                   الملفات
                 </h4>
                 {/* /.box-title */}

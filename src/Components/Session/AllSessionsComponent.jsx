@@ -7,6 +7,7 @@ import AllSessionComponentHook from "../../hook/session/all-session-component-ho
 import notify from "../../hook/useNotification";
 import { deleteSession } from "../../redux/actions/sessionAction";
 import Pagination from "../Utils/Pagination";
+import ShowFormatDate from "../Utils/ShowFormatDate";
 
 const AllSessionsComponent = ({ data, loading, pageCount }) => {
   const [getPage, handleLimitChange] = AllSessionComponentHook();
@@ -85,7 +86,7 @@ const AllSessionsComponent = ({ data, loading, pageCount }) => {
                     <tr key={session._id}>
                       <td className="h5 text-center">{session.case?.title}</td>
                       <td className="h5 text-center">{session.title}</td>
-                      <td className="h5 text-center">{new Date(session.sessionDate).toISOString().split("T")[0]}</td>
+                      <td className="h5 text-center">{ShowFormatDate(session.sessionDate)}</td>
                       <td className="h5 text-center">{session.lawyerName}</td>
                       <td className="h5 text-center">{session.createdBy.name}</td>
                       <td className="h5 text-center">
