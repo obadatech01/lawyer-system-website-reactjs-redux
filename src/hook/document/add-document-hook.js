@@ -23,9 +23,11 @@ const AddDocumentHook = () => {
   const onChangeDocument = (e) => {
     e.persist();
     if (e.target.files && e.target.files[0]) {
+      const selectedDoc = e.target.files[0];
       console.log(e.target.files[0]);
-      setDocument(URL.createObjectURL(e.target.files[0]));
-      setSelectedFile(e.target.files[0]);
+      console.log(URL.createObjectURL(selectedDoc));
+      setDocument(URL.createObjectURL(selectedDoc));
+      setSelectedFile(selectedDoc);
     }
   };
 
@@ -45,6 +47,7 @@ const AddDocumentHook = () => {
     formData.append("title", title);
     formData.append("document", selectedFile);
     formData.append("case", caseId);
+
     setLoading(true);
     setIsPress(true);
     await dispatch(createDocument(formData));

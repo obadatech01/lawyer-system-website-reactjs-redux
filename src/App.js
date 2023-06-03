@@ -13,7 +13,6 @@ import EditClientPage from "./Page/Client/EditClientPage";
 import ProfileClientPage from "./Page/Client/ProfileClientPage";
 import AddDocumentPage from "./Page/Document/AddDocumentPage";
 import AllDocumentPage from "./Page/Document/AllDocumentPage";
-import EditDocumentPage from "./Page/Document/EditDocumentPage";
 import AddExpensePage from "./Page/Expense/AddExpensePage";
 import AllExpensePage from "./Page/Expense/AllExpensePage";
 import EditExpensePage from "./Page/Expense/EditExpensePage";
@@ -116,11 +115,6 @@ function App() {
 
             {/* documents routes */}
             <Route exact path="/documents-add" element={<AddDocumentPage />} />
-            <Route
-              exact
-              path="/documents-edit/:id"
-              element={<EditDocumentPage />}
-            />
 
             {/* expenses routes */}
             <Route exact path="/expenses-add" element={<AddExpensePage />} />
