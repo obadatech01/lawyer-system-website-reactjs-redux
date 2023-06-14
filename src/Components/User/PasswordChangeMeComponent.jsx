@@ -8,7 +8,7 @@ const PasswordChangeMeComponent = () => {
 
       <div className="col-xs-12">
         <div className="box-content">
-          <h4 className="box-title d-flex justify-content-center">
+          <h4 className="box-title m-5">
             تحديث كلمة السر الخاصة بي
           </h4>
 
