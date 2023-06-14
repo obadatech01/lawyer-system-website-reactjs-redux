@@ -27,8 +27,10 @@ import EditSessionPage from "./Page/Session/EditSessionPage";
 import AddUserPage from "./Page/User/AddUserPage";
 import AllUserPage from "./Page/User/AllUserPage";
 import EditUserPage from "./Page/User/EditUserPage";
-import ProfileUserPage from "./Page/User/ProfileUserPage";
 import ProtectedRouteHook from "./hook/auth/protected-route-hook";
+import EditProfileMe from "./Page/User/EditProfileMe";
+import PasswordChangeMePage from "./Page/User/PasswordChangeMePage";
+import PasswordChangeUserPage from "./Page/User/PasswordChangeUserPage";
 
 function App() {
   const [
@@ -83,7 +85,9 @@ function App() {
             <Route exact path="/users" element={<AllUserPage />} />
             <Route exact path="/users-add" element={<AddUserPage />} />
             <Route exact path="/users-edit/:id" element={<EditUserPage />} />
-            <Route exact path="/users-profile" element={<ProfileUserPage />} />
+            <Route exact path="/users-password-change/:id" element={<PasswordChangeUserPage />} />
+            <Route exact path="/profile-edit" element={<EditProfileMe />} />
+            <Route exact path="/password-change-me" element={<PasswordChangeMePage />} />
           </Routes>
         </BrowserRouter>
       )}

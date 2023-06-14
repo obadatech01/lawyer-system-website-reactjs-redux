@@ -1,8 +1,8 @@
 import { useDeleteDataToken } from "../../hooks/useDeleteData";
 import { useGetDataToken } from "../../hooks/useGetData";
 import { useInsertDataWithImageToken } from "../../hooks/useInsertData";
-import { useUpdateDataWithImageToken } from "../../hooks/useUpdateData";
-import { CREATE_USER, DELETE_USER, GET_ALL_USER, GET_ONE_USER, UPDATE_USER } from "../type";
+import { useInsUpdateData, useUpdateDataWithImageToken } from "../../hooks/useUpdateData";
+import { CREATE_USER, DELETE_USER, GET_ALL_USER, GET_ONE_USER, UPDATE_PASSWORD, UPDATE_USER } from "../type";
 // import baseURL from '../../Api/baseURL';
 
 // get all users with limit
@@ -90,6 +90,24 @@ export const updateUser = (id, data) => async (dispatch) => {
     // console.log(err);
     dispatch({
       type: UPDATE_USER,
+      payload: err.response,
+    });
+  }
+};
+
+// update user password with id
+export const updateUserPassword = (id, data) => async (dispatch) => {
+  try {
+    const res = await useInsUpdateData(`/api/v1/users/changePassword/${id}`, data);
+    dispatch({
+      type: UPDATE_PASSWORD,
+      payload: res,
+      loading: true
+    });
+  } catch (err) {
+    // console.log(err);
+    dispatch({
+      type: UPDATE_PASSWORD,
       payload: err.response,
     });
   }

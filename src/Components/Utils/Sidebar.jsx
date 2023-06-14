@@ -43,13 +43,13 @@ const Sidebar = () => {
             <i className="fa fa-caret-down js__drop_down_button"></i>
             <div className="control-list">
               <div className="control-item">
-                <Link to="#">
-                  <i className="fa fa-user"></i> الصفحة الشخصية
+                <Link to="/profile-edit">
+                  <i className="fa fa-user"></i> تعديل البروفايل
                 </Link>
               </div>
               <div className="control-item">
-                <Link to="#">
-                  <i className="fa fa-gear"></i> الإعدادات
+                <Link to="/password-change-me">
+                  <i className="fa fa-gear"></i> تغيير كلمة السر
                 </Link>
               </div>
               <div className="control-item">
@@ -126,10 +126,10 @@ const Sidebar = () => {
               </Link>
               <ul className="sub-menu js__content">
                 <li>
-                  <Link to={"#"}>تغيير كلمة المرور</Link>
+                  <Link to={"/password-change-me"}>تغيير كلمة المرور</Link>
                 </li>
                 <li>
-                  <Link to={"#"}>تغيير بيانات البروفايل</Link>
+                  <Link to={"/profile-edit"}>تعديل البروفايل</Link>
                 </li>
               </ul>
             </li>

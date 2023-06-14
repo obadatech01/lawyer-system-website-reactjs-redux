@@ -87,10 +87,10 @@ const AllUsersComponent = ({ data, loading, pageCount }) => {
                       </td>
                       <td className="h5 text-center">
                         <Link
-                          to={`/users-profile/${user._id}`}
+                          to={`/users-password-change/${user._id}`}
                           className="mx-3 btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
-                          <i className="ico fa fa-eye"></i> عرض
+                          <i className="ico fa fa-edit"></i> تحديث كلمة السر
                         </Link>
                         <Link
                           to={`/users-edit/${user._id}`}

@@ -1,4 +1,5 @@
 import {
+  CHANGE_ME_PASSWORD,
   CREATE_NEW_USER,
   FORGET_PASSWORD,
   GET_CURRENT_USER,
@@ -14,6 +15,7 @@ const initial = {
   forgetPassword: [],
   verifyPassword: [],
   resetPassword: [],
+  changeMePassword: [],
   loading: true,
 };
 
@@ -48,6 +50,11 @@ const authReducer = (state = initial, action) => {
       return {
         ...state,
         resetPassword: action.payload,
+      };
+    case CHANGE_ME_PASSWORD:
+      return {
+        ...state,
+        changeMePassword: action.payload,
       };
     default:
       return state;

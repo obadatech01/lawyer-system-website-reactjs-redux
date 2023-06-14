@@ -11,11 +11,11 @@ const useUpdateDataToken = async (url, params) => {
   return res;
 };
 
-const useInsUpdateData = async (url, parmas) => {
+const useInsUpdateData = async (url, params) => {
   const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
   }
-  const res = await baseURL.put(url, parmas, config);
+  const res = await baseURL.put(url, params, config);
   return res;
 }
 

@@ -4,6 +4,7 @@ import {
   GET_ALL_USER,
   GET_ERROR,
   GET_ONE_USER,
+  UPDATE_PASSWORD,
   UPDATE_USER,
 } from "../type";
 
@@ -12,6 +13,7 @@ const initial = {
   oneUser: [],
   deleteUser: [],
   updateUser: [],
+  updateUserPassword: [],
   loading: true,
 };
 const userReducer = (state = initial, action) => {
@@ -38,6 +40,12 @@ const userReducer = (state = initial, action) => {
       return {
         ...state,
         updateUser: action.payload,
+        loading: false,
+      };
+    case UPDATE_PASSWORD:
+      return {
+        ...state,
+        updateUserPassword: action.payload,
         loading: false,
       };
     case DELETE_USER:
