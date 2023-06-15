@@ -1,4 +1,5 @@
 import {
+  CHANGE_ME_PASSWORD,
   CREATE_USER,
   DELETE_USER,
   GET_ALL_USER,
@@ -7,6 +8,7 @@ import {
   UPDATE_LIMIT_USER,
   UPDATE_PAGE_USER,
   UPDATE_PASSWORD,
+  UPDATE_PROFILE_ME,
   UPDATE_SEARCH_USER,
   UPDATE_USER,
 } from "../type";
@@ -16,7 +18,9 @@ const initial = {
   oneUser: [],
   deleteUser: [],
   updateUser: [],
+  updateProfileMe: [],
   updateUserPassword: [],
+  updateMePassword: [],
   limit: 3,
   page: 1,
   search: '',
@@ -61,6 +65,12 @@ const userReducer = (state = initial, action) => {
       return {
         ...state,
         updateUser: action.payload,
+        loading: false,
+      };
+    case UPDATE_PROFILE_ME:
+      return {
+        ...state,
+        updateProfileMe: action.payload,
         loading: false,
       };
     case UPDATE_PASSWORD:
