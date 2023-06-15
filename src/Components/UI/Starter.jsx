@@ -1,10 +1,14 @@
 import React from 'react'
 import Footer from '../Utils/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Sidebar from '../Utils/Sidebar';
 import Navbar from '../Utils/Navbar';
 
 const Starter = (props) => {
+  const location = useLocation();
+  console.log(location);
+  console.log(location.pathname.startsWith('/clients-profile'));
+
   return (
     <div>
       <Sidebar />
