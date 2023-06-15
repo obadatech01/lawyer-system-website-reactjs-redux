@@ -3,14 +3,12 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import Table from "react-bootstrap/esm/Table";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import AllSessionComponentHook from "../../hook/session/all-session-component-hook";
 import notify from "../../hook/useNotification";
 import { deleteSession } from "../../redux/actions/sessionAction";
 import Pagination from "../Utils/Pagination";
 import ShowFormatDate from "../Utils/ShowFormatDate";
 
-const AllSessionsComponent = ({ data, loading, pageCount }) => {
-  const [getPage, handleLimitChange] = AllSessionComponentHook();
+const AllSessionsComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange }) => {
   const dispatch = useDispatch();
   const handelDelete = async (id) => {
     await dispatch(deleteSession(id));
@@ -31,6 +29,7 @@ const AllSessionsComponent = ({ data, loading, pageCount }) => {
                   name="limitation"
                   id="lang"
                   className="select px-2 "
+                  value={limit}
                   onChange={handleLimitChange}
                 >
                   <option value="3">3</option>
@@ -53,6 +52,8 @@ const AllSessionsComponent = ({ data, loading, pageCount }) => {
                 type="search"
                 className="form-control input-sm my-3"
                 placeholder="ابحث ..."
+                value={search}
+                onChange={handleSearchChange}
                 aria-controls="example"
               />
             </div>

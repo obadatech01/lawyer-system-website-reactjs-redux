@@ -38,42 +38,6 @@ export const getAllDocuments = (limit, page, search) => async (dispatch) => {
   }
 };
 
-// get all documents with limit
-export const getAllDocument = (limit) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/documents?limit=${limit}`);
-    dispatch({
-      type: GET_ALL_DOCUMENT,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_DOCUMENT,
-      payload: err.response,
-    });
-  }
-};
-
-// get all documents with pagination
-export const getAllDocumentPage = (page) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/documents?limit=3&page=${page}`);
-    dispatch({
-      type: GET_ALL_DOCUMENT,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_DOCUMENT,
-      payload: err.response,
-    });
-  }
-};
-
 // create new document
 export const createDocument = (formData) => async (dispatch) => {
   try {

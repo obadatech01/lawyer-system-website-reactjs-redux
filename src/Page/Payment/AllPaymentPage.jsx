@@ -4,7 +4,7 @@ import Starter from "../../Components/UI/Starter";
 import AllPaymentPageHook from "../../hook/payment/all-payment-page-hook";
 
 const AllPaymentPage = () => {
-  const [payments, loading, pageCount] = AllPaymentPageHook();
+  const [payments, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange] = AllPaymentPageHook();
 
   return (
     <Starter>
@@ -12,6 +12,11 @@ const AllPaymentPage = () => {
         data={payments.data}
         loading={loading}
         pageCount={pageCount}
+        limit={limit}
+        search={search}
+        getPage={getPage}
+        handleLimitChange={handleLimitChange}
+        handleSearchChange={handleSearchChange}
       />
     </Starter>
   );

@@ -38,41 +38,6 @@ export const getAllCases = (limit, page, search) => async (dispatch) => {
   }
 };
 
-// get all cases with limit
-export const getAllCase = (limit) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/cases?limit=${limit}`);
-    dispatch({
-      type: GET_ALL_CASE,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_CASE,
-      payload: err.response,
-    });
-  }
-};
-
-// get all cases with pagination
-export const getAllCasePage = (page) => async (dispatch) => {
-  try {
-    const res = await useGetDataToken(`/api/v1/cases?limit=3&page=${page}`);
-    dispatch({
-      type: GET_ALL_CASE,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_CASE,
-      payload: err.response,
-    });
-  }
-};
-
 // create new case
 export const createCase = (formData) => async (dispatch) => {
   try {

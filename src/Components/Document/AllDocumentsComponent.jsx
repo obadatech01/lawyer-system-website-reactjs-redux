@@ -3,13 +3,11 @@ import Spinner from "react-bootstrap/Spinner";
 import Table from "react-bootstrap/esm/Table";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import AllDocumentComponentHook from "../../hook/document/all-document-component-hook";
 import notify from "../../hook/useNotification";
 import { deleteDocument } from "../../redux/actions/documentAction";
 import Pagination from "../Utils/Pagination";
 
-const AllDocumentsComponent = ({ data, loading, pageCount }) => {
-  const [getPage, handleLimitChange] = AllDocumentComponentHook();
+const AllDocumentsComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange }) => {
   const dispatch = useDispatch();
   const handelDelete = async (id) => {
     await dispatch(deleteDocument(id));
@@ -26,7 +24,7 @@ const AllDocumentsComponent = ({ data, loading, pageCount }) => {
               <h4 className="box-title">عرض جميع الملفات</h4>
               <div className="h4">
                 {"عرض "}
-                <select name="limitation" id="lang" className="select px-2 " onChange={handleLimitChange}>
+                <select name="limitation" id="lang" className="select px-2 " value={limit} onChange={handleLimitChange}>
                   <option value="3">3</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
@@ -47,6 +45,8 @@ const AllDocumentsComponent = ({ data, loading, pageCount }) => {
                 type="search"
                 className="form-control input-sm my-3"
                 placeholder="ابحث ..."
+                value={search}
+                onChange={handleSearchChange}
                 aria-controls="example"
               />
             </div>

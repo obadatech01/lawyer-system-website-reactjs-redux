@@ -38,42 +38,6 @@ export const getAllPayments = (limit, page, search) => async (dispatch) => {
   }
 };
 
-// get all payments with limit
-export const getAllPayment = (limit) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/payments?limit=${limit}`);
-    dispatch({
-      type: GET_ALL_PAYMENT,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_PAYMENT,
-      payload: err.response,
-    });
-  }
-};
-
-// get all payments with pagination
-export const getAllPaymentPage = (page) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/payments?limit=3&page=${page}`);
-    dispatch({
-      type: GET_ALL_PAYMENT,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_PAYMENT,
-      payload: err.response,
-    });
-  }
-};
-
 // create new payment
 export const createPayment = (formData) => async (dispatch) => {
   try {

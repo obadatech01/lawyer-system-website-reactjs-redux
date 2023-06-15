@@ -38,42 +38,6 @@ export const getAllUsers = (limit, page, search) => async (dispatch) => {
   }
 };
 
-// get all users with limit
-export const getAllUser = (limit) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/users?limit=${limit}`);
-    dispatch({
-      type: GET_ALL_USER,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_USER,
-      payload: err.response,
-    });
-  }
-};
-
-// get all users with pagination
-export const getAllUserPage = (page) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/users?limit=3&page=${page}`);
-    dispatch({
-      type: GET_ALL_USER,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_USER,
-      payload: err.response,
-    });
-  }
-};
-
 // create new user
 export const createUser = (formData) => async (dispatch) => {
   try {

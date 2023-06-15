@@ -4,7 +4,7 @@ import Starter from "../../Components/UI/Starter";
 import AllExpensePageHook from "../../hook/expense/all-expense-page-hook";
 
 const AllExpensePage = () => {
-  const [expenses, loading, pageCount] = AllExpensePageHook();
+  const [expenses, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange] = AllExpensePageHook();
 
   return (
     <Starter>
@@ -12,6 +12,11 @@ const AllExpensePage = () => {
         data={expenses.data}
         loading={loading}
         pageCount={pageCount}
+        limit={limit}
+        search={search}
+        getPage={getPage}
+        handleLimitChange={handleLimitChange}
+        handleSearchChange={handleSearchChange}
        />
     </Starter>
   );

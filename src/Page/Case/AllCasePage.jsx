@@ -4,14 +4,19 @@ import Starter from "../../Components/UI/Starter";
 import AllCasePageHook from "../../hook/case/all-case-page-hook";
 
 const AllCasePage = () => {
-  const [cases, loading, pageCount] = AllCasePageHook();
+  const [cases, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange] = AllCasePageHook();
 
   return (
     <Starter>
-      <AllCasesComponent 
+      <AllCasesComponent
         data={cases.data}
         loading={loading}
         pageCount={pageCount}
+        limit={limit}
+        search={search}
+        getPage={getPage}
+        handleLimitChange={handleLimitChange}
+        handleSearchChange={handleSearchChange}
       />
     </Starter>
   );

@@ -38,60 +38,6 @@ export const getAllClients = (limit, page, search) => async (dispatch) => {
   }
 };
 
-// get all clients with limit
-export const getAllClient = (limit) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/clients?limit=${limit}`);
-    dispatch({
-      type: GET_ALL_CLIENT,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_CLIENT,
-      payload: err.response,
-    });
-  }
-};
-
-// get all clients with limit
-export const getAllClientSearch = (search) => async (dispatch) => {
-  console.log(search);
-  try {
-    const res = await useGetDataToken(`/api/v1/clients?search=${search}`);
-    dispatch({
-      type: GET_ALL_CLIENT,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_CLIENT,
-      payload: err.response,
-    });
-  }
-};
-
-// get all clients with pagination
-export const getAllClientPage = (page) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/clients?limit=3&page=${page}`);
-    dispatch({
-      type: GET_ALL_CLIENT,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_CLIENT,
-      payload: err.response,
-    });
-  }
-};
-
 // create new client
 export const createClient = (formData) => async (dispatch) => {
   try {

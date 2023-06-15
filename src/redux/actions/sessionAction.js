@@ -38,42 +38,6 @@ export const getAllSessions = (limit, page, search) => async (dispatch) => {
   }
 };
 
-// get all sessions with limit
-export const getAllSession = (limit) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/sessions?limit=${limit}`);
-    dispatch({
-      type: GET_ALL_SESSION,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_SESSION,
-      payload: err.response,
-    });
-  }
-};
-
-// get all sessions with pagination
-export const getAllSessionPage = (page) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/sessions?limit=3&page=${page}`);
-    dispatch({
-      type: GET_ALL_SESSION,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_SESSION,
-      payload: err.response,
-    });
-  }
-};
-
 // create new session
 export const createSession = (formData) => async (dispatch) => {
   try {

@@ -4,7 +4,7 @@ import Starter from "../../Components/UI/Starter";
 import AllUserPageHook from "../../hook/user/all-user-page-hook";
 
 const AllUserPage = () => {
-  const [users, loading, pageCount] = AllUserPageHook();
+  const [users, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange] = AllUserPageHook();
 
   return (
     <Starter>
@@ -12,6 +12,11 @@ const AllUserPage = () => {
         data={users.data}
         loading={loading}
         pageCount={pageCount}
+        limit={limit}
+        search={search}
+        getPage={getPage}
+        handleLimitChange={handleLimitChange}
+        handleSearchChange={handleSearchChange}
       />
     </Starter>
   );

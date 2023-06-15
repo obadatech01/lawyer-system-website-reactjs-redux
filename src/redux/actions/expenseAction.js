@@ -38,42 +38,6 @@ export const getAllExpenses = (limit, page, search) => async (dispatch) => {
   }
 };
 
-// get all expenses with limit
-export const getAllExpense = (limit) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/expenses?limit=${limit}`);
-    dispatch({
-      type: GET_ALL_EXPENSE,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_EXPENSE,
-      payload: err.response,
-    });
-  }
-};
-
-// get all expenses with pagination
-export const getAllExpensePage = (page) => async (dispatch) => {
-
-  try {
-    const res = await useGetDataToken(`/api/v1/expenses?limit=3&page=${page}`);
-    dispatch({
-      type: GET_ALL_EXPENSE,
-      payload: res
-    });
-  } catch (err) {
-    // console.log(err);
-    dispatch({
-      type: GET_ALL_EXPENSE,
-      payload: err.response,
-    });
-  }
-};
-
 // create new expense
 export const createExpense = (formData) => async (dispatch) => {
   try {

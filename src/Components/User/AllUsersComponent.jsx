@@ -1,15 +1,13 @@
 import React from "react";
-import Pagination from "../Utils/Pagination";
-import Table from "react-bootstrap/esm/Table";
-import { Link } from "react-router-dom";
-import { deleteUser } from "../../redux/actions/userAction";
-import notify from "../../hook/useNotification";
-import { useDispatch } from "react-redux";
-import AllUserComponentHook from "../../hook/user/all-user-component-hook";
 import Spinner from "react-bootstrap/esm/Spinner";
+import Table from "react-bootstrap/esm/Table";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import notify from "../../hook/useNotification";
+import { deleteUser } from "../../redux/actions/userAction";
+import Pagination from "../Utils/Pagination";
 
-const AllUsersComponent = ({ data, loading, pageCount }) => {
-  const [getPage, handleLimitChange] = AllUserComponentHook();
+const AllUsersComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange}) => {
   const dispatch = useDispatch();
   const handelDelete = async (id) => {
     await dispatch(deleteUser(id));
@@ -26,7 +24,13 @@ const AllUsersComponent = ({ data, loading, pageCount }) => {
               <h4 className="box-title">عرض جميع الموظفين</h4>
               <div className="h4">
                 {"عرض "}
-                <select name="limitation" id="lang" className="select px-2 " onChange={handleLimitChange}>
+                <select
+                  name="limitation"
+                  id="lang"
+                  className="select px-2 "
+                  value={limit}
+                  onChange={handleLimitChange}
+                >
                   <option value="3">3</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
@@ -47,6 +51,8 @@ const AllUsersComponent = ({ data, loading, pageCount }) => {
                 type="search"
                 className="form-control input-sm my-3"
                 placeholder="ابحث ..."
+                value={search}
+                onChange={handleSearchChange}
                 aria-controls="example"
               />
             </div>
@@ -74,14 +80,23 @@ const AllUsersComponent = ({ data, loading, pageCount }) => {
               </tr>
             </tfoot>
             <tbody>
-            {loading === false ? (
+              {loading === false ? (
                 data.length > 0 ? (
                   data.map((user) => (
                     <tr key={user._id}>
-                      <td className="h5 text-center"><img src={user.profileImg} alt={user.name} width={50} height={50} /></td>
+                      <td className="h5 text-center">
+                        <img
+                          src={user.profileImg}
+                          alt={user.name}
+                          width={50}
+                          height={50}
+                        />
+                      </td>
                       <td className="h5 text-center">{user.name}</td>
                       <td className="h5 text-center">{user.phone}</td>
-                      <td className="h5 text-center"><span className="label label-success">{user.role}</span></td>
+                      <td className="h5 text-center">
+                        <span className="label label-success">{user.role}</span>
+                      </td>
                       <td className="h5 text-center">
                         {user.identificationNumber}
                       </td>
@@ -99,7 +114,7 @@ const AllUsersComponent = ({ data, loading, pageCount }) => {
                           <i className="ico fa fa-edit"></i> تعديل
                         </Link>
                         <button
-                          onClick={()=>handelDelete(user._id)}
+                          onClick={() => handelDelete(user._id)}
                           className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-trash"></i> حذف
@@ -109,7 +124,11 @@ const AllUsersComponent = ({ data, loading, pageCount }) => {
                   ))
                 ) : (
                   <tr>
-                    <td valign="top" colSpan="9" className="h4 text-center text-danger p-3">
+                    <td
+                      valign="top"
+                      colSpan="9"
+                      className="h4 text-center text-danger p-3"
+                    >
                       لا يوجد موظفين بعد!{" "}
                     </td>
                   </tr>

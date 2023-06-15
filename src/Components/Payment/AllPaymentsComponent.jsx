@@ -3,14 +3,12 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import Table from "react-bootstrap/esm/Table";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import AllPaymentComponentHook from "../../hook/payment/all-payment-component-hook";
 import notify from "../../hook/useNotification";
 import { deletePayment } from "../../redux/actions/paymentAction";
 import Pagination from "../Utils/Pagination";
 import ShowFormatDate from "../Utils/ShowFormatDate";
 
-const AllPaymentsComponent = ({ data, loading, pageCount }) => {
-  const [getPage, handleLimitChange] = AllPaymentComponentHook();
+const AllPaymentsComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange }) => {
   const dispatch = useDispatch();
   const handelDelete = async (id) => {
     await dispatch(deletePayment(id));
@@ -31,6 +29,7 @@ const AllPaymentsComponent = ({ data, loading, pageCount }) => {
                   name="limitation"
                   id="lang"
                   className="select px-2 "
+                  value={limit}
                   onChange={handleLimitChange}
                 >
                   <option value="3">3</option>
@@ -53,6 +52,8 @@ const AllPaymentsComponent = ({ data, loading, pageCount }) => {
                 type="search"
                 className="form-control input-sm my-3"
                 placeholder="ابحث ..."
+                value={search}
+                onChange={handleSearchChange}
                 aria-controls="example"
               />
             </div>
