@@ -2,14 +2,65 @@ import { useDeleteDataToken } from "../../hooks/useDeleteData";
 import { useGetDataToken } from "../../hooks/useGetData";
 import { useInsertDataToken } from "../../hooks/useInsertData";
 import { useUpdateDataToken } from "../../hooks/useUpdateData";
-import { CREATE_CLIENT, DELETE_CLIENT, GET_ALL_CLIENT, GET_ONE_CLIENT, UPDATE_CLIENT } from "../type";
+import { CREATE_CLIENT, DELETE_CLIENT, GET_ALL_CLIENT, GET_ONE_CLIENT, UPDATE_CLIENT, UPDATE_LIMIT_CLIENT, UPDATE_PAGE_CLIENT, UPDATE_SEARCH_CLIENT } from "../type";
 // import baseURL from '../../Api/baseURL';
+
+export const updateLimitClients = (limit) => ({
+  type: UPDATE_LIMIT_CLIENT,
+  payload: limit,
+});
+
+export const updatePageClients = (page) => ({
+  type: UPDATE_PAGE_CLIENT,
+  payload: page,
+});
+
+export const updateSearchClients = (search) => ({
+  type: UPDATE_SEARCH_CLIENT,
+  payload: search,
+});
+
+// get all clients with limit
+export const getAllClients = (limit, page, search) => async (dispatch) => {
+
+  try {
+    const res = await useGetDataToken(`/api/v1/clients?limit=${limit}&page=${page}&search=${search}`);
+    dispatch({
+      type: GET_ALL_CLIENT,
+      payload: res
+    });
+  } catch (err) {
+    // console.log(err);
+    dispatch({
+      type: GET_ALL_CLIENT,
+      payload: err.response,
+    });
+  }
+};
 
 // get all clients with limit
 export const getAllClient = (limit) => async (dispatch) => {
 
   try {
     const res = await useGetDataToken(`/api/v1/clients?limit=${limit}`);
+    dispatch({
+      type: GET_ALL_CLIENT,
+      payload: res
+    });
+  } catch (err) {
+    // console.log(err);
+    dispatch({
+      type: GET_ALL_CLIENT,
+      payload: err.response,
+    });
+  }
+};
+
+// get all clients with limit
+export const getAllClientSearch = (search) => async (dispatch) => {
+  console.log(search);
+  try {
+    const res = await useGetDataToken(`/api/v1/clients?search=${search}`);
     dispatch({
       type: GET_ALL_CLIENT,
       payload: res

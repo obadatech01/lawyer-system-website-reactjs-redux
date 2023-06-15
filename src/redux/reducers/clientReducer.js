@@ -5,6 +5,9 @@ import {
   GET_ERROR,
   GET_ONE_CLIENT,
   UPDATE_CLIENT,
+  UPDATE_LIMIT_CLIENT,
+  UPDATE_PAGE_CLIENT,
+  UPDATE_SEARCH_CLIENT
 } from "../type";
 
 const initial = {
@@ -12,10 +15,28 @@ const initial = {
   oneClient: [],
   deleteClient: [],
   updateClient: [],
+  limit: 3,
+  page: 1,
+  search: '',
   loading: true,
 };
 const clientReducer = (state = initial, action) => {
   switch (action.type) {
+    case UPDATE_LIMIT_CLIENT:
+      return {
+        ...state,
+        limit: action.payload,
+      };
+    case UPDATE_PAGE_CLIENT:
+      return {
+        ...state,
+        page: action.payload,
+      };
+    case UPDATE_SEARCH_CLIENT:
+      return {
+        ...state,
+        search: action.payload,
+      };
     case GET_ALL_CLIENT:
       return {
         ...state,

@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Table from "react-bootstrap/esm/Table";
 import { Link } from "react-router-dom";
 import Pagination from "../Utils/Pagination";
-import AllClientComponentHook from "../../hook/client/all-client-component-hook";
 import { useDispatch } from "react-redux";
 import { deleteClient } from "../../redux/actions/clientAction";
 import notify from "../../hook/useNotification";
 
-const AllClientsComponent = ({ data, loading, pageCount }) => {
-  const [getPage, handleLimitChange] = AllClientComponentHook();
+const AllClientsComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange }) => {
   const dispatch = useDispatch();
+
   const handelDelete = async (id) => {
     await dispatch(deleteClient(id));
     notify("تم حذف العميل بنجاح", "success");
     window.location.reload();
   };
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     search && dispatch(getAllClients(limit, page, search));
+  //   }, 2000);
+
+  //   return () => clearTimeout(timer);
+  // }, [limit, page, search, dispatch]);
 
   return (
     <div className="row small-spacing">
@@ -30,6 +37,7 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
                   name="limitation"
                   id="lang"
                   className="select px-2"
+                  value={limit}
                   onChange={handleLimitChange}
                 >
                   <option value="3">3</option>
@@ -53,6 +61,8 @@ const AllClientsComponent = ({ data, loading, pageCount }) => {
                 type="search"
                 className="form-control input-sm my-3"
                 placeholder="ابحث ..."
+                value={search}
+                onChange={handleSearchChange}
                 aria-controls="example"
               />
             </div>
