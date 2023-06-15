@@ -120,7 +120,7 @@ const EditProfileMeHook = (id) => {
   };
 
   //get one user
-  const user = useSelector((state) => state.allUser.updateUser);
+  const user = useSelector((state) => state.allUser.oneUser);
 
   useEffect(() => {
     if (loading === false) {
