@@ -6,12 +6,7 @@ import Sidebar from "../Utils/Sidebar";
 
 const Starter = (props) => {
   const location = useLocation();
-
-  console.log(location.pathname.split("/")[1].includes("-"));
-  // console.log(location.pathname.split("/")[1]);
-  // console.log(location.pathname.startsWith("/clients-profile"));
-  // console.log(location.pathname.split("/")[1].startsWith('clients'));
-
+  
   const breadcrumbs1 = [
     { id: "clients", label: "العملاء", to: "/clients" },
     { id: "cases", label: "القضايا", to: "/cases" },
