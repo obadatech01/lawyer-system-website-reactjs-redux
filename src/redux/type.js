@@ -51,6 +51,7 @@ export const GET_ALL_USER = "GET_ALL_USER";
 export const GET_ONE_USER = "GET_ONE_USER";
 export const CREATE_USER = "CREATE_USER";
 export const UPDATE_USER = "UPDATE_USER";
+export const UPDATE_PROFILE_ME = "UPDATE_PROFILE_ME";
 export const DELETE_USER = "DELETE_USER";
 export const UPDATE_LIMIT_USER = 'UPDATE_LIMIT_USER';
 export const UPDATE_PAGE_USER = 'UPDATE_PAGE_USER';

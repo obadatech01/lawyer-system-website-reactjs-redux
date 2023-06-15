@@ -86,7 +86,7 @@ const AllUsersComponent = ({ data, loading, pageCount, limit, search, getPage, h
                     <tr key={user._id}>
                       <td className="h5 text-center">
                         <img
-                          src={user.profileImg}
+                          src={user.profileImg !== "null" ? user.profileImg : "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"}
                           alt={user.name}
                           width={50}
                           height={50}

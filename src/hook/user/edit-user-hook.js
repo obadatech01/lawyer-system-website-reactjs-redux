@@ -90,7 +90,7 @@ const EditUserHook = (id) => {
   const onChangeProfileImg = (e) => {
     e.persist();
     if (e.target.files && e.target.files[0]) {
-      console.log(e.target.files[0]);
+      // console.log(e.target.files[0]);
       setProfileImg(URL.createObjectURL(e.target.files[0]))
       setSelectedFile(e.target.files[0]);
     }
@@ -99,12 +99,12 @@ const EditUserHook = (id) => {
   //to save data
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(selectedFile);
     if (
       !name ||
       !identificationNumber ||
       !phone ||
       !whatsapp ||
-      !profileImg ||
       !address ||
       !role
     ) {
@@ -115,7 +115,9 @@ const EditUserHook = (id) => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("identificationNumber", identificationNumber);
-    formData.append("profileImg", selectedFile);
+    if(selectedFile != null) {
+      formData.append("profileImg", selectedFile)
+    }
     formData.append("phone", phone);
     formData.append("whatsapp", whatsapp);
     formData.append("address", address);
@@ -154,8 +156,8 @@ const EditUserHook = (id) => {
         }, 2000);
         } else {
           // console.log(user);
-          user.data.errors.map(err => notify(err.msg, "error"));
-          // notify("هناك مشكلة فى عملية التعديل", "error");
+          // user.data.errors.map(err => notify(err.msg, "error"));
+          notify("هناك مشكلة فى عملية التعديل", "error");
         }
       }
     }

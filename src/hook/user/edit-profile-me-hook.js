@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneUser, updateUser } from "../../redux/actions/userAction";
+import { getOneUser, updateProfileMe } from "../../redux/actions/userAction";
 import notify from "../useNotification";
 import { useNavigate } from "react-router-dom";
 
@@ -96,7 +96,6 @@ const EditProfileMeHook = (id) => {
       !identificationNumber ||
       !phone ||
       !whatsapp ||
-      !profileImg ||
       !address
     ) {
       notify("من فضلك أكمل البيانات", "warn");
@@ -106,7 +105,9 @@ const EditProfileMeHook = (id) => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("identificationNumber", identificationNumber);
-    formData.append("profileImg", selectedFile);
+    if(selectedFile != null) {
+      formData.append("profileImg", selectedFile)
+    }
     formData.append("phone", phone);
     formData.append("whatsapp", whatsapp);
     formData.append("address", address);
@@ -114,7 +115,7 @@ const EditProfileMeHook = (id) => {
 
     setTimeout(async () => {
       setLoading(true);
-      await dispatch(updateUser(id, formData));
+      await dispatch(updateProfileMe(formData));
       setLoading(false);
     }, 1000);
   };

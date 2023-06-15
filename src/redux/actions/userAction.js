@@ -2,7 +2,7 @@ import { useDeleteDataToken } from "../../hooks/useDeleteData";
 import { useGetDataToken } from "../../hooks/useGetData";
 import { useInsertDataWithImageToken } from "../../hooks/useInsertData";
 import { useInsUpdateData, useUpdateDataWithImageToken } from "../../hooks/useUpdateData";
-import { CREATE_USER, DELETE_USER, GET_ALL_USER, GET_ONE_USER, UPDATE_LIMIT_USER, UPDATE_PAGE_USER, UPDATE_PASSWORD, UPDATE_SEARCH_USER, UPDATE_USER } from "../type";
+import { CREATE_USER, DELETE_USER, GET_ALL_USER, GET_ONE_USER, UPDATE_LIMIT_USER, UPDATE_PAGE_USER, UPDATE_PASSWORD, UPDATE_PROFILE_ME, UPDATE_SEARCH_USER, UPDATE_USER } from "../type";
 // import baseURL from '../../Api/baseURL';
 
 export const updateLimitUsers = (limit) => ({
@@ -87,6 +87,24 @@ export const updateUser = (id, data) => async (dispatch) => {
     // console.log(err);
     dispatch({
       type: UPDATE_USER,
+      payload: err.response,
+    });
+  }
+};
+
+// update profile me
+export const updateProfileMe = (data) => async (dispatch) => {
+  try {
+    const res = await useUpdateDataWithImageToken(`/api/v1/users/changeMe`, data);
+    dispatch({
+      type: UPDATE_PROFILE_ME,
+      payload: res,
+      loading: true
+    });
+  } catch (err) {
+    // console.log(err);
+    dispatch({
+      type: UPDATE_PROFILE_ME,
       payload: err.response,
     });
   }
