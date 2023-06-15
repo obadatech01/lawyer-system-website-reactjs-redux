@@ -6,7 +6,6 @@ import Sidebar from "../Utils/Sidebar";
 
 const Starter = (props) => {
   const location = useLocation();
-  
   const breadcrumbs1 = [
     { id: "clients", label: "العملاء", to: "/clients" },
     { id: "cases", label: "القضايا", to: "/cases" },
