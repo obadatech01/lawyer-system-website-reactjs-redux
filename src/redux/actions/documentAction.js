@@ -2,8 +2,41 @@ import { useDeleteDataToken } from "../../hooks/useDeleteData";
 import { useGetDataToken } from "../../hooks/useGetData";
 import { useInsertDataWithImageToken } from "../../hooks/useInsertData";
 import { useUpdateDataWithImageToken } from "../../hooks/useUpdateData";
-import { CREATE_DOCUMENT, DELETE_DOCUMENT, GET_ALL_DOCUMENT, GET_ONE_DOCUMENT, UPDATE_DOCUMENT } from "../type";
+import { CREATE_DOCUMENT, DELETE_DOCUMENT, GET_ALL_DOCUMENT, GET_ONE_DOCUMENT, UPDATE_DOCUMENT, UPDATE_LIMIT_DOCUMENT, UPDATE_PAGE_DOCUMENT, UPDATE_SEARCH_DOCUMENT } from "../type";
 // import baseURL from '../../Api/baseURL';
+
+export const updateLimitDocuments = (limit) => ({
+  type: UPDATE_LIMIT_DOCUMENT,
+  payload: limit,
+});
+
+export const updatePageDocuments = (page) => ({
+  type: UPDATE_PAGE_DOCUMENT,
+  payload: page,
+});
+
+export const updateSearchDocuments = (search) => ({
+  type: UPDATE_SEARCH_DOCUMENT,
+  payload: search,
+});
+
+// get all documents with limit
+export const getAllDocuments = (limit, page, search) => async (dispatch) => {
+
+  try {
+    const res = await useGetDataToken(`/api/v1/documents?limit=${limit}&page=${page}&search=${search}`);
+    dispatch({
+      type: GET_ALL_DOCUMENT,
+      payload: res
+    });
+  } catch (err) {
+    // console.log(err);
+    dispatch({
+      type: GET_ALL_DOCUMENT,
+      payload: err.response,
+    });
+  }
+};
 
 // get all documents with limit
 export const getAllDocument = (limit) => async (dispatch) => {

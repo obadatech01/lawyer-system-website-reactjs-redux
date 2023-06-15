@@ -4,6 +4,9 @@ import {
   GET_ALL_SESSION,
   GET_ERROR,
   GET_ONE_SESSION,
+  UPDATE_LIMIT_SESSION,
+  UPDATE_PAGE_SESSION,
+  UPDATE_SEARCH_SESSION,
   UPDATE_SESSION,
 } from "../type";
 
@@ -12,10 +15,28 @@ const initial = {
   oneSession: [],
   deleteSession: [],
   updateSession: [],
+  limit: 3,
+  page: 1,
+  search: '',
   loading: true,
 };
 const sessionReducer = (state = initial, action) => {
   switch (action.type) {
+    case UPDATE_LIMIT_SESSION:
+      return {
+        ...state,
+        limit: action.payload,
+      };
+    case UPDATE_PAGE_SESSION:
+      return {
+        ...state,
+        page: action.payload,
+      };
+    case UPDATE_SEARCH_SESSION:
+      return {
+        ...state,
+        search: action.payload,
+      };
     case GET_ALL_SESSION:
       return {
         ...state,

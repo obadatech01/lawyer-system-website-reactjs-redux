@@ -5,6 +5,9 @@ import {
   GET_ERROR,
   GET_ONE_CASE,
   UPDATE_CASE,
+  UPDATE_LIMIT_CASE,
+  UPDATE_PAGE_CASE,
+  UPDATE_SEARCH_CASE,
 } from "../type";
 
 const initial = {
@@ -12,10 +15,28 @@ const initial = {
   oneCase: [],
   deleteCase: [],
   updateCase: [],
+  limit: 3,
+  page: 1,
+  search: '',
   loading: true,
 };
 const caseReducer = (state = initial, action) => {
   switch (action.type) {
+    case UPDATE_LIMIT_CASE:
+      return {
+        ...state,
+        limit: action.payload,
+      };
+    case UPDATE_PAGE_CASE:
+      return {
+        ...state,
+        page: action.payload,
+      };
+    case UPDATE_SEARCH_CASE:
+      return {
+        ...state,
+        search: action.payload,
+      };
     case GET_ALL_CASE:
       return {
         ...state,

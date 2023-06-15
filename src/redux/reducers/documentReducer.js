@@ -5,6 +5,9 @@ import {
   GET_ERROR,
   GET_ONE_DOCUMENT,
   UPDATE_DOCUMENT,
+  UPDATE_LIMIT_DOCUMENT,
+  UPDATE_PAGE_DOCUMENT,
+  UPDATE_SEARCH_DOCUMENT,
 } from "../type";
 
 const initial = {
@@ -12,10 +15,28 @@ const initial = {
   oneDocument: [],
   deleteDocument: [],
   updateDocument: [],
+  limit: 3,
+  page: 1,
+  search: '',
   loading: true,
 };
 const documentReducer = (state = initial, action) => {
   switch (action.type) {
+    case UPDATE_LIMIT_DOCUMENT:
+      return {
+        ...state,
+        limit: action.payload,
+      };
+    case UPDATE_PAGE_DOCUMENT:
+      return {
+        ...state,
+        page: action.payload,
+      };
+    case UPDATE_SEARCH_DOCUMENT:
+      return {
+        ...state,
+        search: action.payload,
+      };
     case GET_ALL_DOCUMENT:
       return {
         ...state,

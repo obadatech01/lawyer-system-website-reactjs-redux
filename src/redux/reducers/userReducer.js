@@ -4,7 +4,10 @@ import {
   GET_ALL_USER,
   GET_ERROR,
   GET_ONE_USER,
+  UPDATE_LIMIT_USER,
+  UPDATE_PAGE_USER,
   UPDATE_PASSWORD,
+  UPDATE_SEARCH_USER,
   UPDATE_USER,
 } from "../type";
 
@@ -14,10 +17,28 @@ const initial = {
   deleteUser: [],
   updateUser: [],
   updateUserPassword: [],
+  limit: 3,
+  page: 1,
+  search: '',
   loading: true,
 };
 const userReducer = (state = initial, action) => {
   switch (action.type) {
+    case UPDATE_LIMIT_USER:
+      return {
+        ...state,
+        limit: action.payload,
+      };
+    case UPDATE_PAGE_USER:
+      return {
+        ...state,
+        page: action.payload,
+      };
+    case UPDATE_SEARCH_USER:
+      return {
+        ...state,
+        search: action.payload,
+      };
     case GET_ALL_USER:
       return {
         ...state,

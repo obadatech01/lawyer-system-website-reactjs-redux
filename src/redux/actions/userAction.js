@@ -2,8 +2,41 @@ import { useDeleteDataToken } from "../../hooks/useDeleteData";
 import { useGetDataToken } from "../../hooks/useGetData";
 import { useInsertDataWithImageToken } from "../../hooks/useInsertData";
 import { useInsUpdateData, useUpdateDataWithImageToken } from "../../hooks/useUpdateData";
-import { CREATE_USER, DELETE_USER, GET_ALL_USER, GET_ONE_USER, UPDATE_PASSWORD, UPDATE_USER } from "../type";
+import { CREATE_USER, DELETE_USER, GET_ALL_USER, GET_ONE_USER, UPDATE_LIMIT_USER, UPDATE_PAGE_USER, UPDATE_PASSWORD, UPDATE_SEARCH_USER, UPDATE_USER } from "../type";
 // import baseURL from '../../Api/baseURL';
+
+export const updateLimitUsers = (limit) => ({
+  type: UPDATE_LIMIT_USER,
+  payload: limit,
+});
+
+export const updatePageUsers = (page) => ({
+  type: UPDATE_PAGE_USER,
+  payload: page,
+});
+
+export const updateSearchUsers = (search) => ({
+  type: UPDATE_SEARCH_USER,
+  payload: search,
+});
+
+// get all users with limit
+export const getAllUsers = (limit, page, search) => async (dispatch) => {
+
+  try {
+    const res = await useGetDataToken(`/api/v1/users?limit=${limit}&page=${page}&search=${search}`);
+    dispatch({
+      type: GET_ALL_USER,
+      payload: res
+    });
+  } catch (err) {
+    // console.log(err);
+    dispatch({
+      type: GET_ALL_USER,
+      payload: err.response,
+    });
+  }
+};
 
 // get all users with limit
 export const getAllUser = (limit) => async (dispatch) => {

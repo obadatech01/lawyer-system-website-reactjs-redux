@@ -2,8 +2,41 @@ import { useDeleteDataToken } from "../../hooks/useDeleteData";
 import { useGetDataToken } from "../../hooks/useGetData";
 import { useInsertDataToken } from "../../hooks/useInsertData";
 import { useUpdateDataToken } from "../../hooks/useUpdateData";
-import { CREATE_SESSION, DELETE_SESSION, GET_ALL_SESSION, GET_ONE_SESSION, UPDATE_SESSION } from "../type";
+import { CREATE_SESSION, DELETE_SESSION, GET_ALL_SESSION, GET_ONE_SESSION, UPDATE_LIMIT_SESSION, UPDATE_PAGE_SESSION, UPDATE_SEARCH_SESSION, UPDATE_SESSION } from "../type";
 // import baseURL from '../../Api/baseURL';
+
+export const updateLimitSessions = (limit) => ({
+  type: UPDATE_LIMIT_SESSION,
+  payload: limit,
+});
+
+export const updatePageSessions = (page) => ({
+  type: UPDATE_PAGE_SESSION,
+  payload: page,
+});
+
+export const updateSearchSessions = (search) => ({
+  type: UPDATE_SEARCH_SESSION,
+  payload: search,
+});
+
+// get all sessions with limit
+export const getAllSessions = (limit, page, search) => async (dispatch) => {
+
+  try {
+    const res = await useGetDataToken(`/api/v1/sessions?limit=${limit}&page=${page}&search=${search}`);
+    dispatch({
+      type: GET_ALL_SESSION,
+      payload: res
+    });
+  } catch (err) {
+    // console.log(err);
+    dispatch({
+      type: GET_ALL_SESSION,
+      payload: err.response,
+    });
+  }
+};
 
 // get all sessions with limit
 export const getAllSession = (limit) => async (dispatch) => {
