@@ -65,6 +65,30 @@ const Auth = {
      */
     isOwner: () => (JSON.parse(localStorage.getItem('user')) !== null) && JSON.parse(localStorage.getItem('user')).role === 'مدير',
 
+    /**
+     * Is vice president.
+     * @returns {boolean}
+     */
+    isVicePresident: () => (JSON.parse(localStorage.getItem('user')) !== null) && JSON.parse(localStorage.getItem('user')).role === 'نائب المدير',
+
+    /**
+     * Is secretary.
+     * @returns {boolean}
+     */
+    isSecretary: () => (JSON.parse(localStorage.getItem('user')) !== null) && JSON.parse(localStorage.getItem('user')).role === 'سكرتير',
+
+    /**
+     * Is accountant.
+     * @returns {boolean}
+     */
+    isAccountant: () => (JSON.parse(localStorage.getItem('user')) !== null) && JSON.parse(localStorage.getItem('user')).role === 'محاسب',
+
+    /**
+     * Is lawyer.
+     * @returns {boolean}
+     */
+    isLawyer: () => (JSON.parse(localStorage.getItem('user')) !== null) && JSON.parse(localStorage.getItem('user')).role === 'محامي',
+
 };
 
 export default Auth;

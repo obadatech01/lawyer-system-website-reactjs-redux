@@ -14,9 +14,9 @@ const Sidebar = () => {
     notify("تم تسجيل الخروج بنجاح", "warn");
     setTimeout(() => {
       window.location.href = "/login";
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     }, 1000);
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
   };
 
   return (
