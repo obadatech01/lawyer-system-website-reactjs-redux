@@ -37,7 +37,7 @@ function App() {
   useEffect(() => {
     Auth.init();
   }, []);
-  console.log(Auth.isOwner());
+  console.log(localStorage.getItem('obada'));
 
   return (
     <div className="font color-body">

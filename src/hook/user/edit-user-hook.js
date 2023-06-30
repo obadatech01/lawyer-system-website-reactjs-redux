@@ -131,7 +131,7 @@ const EditUserHook = (id) => {
     }, 1000);
   };
 
-  //get one user
+  //get update user
   const user = useSelector((state) => state.allUser.updateUser);
 
   useEffect(() => {

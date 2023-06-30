@@ -82,7 +82,7 @@ const EditProfileMeHook = (id) => {
   const onChangeProfileImg = (e) => {
     e.persist();
     if (e.target.files && e.target.files[0]) {
-      console.log(e.target.files[0]);
+      // console.log(e.target.files[0]);
       setProfileImg(URL.createObjectURL(e.target.files[0]))
       setSelectedFile(e.target.files[0]);
     }
@@ -121,7 +121,7 @@ const EditProfileMeHook = (id) => {
   };
 
   //get one user
-  const user = useSelector((state) => state.allUser.oneUser);
+  const user = useSelector((state) => state.allUser.updateProfileMe);
 
   useEffect(() => {
     if (loading === false) {
@@ -138,14 +138,20 @@ const EditProfileMeHook = (id) => {
       if(user) {
         if (user.status === 200) {
           notify("تمت عملية التعديل بنجاح", "success");
-          window.location.replace('/users');
+          // window.location.replace('/users');
           setTimeout(() => {
-            navigate('/users')
-        }, 2000);
+            navigate('/');
+            // console.log(user.data.name);
+            // console.log(user.data.data.name);
+            // localStorage.removeItem("user");
+            // localStorage.setItem("user");
+          }, 1000);
+          localStorage.setItem("obada", user.data)
+          console.log(localStorage.getItem("obada"));
         } else {
           // console.log(user);
-          user.data.errors.map(err => notify(err.msg, "error"));
-          // notify("هناك مشكلة فى عملية التعديل", "error");
+          // user.data.errors.map(err => notify(err.msg, "error"));
+          notify("هناك مشكلة فى عملية التعديل", "error");
         }
       }
     }
