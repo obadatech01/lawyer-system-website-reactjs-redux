@@ -46,21 +46,9 @@ function App() {
           {Auth.guest() && (
             <>
               <Route exact path="/login" element={<LoginPage />} />
-              <Route
-                exact
-                path="/forget-password"
-                element={<ForgetPasswordPage />}
-              />
-              <Route
-                exact
-                path="/verify-code"
-                element={<VerifyPasswordPage />}
-              />
-              <Route
-                exact
-                path="/reset-password"
-                element={<ResetPasswordPage />}
-              />
+              <Route exact path="/forget-password" element={<ForgetPasswordPage />} />
+              <Route exact path="/verify-code" element={<VerifyPasswordPage />} />
+              <Route exact path="/reset-password" element={<ResetPasswordPage />} />
             </>
           )}
 
@@ -68,83 +56,60 @@ function App() {
             <>
               <Route exact path="/" element={<HomePage />} />
               <Route exact path="/cases" element={<AllCasePage />} />
+              <Route exact path="/cases-profile/:id" element={<ProfileCasePage />} />
               <Route exact path="/clients" element={<AllClientPage />} />
+              <Route exact path="/clients-profile/:id" element={<ProfileClientPage />} />
               <Route exact path="/documents" element={<AllDocumentPage />} />
-              <Route exact path="/expenses" element={<AllExpensePage />} />
               <Route exact path="/payments" element={<AllPaymentPage />} />
               <Route exact path="/sessions" element={<AllSessionPage />} />
               <Route exact path="/profile-edit" element={<EditProfileMe />} />
-              <Route
-                exact
-                path="/password-change-me"
-                element={<PasswordChangeMePage />}
-              />
+              <Route exact path="/password-change-me" element={<PasswordChangeMePage />} />
+            </>
+          )}
+
+          {(Auth.isOwner || Auth.isLawyer) && (
+            <>
+              <Route exact path="/cases-add" element={<AddCasePage />} />
+              <Route exact path="/clients-add" element={<AddClientPage />} />
+              <Route exact path="/documents-add" element={<AddDocumentPage />} />
+            </>
+          )}
+
+          {(Auth.isOwner || Auth.isAccountant) && (
+            <>
+              <Route exact path="/expenses" element={<AllExpensePage />} />
+              <Route exact path="/expenses-add" element={<AddExpensePage />} />
+              <Route exact path="/expenses-edit/:id" element={<EditExpensePage />} />
+            </>
+          )}
+
+          {(Auth.isOwner || Auth.isSecretary) && (
+            <>
+              <Route exact path="/users" element={<AllUserPage />} />
+            </>
+          )}
+
+          {(Auth.isOwner || Auth.isLawyer || Auth.isAccountant) && (
+            <>
+              <Route exact path="/payments-add" element={<AddPaymentPage />} />
+              <Route exact path="/payments-edit/:id" element={<EditPaymentPage />} />
+            </>
+          )}
+
+          {(Auth.isOwner || Auth.isLawyer || Auth.isSecretary) && (
+            <>
+              <Route exact path="/sessions-add" element={<AddSessionPage />} />
+              <Route exact path="/sessions-edit/:id" element={<EditSessionPage />} />
             </>
           )}
 
           {Auth.isOwner() && (
             <>
-              <Route exact path="/users" element={<AllUserPage />} />
               <Route exact path="/users-add" element={<AddUserPage />} />
               <Route exact path="/users-edit/:id" element={<EditUserPage />} />
-              <Route
-                exact
-                path="/users-password-change/:id"
-                element={<PasswordChangeUserPage />}
-              />
-
-              {/* cases routes */}
-              <Route exact path="/cases-add" element={<AddCasePage />} />
+              <Route exact path="/users-password-change/:id" element={<PasswordChangeUserPage />} />
               <Route exact path="/cases-edit/:id" element={<EditCasePage />} />
-              <Route
-                exact
-                path="/cases-profile/:id"
-                element={<ProfileCasePage />}
-              />
-
-              {/* clients routes */}
-              <Route exact path="/clients-add" element={<AddClientPage />} />
-              <Route
-                exact
-                path="/clients-edit/:id"
-                element={<EditClientPage />}
-              />
-              <Route
-                exact
-                path="/clients-profile/:id"
-                element={<ProfileClientPage />}
-              />
-
-              {/* documents routes */}
-              <Route
-                exact
-                path="/documents-add"
-                element={<AddDocumentPage />}
-              />
-
-              {/* expenses routes */}
-              <Route exact path="/expenses-add" element={<AddExpensePage />} />
-              <Route
-                exact
-                path="/expenses-edit/:id"
-                element={<EditExpensePage />}
-              />
-
-              {/* payments routes */}
-              <Route exact path="/payments-add" element={<AddPaymentPage />} />
-              <Route
-                exact
-                path="/payments-edit/:id"
-                element={<EditPaymentPage />}
-              />
-
-              {/* sessions routes */}
-              <Route exact path="/sessions-add" element={<AddSessionPage />} />
-              <Route
-                exact
-                path="/sessions-edit/:id"
-                element={<EditSessionPage />}
-              />
+              <Route exact path="/clients-edit/:id" element={<EditClientPage />} />
             </>
           )}
 
