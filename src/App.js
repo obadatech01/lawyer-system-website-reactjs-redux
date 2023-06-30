@@ -37,7 +37,6 @@ function App() {
   useEffect(() => {
     Auth.init();
   }, []);
-  console.log(localStorage.getItem('obada'));
 
   return (
     <div className="font color-body">

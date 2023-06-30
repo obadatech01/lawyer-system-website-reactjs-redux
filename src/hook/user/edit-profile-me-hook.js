@@ -139,17 +139,12 @@ const EditProfileMeHook = (id) => {
         if (user.status === 200) {
           notify("تمت عملية التعديل بنجاح", "success");
           // window.location.replace('/users');
+          localStorage.removeItem('user')
+          localStorage.setItem("user", JSON.stringify(user.data.data));
           setTimeout(() => {
             navigate('/');
-            // console.log(user.data.name);
-            // console.log(user.data.data.name);
-            // localStorage.removeItem("user");
-            // localStorage.setItem("user");
           }, 1000);
-          localStorage.setItem("obada", user.data)
-          console.log(localStorage.getItem("obada"));
         } else {
-          // console.log(user);
           // user.data.errors.map(err => notify(err.msg, "error"));
           notify("هناك مشكلة فى عملية التعديل", "error");
         }
