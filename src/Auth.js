@@ -47,12 +47,6 @@ const Auth = {
     isOwner: () => (JSON.parse(localStorage.getItem('user')) !== null) && JSON.parse(localStorage.getItem('user')).role === 'مدير',
 
     /**
-     * Is vice president.
-     * @returns {boolean}
-     */
-    isVicePresident: () => (JSON.parse(localStorage.getItem('user')) !== null) && JSON.parse(localStorage.getItem('user')).role === 'نائب المدير',
-
-    /**
      * Is secretary.
      * @returns {boolean}
      */
