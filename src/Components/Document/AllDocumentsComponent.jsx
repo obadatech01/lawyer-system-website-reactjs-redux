@@ -3,11 +3,21 @@ import Spinner from "react-bootstrap/Spinner";
 import Table from "react-bootstrap/esm/Table";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Auth from "../../Auth";
 import notify from "../../hook/useNotification";
 import { deleteDocument } from "../../redux/actions/documentAction";
 import Pagination from "../Utils/Pagination";
 
-const AllDocumentsComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange }) => {
+const AllDocumentsComponent = ({
+  data,
+  loading,
+  pageCount,
+  limit,
+  search,
+  getPage,
+  handleLimitChange,
+  handleSearchChange,
+}) => {
   const dispatch = useDispatch();
   const handelDelete = async (id) => {
     await dispatch(deleteDocument(id));
@@ -24,7 +34,13 @@ const AllDocumentsComponent = ({ data, loading, pageCount, limit, search, getPag
               <h4 className="box-title">عرض جميع الملفات</h4>
               <div className="h4">
                 {"عرض "}
-                <select name="limitation" id="lang" className="select px-2 " value={limit} onChange={handleLimitChange}>
+                <select
+                  name="limitation"
+                  id="lang"
+                  className="select px-2 "
+                  value={limit}
+                  onChange={handleLimitChange}
+                >
                   <option value="3">3</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
@@ -35,12 +51,14 @@ const AllDocumentsComponent = ({ data, loading, pageCount, limit, search, getPag
               </div>
             </div>
             <div className="d-flex flex-column">
-              <Link
-                to={"/documents-add"}
-                className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
-              >
-                <i className="ico fa fa-plus"></i> إضافة ملفات
-              </Link>
+              {(Auth.isOwner() || Auth.isLawyer()) && (
+                <Link
+                  to={"/documents-add"}
+                  className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                >
+                  <i className="ico fa fa-plus"></i> إضافة ملفات
+                </Link>
+              )}
               <input
                 type="search"
                 className="form-control input-sm my-3"
@@ -58,7 +76,9 @@ const AllDocumentsComponent = ({ data, loading, pageCount, limit, search, getPag
                 <th className="h5 text-center">اسم الملف </th>
                 <th className="h5 text-center"> عنوان القضية</th>
                 <th className="h5 text-center"> أضيف بواسطة </th>
-                <th className="h5 text-center"> أكشن</th>
+                {(Auth.isOwner() || Auth.isLawyer()) && (
+                  <th className="h5 text-center"> أكشن</th>
+                )}
               </tr>
             </thead>
             <tfoot>
@@ -66,33 +86,41 @@ const AllDocumentsComponent = ({ data, loading, pageCount, limit, search, getPag
                 <th className="h5 text-center">اسم الملف </th>
                 <th className="h5 text-center"> عنوان القضية</th>
                 <th className="h5 text-center"> أضيف بواسطة </th>
-                <th className="h5 text-center"> أكشن</th>
+                {(Auth.isOwner() || Auth.isLawyer()) && (
+                  <th className="h5 text-center"> أكشن</th>
+                )}
               </tr>
             </tfoot>
             <tbody>
-            {loading === false ? (
+              {loading === false ? (
                 data.length > 0 ? (
                   data.map((document) => (
                     <tr key={document._id}>
                       <td className="h5 text-center text-muted">
-                        <a href={`${document.document}`} target="_blank" rel="noopener noreferrer">{document.title}</a>
+                        <a
+                          href={`${document.document}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {document.title}
+                        </a>
                       </td>
                       <td className="h5 text-center text-muted">
                         {document.case.title}
                       </td>
                       <td className="h5 text-center text-muted">
-                        {
-                          document.createdBy.name
-                        }
+                        {document.createdBy.name}
                       </td>
-                      <td className="h5 text-center">
-                        <button
-                          onClick={() => handelDelete(document._id)}
-                          className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                        >
-                          <i className="ico fa fa-trash"></i> حذف
-                        </button>
-                      </td>
+                      {(Auth.isOwner() || Auth.isLawyer()) && (
+                        <td className="h5 text-center">
+                          <button
+                            onClick={() => handelDelete(document._id)}
+                            className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          >
+                            <i className="ico fa fa-trash"></i> حذف
+                          </button>
+                        </td>
+                      )}
                     </tr>
                   ))
                 ) : (

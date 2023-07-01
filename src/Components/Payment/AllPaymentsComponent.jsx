@@ -7,6 +7,7 @@ import notify from "../../hook/useNotification";
 import { deletePayment } from "../../redux/actions/paymentAction";
 import Pagination from "../Utils/Pagination";
 import ShowFormatDate from "../Utils/ShowFormatDate";
+import Auth from '../../Auth';
 
 const AllPaymentsComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange }) => {
   const dispatch = useDispatch();
@@ -42,12 +43,12 @@ const AllPaymentsComponent = ({ data, loading, pageCount, limit, search, getPage
               </div>
             </div>
             <div className="d-flex flex-column">
-              <Link
+              {(Auth.isOwner() || Auth.isLawyer() || Auth.isAccountant())&&<Link
                 to={"/payments-add"}
                 className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
               >
                 <i className="ico fa fa-plus"></i> إضافة مدفوعات
-              </Link>
+              </Link>}
               <input
                 type="search"
                 className="form-control input-sm my-3"
@@ -102,18 +103,18 @@ const AllPaymentsComponent = ({ data, loading, pageCount, limit, search, getPage
                         {payment.createdBy.name}
                       </td>
                       <td className="h5 text-center">
-                        <Link
+                        {(Auth.isOwner() || Auth.isLawyer() || Auth.isAccountant())&&<Link
                           to={`/payments-edit/${payment._id}`}
                           className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-edit"></i> تعديل
-                        </Link>
-                        <button
+                        </Link>}
+                        {(Auth.isOwner() || Auth.isSecretary())&&<button
                           onClick={() => handelDelete(payment._id)}
                           className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
                         >
                           <i className="ico fa fa-trash"></i> حذف
-                        </button>
+                        </button>}
                       </td>
                     </tr>
                   ))
@@ -124,7 +125,7 @@ const AllPaymentsComponent = ({ data, loading, pageCount, limit, search, getPage
                       colSpan="9"
                       className="h4 text-center text-danger p-3"
                     >
-                      لا توجد جلسات بعد!{" "}
+                      لا توجد مدفوعات بعد!{" "}
                     </td>
                   </tr>
                 )

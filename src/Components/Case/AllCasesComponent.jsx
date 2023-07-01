@@ -3,11 +3,21 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import Table from "react-bootstrap/esm/Table";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Auth from "../../Auth";
 import notify from "../../hook/useNotification";
 import { deleteCase } from "../../redux/actions/caseAction";
 import Pagination from "../Utils/Pagination";
 
-const AllCasesComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange }) => {
+const AllCasesComponent = ({
+  data,
+  loading,
+  pageCount,
+  limit,
+  search,
+  getPage,
+  handleLimitChange,
+  handleSearchChange,
+}) => {
   const dispatch = useDispatch();
   const handelDelete = async (id) => {
     await dispatch(deleteCase(id));
@@ -41,12 +51,14 @@ const AllCasesComponent = ({ data, loading, pageCount, limit, search, getPage, h
               </div>
             </div>
             <div className="d-flex flex-column">
-              <Link
-                to={"/cases-add"}
-                className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
-              >
-                <i className="ico fa fa-plus"></i> إضافة قضية جديدة
-              </Link>
+              {(Auth.isOwner() || Auth.isLawyer()) && (
+                <Link
+                  to={"/cases-add"}
+                  className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                >
+                  <i className="ico fa fa-plus"></i> إضافة قضية جديدة
+                </Link>
+              )}
 
               <input
                 type="search"
@@ -91,16 +103,20 @@ const AllCasesComponent = ({ data, loading, pageCount, limit, search, getPage, h
                 data.length > 0 ? (
                   data.map((cases) => (
                     <tr key={cases._id}>
-                      <td className="h5 text-center">{cases.courtCaseNumber}</td>
+                      <td className="h5 text-center">
+                        {cases.courtCaseNumber}
+                      </td>
                       <td className="h5 text-center">{cases.title}</td>
                       <td className="h5 text-center">{cases.courtName}</td>
-                      <td className="h5 text-center">
-                        {cases.judgeName}
-                      </td>
+                      <td className="h5 text-center">{cases.judgeName}</td>
                       <td className="h5 text-center">{cases.client.name}</td>
                       <td className="h5 text-center">{"1500"}</td>
                       <td className="h5 text-center">{"700"}</td>
-                      <td className="h5 text-center"><span className="label label-danger">{cases.status}</span></td>
+                      <td className="h5 text-center">
+                        <span className="label label-danger">
+                          {cases.status}
+                        </span>
+                      </td>
                       <td className="h5 text-center">
                         <Link
                           to={`/cases-profile/${cases._id}`}
@@ -108,18 +124,23 @@ const AllCasesComponent = ({ data, loading, pageCount, limit, search, getPage, h
                         >
                           <i className="ico fa fa-eye"></i> عرض
                         </Link>
-                        <Link
-                          to={`/cases-edit/${cases._id}`}
-                          className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                        >
-                          <i className="ico fa fa-edit"></i> تعديل
-                        </Link>
-                        <button
-                          onClick={() => handelDelete(cases._id)}
-                          className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                        >
-                          <i className="ico fa fa-trash"></i> حذف
-                        </button>
+                        {Auth.isOwner() && (
+                          <>
+                            <Link
+                              to={`/cases-edit/${cases._id}`}
+                              className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                            >
+                              <i className="ico fa fa-edit"></i> تعديل
+                            </Link>
+
+                            <button
+                              onClick={() => handelDelete(cases._id)}
+                              className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                            >
+                              <i className="ico fa fa-trash"></i> حذف
+                            </button>
+                          </>
+                        )}
                       </td>
                     </tr>
                   ))

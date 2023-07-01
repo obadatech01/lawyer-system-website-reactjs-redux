@@ -1,13 +1,23 @@
 import React from "react";
 import Spinner from "react-bootstrap/Spinner";
 import Table from "react-bootstrap/esm/Table";
-import { Link } from "react-router-dom";
-import Pagination from "../Utils/Pagination";
 import { useDispatch } from "react-redux";
-import { deleteClient } from "../../redux/actions/clientAction";
+import { Link } from "react-router-dom";
+import Auth from "../../Auth";
 import notify from "../../hook/useNotification";
+import { deleteClient } from "../../redux/actions/clientAction";
+import Pagination from "../Utils/Pagination";
 
-const AllClientsComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange }) => {
+const AllClientsComponent = ({
+  data,
+  loading,
+  pageCount,
+  limit,
+  search,
+  getPage,
+  handleLimitChange,
+  handleSearchChange,
+}) => {
   const dispatch = useDispatch();
 
   const handelDelete = async (id) => {
@@ -50,12 +60,14 @@ const AllClientsComponent = ({ data, loading, pageCount, limit, search, getPage,
               </div>
             </div>
             <div className="d-flex flex-column">
-              <Link
-                to={"/clients-add"}
-                className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
-              >
-                <i className="ico fa fa-plus"></i> إضافة عميل
-              </Link>
+              {(Auth.isOwner() || Auth.isLawyer()) && (
+                <Link
+                  to={"/clients-add"}
+                  className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                >
+                  <i className="ico fa fa-plus"></i> إضافة عميل
+                </Link>
+              )}
 
               <input
                 type="search"
@@ -117,25 +129,34 @@ const AllClientsComponent = ({ data, loading, pageCount, limit, search, getPage,
                         >
                           <i className="ico fa fa-eye"></i> عرض
                         </Link>
-                        <Link
-                          to={`/clients-edit/${client._id}`}
-                          className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                        >
-                          <i className="ico fa fa-edit"></i> تعديل
-                        </Link>
-                        <button
-                          onClick={()=>handelDelete(client._id)}
-                          className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                        >
-                          <i className="ico fa fa-trash"></i> حذف
-                        </button>
+                        {Auth.isOwner() && (
+                          <>
+                            <Link
+                              to={`/clients-edit/${client._id}`}
+                              className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                            >
+                              <i className="ico fa fa-edit"></i> تعديل
+                            </Link>
+
+                            <button
+                              onClick={() => handelDelete(client._id)}
+                              className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                            >
+                              <i className="ico fa fa-trash"></i> حذف
+                            </button>
+                          </>
+                        )}
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td valign="top" colSpan="9" className="h4 text-center text-danger p-3">
-                      لا يوجد قضايا بعد!{" "}
+                    <td
+                      valign="top"
+                      colSpan="9"
+                      className="h4 text-center text-danger p-3"
+                    >
+                      لا يوجد عملاء بعد!{" "}
                     </td>
                   </tr>
                 )

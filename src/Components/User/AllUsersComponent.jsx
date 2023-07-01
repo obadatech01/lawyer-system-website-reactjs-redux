@@ -3,11 +3,21 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import Table from "react-bootstrap/esm/Table";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Auth from "../../Auth";
 import notify from "../../hook/useNotification";
 import { deleteUser } from "../../redux/actions/userAction";
 import Pagination from "../Utils/Pagination";
 
-const AllUsersComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange}) => {
+const AllUsersComponent = ({
+  data,
+  loading,
+  pageCount,
+  limit,
+  search,
+  getPage,
+  handleLimitChange,
+  handleSearchChange,
+}) => {
   const dispatch = useDispatch();
   const handelDelete = async (id) => {
     await dispatch(deleteUser(id));
@@ -41,12 +51,14 @@ const AllUsersComponent = ({ data, loading, pageCount, limit, search, getPage, h
               </div>
             </div>
             <div className="d-flex flex-column">
-              <Link
-                to={"/users-add"}
-                className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
-              >
-                <i className="ico fa fa-plus"></i> إضافة موظف
-              </Link>
+              {Auth.isOwner() && (
+                <Link
+                  to={"/users-add"}
+                  className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                >
+                  <i className="ico fa fa-plus"></i> إضافة موظف
+                </Link>
+              )}
               <input
                 type="search"
                 className="form-control input-sm my-3"
@@ -66,7 +78,7 @@ const AllUsersComponent = ({ data, loading, pageCount, limit, search, getPage, h
                 <th className="h5 text-center"> الهاتف</th>
                 <th className="h5 text-center"> الصلاحية </th>
                 <th className="h5 text-center"> رقم الهوية </th>
-                <th className="h5 text-center"> أكشن</th>
+                {Auth.isOwner() && <th className="h5 text-center"> أكشن</th>}
               </tr>
             </thead>
             <tfoot>
@@ -76,7 +88,7 @@ const AllUsersComponent = ({ data, loading, pageCount, limit, search, getPage, h
                 <th className="h5 text-center"> الهاتف</th>
                 <th className="h5 text-center"> الصلاحية </th>
                 <th className="h5 text-center"> رقم الهوية </th>
-                <th className="h5 text-center"> أكشن</th>
+                {Auth.isOwner() && <th className="h5 text-center"> أكشن</th>}
               </tr>
             </tfoot>
             <tbody>
@@ -86,7 +98,11 @@ const AllUsersComponent = ({ data, loading, pageCount, limit, search, getPage, h
                     <tr key={user._id}>
                       <td className="h5 text-center">
                         <img
-                          src={user.profileImg !== "null" ? user.profileImg : "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"}
+                          src={
+                            user.profileImg !== "null"
+                              ? user.profileImg
+                              : "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
+                          }
                           alt={user.name}
                           width={50}
                           height={50}
@@ -100,26 +116,28 @@ const AllUsersComponent = ({ data, loading, pageCount, limit, search, getPage, h
                       <td className="h5 text-center">
                         {user.identificationNumber}
                       </td>
-                      <td className="h5 text-center">
-                        <Link
-                          to={`/users-password-change/${user._id}`}
-                          className="mx-3 btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                        >
-                          <i className="ico fa fa-edit"></i> تحديث كلمة السر
-                        </Link>
-                        <Link
-                          to={`/users-edit/${user._id}`}
-                          className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                        >
-                          <i className="ico fa fa-edit"></i> تعديل
-                        </Link>
-                        <button
-                          onClick={() => handelDelete(user._id)}
-                          className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                        >
-                          <i className="ico fa fa-trash"></i> حذف
-                        </button>
-                      </td>
+                      {Auth.isOwner() && (
+                        <td className="h5 text-center">
+                          <Link
+                            to={`/users-password-change/${user._id}`}
+                            className="mx-3 btn btn-primary btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          >
+                            <i className="ico fa fa-edit"></i> تحديث كلمة السر
+                          </Link>
+                          <Link
+                            to={`/users-edit/${user._id}`}
+                            className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          >
+                            <i className="ico fa fa-edit"></i> تعديل
+                          </Link>
+                          <button
+                            onClick={() => handelDelete(user._id)}
+                            className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          >
+                            <i className="ico fa fa-trash"></i> حذف
+                          </button>
+                        </td>
+                      )}
                     </tr>
                   ))
                 ) : (

@@ -3,12 +3,22 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import Table from "react-bootstrap/esm/Table";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Auth from "../../Auth";
 import notify from "../../hook/useNotification";
 import { deleteSession } from "../../redux/actions/sessionAction";
 import Pagination from "../Utils/Pagination";
 import ShowFormatDate from "../Utils/ShowFormatDate";
 
-const AllSessionsComponent = ({ data, loading, pageCount, limit, search, getPage, handleLimitChange, handleSearchChange }) => {
+const AllSessionsComponent = ({
+  data,
+  loading,
+  pageCount,
+  limit,
+  search,
+  getPage,
+  handleLimitChange,
+  handleSearchChange,
+}) => {
   const dispatch = useDispatch();
   const handelDelete = async (id) => {
     await dispatch(deleteSession(id));
@@ -42,12 +52,14 @@ const AllSessionsComponent = ({ data, loading, pageCount, limit, search, getPage
               </div>
             </div>
             <div className="d-flex flex-column">
-              <Link
-                to={"/sessions-add"}
-                className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
-              >
-                <i className="ico fa fa-plus"></i> إضافة جلسة
-              </Link>
+              {(Auth.isOwner() || Auth.isLawyer() || Auth.isSecretary()) && (
+                <Link
+                  to={"/sessions-add"}
+                  className="h5 btn btn-primary btn-rounded btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                >
+                  <i className="ico fa fa-plus"></i> إضافة جلسة
+                </Link>
+              )}
               <input
                 type="search"
                 className="form-control input-sm my-3"
@@ -87,22 +99,32 @@ const AllSessionsComponent = ({ data, loading, pageCount, limit, search, getPage
                     <tr key={session._id}>
                       <td className="h5 text-center">{session.case?.title}</td>
                       <td className="h5 text-center">{session.title}</td>
-                      <td className="h5 text-center">{ShowFormatDate(session.sessionDate)}</td>
-                      <td className="h5 text-center">{session.lawyerName}</td>
-                      <td className="h5 text-center">{session.createdBy.name}</td>
                       <td className="h5 text-center">
-                        <Link
-                          to={`/sessions-edit/${session._id}`}
-                          className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                        >
-                          <i className="ico fa fa-edit"></i> تعديل
-                        </Link>
-                        <button
-                          onClick={() => handelDelete(session._id)}
-                          className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
-                        >
-                          <i className="ico fa fa-trash"></i> حذف
-                        </button>
+                        {ShowFormatDate(session.sessionDate)}
+                      </td>
+                      <td className="h5 text-center">{session.lawyerName}</td>
+                      <td className="h5 text-center">
+                        {session.createdBy.name}
+                      </td>
+                      <td className="h5 text-center">
+                        {(Auth.isOwner() ||
+                          Auth.isLawyer() ||
+                          Auth.isSecretary()) && (
+                          <Link
+                            to={`/sessions-edit/${session._id}`}
+                            className="mx-3 btn btn-success btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          >
+                            <i className="ico fa fa-edit"></i> تعديل
+                          </Link>
+                        )}
+                        {Auth.isOwner() && (
+                          <button
+                            onClick={() => handelDelete(session._id)}
+                            className="mx-3 btn btn-danger btn-icon btn-icon-right btn-xs waves-effect waves-light"
+                          >
+                            <i className="ico fa fa-trash"></i> حذف
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))
