@@ -16,7 +16,7 @@ const Sidebar = () => {
       localStorage.removeItem("user");
     }, 1000);
   };
-
+  
   return (
     <div className="main-menu">
       <header className="header">
@@ -105,7 +105,7 @@ const Sidebar = () => {
               </Link>
             </li>
           </ul>
-          {(Auth.isOwner || Auth.isAccountant) && (
+          {(Auth.isOwner() || Auth.isAccountant()) && (
             <>
               <h5 className="title">منطقة المصروفات</h5>
               <ul className="menu js__accordion">
@@ -135,7 +135,7 @@ const Sidebar = () => {
                 </li>
               </ul>
             </li>
-            {(Auth.isOwner || Auth.isSecretary) && (
+            {(Auth.isOwner() || Auth.isSecretary()) && (
               <li className={userLocation ? "current active" : ''}>
                 <Link className="waves-effect" to={"/users"}>
                   <i className="menu-icon mdi mdi-view-dashboard"></i>

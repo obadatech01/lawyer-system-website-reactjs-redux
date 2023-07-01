@@ -66,7 +66,7 @@ function App() {
             </>
           )}
 
-          {(Auth.isOwner || Auth.isLawyer) && (
+          {(Auth.isOwner() || Auth.isLawyer()) && (
             <>
               <Route exact path="/cases-add" element={<AddCasePage />} />
               <Route exact path="/clients-add" element={<AddClientPage />} />
@@ -74,7 +74,7 @@ function App() {
             </>
           )}
 
-          {(Auth.isOwner || Auth.isAccountant) && (
+          {(Auth.isOwner() || Auth.isAccountant()) && (
             <>
               <Route exact path="/expenses" element={<AllExpensePage />} />
               <Route exact path="/expenses-add" element={<AddExpensePage />} />
@@ -82,20 +82,20 @@ function App() {
             </>
           )}
 
-          {(Auth.isOwner || Auth.isSecretary) && (
+          {(Auth.isOwner() || Auth.isSecretary()) && (
             <>
               <Route exact path="/users" element={<AllUserPage />} />
             </>
           )}
 
-          {(Auth.isOwner || Auth.isLawyer || Auth.isAccountant) && (
+          {(Auth.isOwner() || Auth.isLawyer() || Auth.isAccountant()) && (
             <>
               <Route exact path="/payments-add" element={<AddPaymentPage />} />
               <Route exact path="/payments-edit/:id" element={<EditPaymentPage />} />
             </>
           )}
 
-          {(Auth.isOwner || Auth.isLawyer || Auth.isSecretary) && (
+          {(Auth.isOwner() || Auth.isLawyer() || Auth.isSecretary()) && (
             <>
               <Route exact path="/sessions-add" element={<AddSessionPage />} />
               <Route exact path="/sessions-edit/:id" element={<EditSessionPage />} />
