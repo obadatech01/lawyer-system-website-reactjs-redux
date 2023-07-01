@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import notify from "../../hook/useNotification";
+import Auth from "../../Auth";
+import CurrentLocation from "../../hook/currentLocation";
 
 const Sidebar = () => {
-  const [user, setUser] = useState("");
-  useEffect(() => {
-    if (localStorage.getItem("user"))
-      setUser(JSON.parse(localStorage.getItem("user")));
-  }, []);
+  const [user, homeLocation, clientLocation, caseLocation, sessionLocation, documentLocation, paymentLocation, expenseLocation, userLocation] = CurrentLocation();
 
   const logout = () => {
     notify("تم تسجيل الخروج بنجاح", "warn");
@@ -64,7 +62,7 @@ const Sidebar = () => {
       <div className="content">
         <div className="navigation">
           <ul className="menu js__accordion">
-            <li className="current active">
+            <li className={homeLocation ? "current active" : ''}>
               <Link className="waves-effect" to={"/"}>
                 <i className="menu-icon mdi mdi-view-dashboard"></i>
                 <span>الرئيسية</span>
@@ -73,7 +71,7 @@ const Sidebar = () => {
           </ul>
           <h5 className="title">منطقة العملاء</h5>
           <ul className="menu js__accordion">
-            <li>
+            <li className={clientLocation ? "current active" : ''}>
               <Link className="waves-effect" to={"/clients"}>
                 <i className="menu-icon mdi mdi-view-dashboard"></i>
                 <span>العملاء</span>
@@ -82,40 +80,44 @@ const Sidebar = () => {
           </ul>
           <h5 className="title">منطقة القضايا</h5>
           <ul className="menu js__accordion">
-            <li>
+            <li className={caseLocation ? "current active" : ''}>
               <Link className="waves-effect" to={"/cases"}>
                 <i className="menu-icon mdi mdi-desktop-mac"></i>
                 <span>القضايا</span>
               </Link>
             </li>
-            <li>
+            <li className={sessionLocation ? "current active" : ''}>
               <Link className="waves-effect" to={"/sessions"}>
                 <i className="menu-icon mdi mdi-view-dashboard"></i>
                 <span>الجلسات</span>
               </Link>
             </li>
-            <li>
+            <li className={documentLocation ? "current active" : ''}>
               <Link className="waves-effect" to={"/documents"}>
                 <i className="menu-icon mdi mdi-view-dashboard"></i>
                 <span>الملفات</span>
               </Link>
             </li>
-            <li>
+            <li className={paymentLocation ? "current active" : ''}>
               <Link className="waves-effect" to={"/payments"}>
                 <i className="menu-icon mdi mdi-view-dashboard"></i>
                 <span>المدفوعات</span>
               </Link>
             </li>
           </ul>
-          <h5 className="title">منطقة المصروفات</h5>
-          <ul className="menu js__accordion">
-            <li>
-              <Link className="waves-effect" to={"/expenses"}>
-                <i className="menu-icon mdi mdi-view-dashboard"></i>
-                <span>المصروفات</span>
-              </Link>
-            </li>
-          </ul>
+          {(Auth.isOwner || Auth.isAccountant) && (
+            <>
+              <h5 className="title">منطقة المصروفات</h5>
+              <ul className="menu js__accordion">
+                <li className={expenseLocation ? "current active" : ''}>
+                  <Link className="waves-effect" to={"/expenses"}>
+                    <i className="menu-icon mdi mdi-view-dashboard"></i>
+                    <span>المصروفات</span>
+                  </Link>
+                </li>
+              </ul>
+            </>
+          )}
           <h5 className="title">منطقة الإعدادات</h5>
           <ul className="menu js__accordion">
             <li>
@@ -133,12 +135,14 @@ const Sidebar = () => {
                 </li>
               </ul>
             </li>
-            <li>
-              <Link className="waves-effect" to={"/users"}>
-                <i className="menu-icon mdi mdi-view-dashboard"></i>
-                <span>المستخدمون</span>
-              </Link>
-            </li>
+            {(Auth.isOwner || Auth.isSecretary) && (
+              <li className={userLocation ? "current active" : ''}>
+                <Link className="waves-effect" to={"/users"}>
+                  <i className="menu-icon mdi mdi-view-dashboard"></i>
+                  <span>المستخدمون</span>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
