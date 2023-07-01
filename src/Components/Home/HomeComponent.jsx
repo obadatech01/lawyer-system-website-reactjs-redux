@@ -15,7 +15,7 @@ const HomeComponent = ({ data, loading }) => {
         <>
           <div className="row small-spacing">
             <div className="col-lg-3 col-md-6 col-xs-12">
-              <div className="box-content bg-success text-white">
+              <div className="box-content bg-primary text-white">
                 <div className="statistics-box with-icon">
                   <i className="ico small fa fa-group"></i>
                   <p className="text text-white h3">{data.clients.name}</p>
@@ -24,33 +24,31 @@ const HomeComponent = ({ data, loading }) => {
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-xs-12">
-              <div className="box-content bg-primary text-white">
+              <div className="box-content bg-success text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-check-square-o"></i>
+                  <i className="ico small fa fa-hourglass-1"></i>
                   <p className="text text-white h3">
-                    {data.casesCompleted.name}
+                    {data.cases.name}
                   </p>
-                  <h2 className="counter">{data.casesCompleted.count}</h2>
+                  <h2 className="counter">{data.cases.count}</h2>
                 </div>
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-xs-12">
               <div className="box-content bg-danger text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-hourglass-1"></i>
-                  <p className="text text-white h3">
-                    {data.casesNotCompleted.name}
-                  </p>
-                  <h2 className="counter">{data.casesNotCompleted.count}</h2>
+                  <i className="ico small fa fa-clock-o"></i>
+                  <p className="text text-white h3">{data.sessions.name}</p>
+                  <h2 className="counter">{data.sessions.count}</h2>
                 </div>
               </div>
             </div>
             <div className="col-lg-3 col-md-6 col-xs-12">
               <div className="box-content bg-warning text-white">
                 <div className="statistics-box with-icon">
-                  <i className="ico small fa fa-clock-o"></i>
-                  <p className="text text-white h3">{data.sessions.name}</p>
-                  <h2 className="counter">{data.sessions.count}</h2>
+                  <i className="ico small fa fa-usd"></i>
+                  <p className="text text-white h3">{data.totalContracts.name}</p>
+                  <h2 className="counter">{data.totalContracts.count}</h2>
                 </div>
               </div>
             </div>
