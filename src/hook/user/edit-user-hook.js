@@ -99,7 +99,7 @@ const EditUserHook = (id) => {
   //to save data
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(selectedFile);
+    // console.log(selectedFile);
     if (
       !name ||
       !identificationNumber ||

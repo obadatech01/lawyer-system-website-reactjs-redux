@@ -62,7 +62,7 @@ export const forgetPassword = (data) => async (dispatch) => {
       })
 
   } catch (e) {
-    console.log(e.response.data.errors);
+    // console.log(e.response.data.errors);
       dispatch({
           type: LOGIN_USER,
           payload: e.response,

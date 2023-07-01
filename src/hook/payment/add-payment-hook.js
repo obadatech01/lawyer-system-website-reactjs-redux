@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPayment } from "../../redux/actions/paymentAction";
 import notify from "../useNotification";
+import ProtectedAmount from "../../Components/Utils/ProtectedAmount";
 
 const AddPaymentHook = () => {
   const dispatch = useDispatch();
+  const [maxAddExpense, maxAddPayment, setUrl] = ProtectedAmount();
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [exchangeDate, setExchangeDate] = useState("");
@@ -37,7 +39,8 @@ const AddPaymentHook = () => {
   //to change caseId state
   const onChangeCaseId = (e) => {
     e.persist();
-    setCaseId(e.target.value)
+    setCaseId(e.target.value);
+    setUrl(`/api/v1/home/report?caseId=${caseId}`)
   }
 
   //to change exchangeMethod state
@@ -88,7 +91,7 @@ const AddPaymentHook = () => {
     }
   }, [loading, res]);
 
-  return [title, amount, exchangeDate, caseId, exchangeMethod, notes, loading, isPress, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeCaseId, onChangeExchangeMethod, onChangeNotes];
+  return [title, maxAddPayment, amount, exchangeDate, caseId, exchangeMethod, notes, loading, isPress, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeCaseId, onChangeExchangeMethod, onChangeNotes];
 
 };
 

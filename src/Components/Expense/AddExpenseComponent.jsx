@@ -1,6 +1,7 @@
 import React from "react";
 import Spinner from "react-bootstrap/esm/Spinner";
 import AddExpenseHook from "../../hook/expense/add-expense-hook";
+import ProtectedAmount from "../Utils/ProtectedAmount";
 
 const AddExpenseComponent = () => {
   const [
@@ -20,6 +21,7 @@ const AddExpenseComponent = () => {
     onChangeUserName,
     onChangeNotes,
   ] = AddExpenseHook();
+  const [maxAddExpense, maxAddPayment, setUrl] = ProtectedAmount();
 
   return (
     <div className="row small-spacing">
@@ -70,6 +72,7 @@ const AddExpenseComponent = () => {
                     <input
                       type="number"
                       min={0}
+                      max={maxAddExpense}
                       name="amount"
                       className="form-control"
                       id="amount"
@@ -77,6 +80,7 @@ const AddExpenseComponent = () => {
                       value={amount}
                       placeholder="ادخل الكمية"
                     />
+                    <span className={amount > maxAddExpense ? "text-danger h5" : "text-success h5"}>{amount > maxAddExpense ? `لا يمكن إضافة مصروفات أكتر من ${maxAddExpense}` : `الحد الأقصى للإضافة ${maxAddExpense}`}</span>
                   </div>
                 </div>
               </div>
@@ -120,9 +124,8 @@ const AddExpenseComponent = () => {
                       maxLength={225}
                       rows={2}
                       onChange={onChangeNotes}
-                      value={notes}
                       placeholder="الملاحظات التي تخص الصرف"
-                      defaultValue={""}
+                      defaultValue={notes}
                     />
                   </div>
                 </div>
@@ -131,6 +134,7 @@ const AddExpenseComponent = () => {
                 <button
                   type="submit"
                   onClick={handleSubmit}
+                  disabled={amount > maxAddExpense ? true : false}
                   className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
                 >
                   حفظ

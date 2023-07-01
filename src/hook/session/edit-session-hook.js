@@ -79,8 +79,6 @@ const EditSessionHook = (id) => {
       return;
     }
 
-    console.log(caseId);
-
     const formData = {
       title,
       lawyerName,

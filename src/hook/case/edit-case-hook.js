@@ -16,7 +16,7 @@ const EditCaseHook = (id) => {
 
   //get one case
   const item = useSelector((state) => state.allCase.oneCase);
-  console.log(item);
+
   // value state
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
@@ -157,22 +157,7 @@ const EditCaseHook = (id) => {
   //to save data
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(title,
-      type,
-      courtCaseNumber,
-      courtName,
-      judgeName,
-      client._id,
-      clientType,
-      cost,
-      opponentName,
-      opponentIdentificationNumber,
-      opponentPhone,
-      opponentAddress,
-      opponentType,
-      opponentLawyerName,
-      status,
-      notes)
+    
     if (
       !title ||
       !type ||

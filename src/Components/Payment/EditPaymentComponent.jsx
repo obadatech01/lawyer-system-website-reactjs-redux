@@ -7,6 +7,7 @@ const EditPaymentComponent = () => {
   const { id } = useParams();
   const [
     title,
+    maxAddPayment,
     amount,
     exchangeDate,
     exchangeMethod,
@@ -68,6 +69,7 @@ const EditPaymentComponent = () => {
                     <input
                       type="number"
                       min={0}
+                      max={maxAddPayment}
                       name="amount"
                       className="form-control"
                       id="amount"
@@ -75,6 +77,7 @@ const EditPaymentComponent = () => {
                       value={amount}
                       placeholder="الكمية"
                     />
+                    <span className={amount > maxAddPayment ? "text-danger h5" : "text-success h5"}>{amount > maxAddPayment ? `لا يمكن إضافة مدفوعات أكتر من ${maxAddPayment}` : `الحد الأقصى للإضافة ${maxAddPayment}`}</span>
                   </div>
                 </div>
               </div>
@@ -103,6 +106,7 @@ const EditPaymentComponent = () => {
                 <button
                   type="submit"
                   onClick={handleSubmit}
+                  disabled={amount > maxAddPayment ? true : false}
                   className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
                 >
                   تعديل

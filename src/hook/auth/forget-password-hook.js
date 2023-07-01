@@ -31,11 +31,11 @@ const ForgetPasswordHook = () => {
   };
 
   const res = useSelector((state) => state.authReducer.forgetPassword);
-  
+
   useEffect(() => {
     if (loading === false) {
       if (res) {
-        console.log(res);
+        // console.log(res);
         if (res.data.status === "Success") {
           notify("تم ارسال الكود للايميل بنجاح", "success");
           setTimeout(() => {
@@ -48,7 +48,7 @@ const ForgetPasswordHook = () => {
       }
     }
   }, [loading, res, navigate, dispatch]);
-  
+
   return [onChangeEmail, email, onSubmit,];
 };
 

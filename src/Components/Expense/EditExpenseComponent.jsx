@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import EditExpenseHook from "../../hook/expense/edit-expense-hook";
 import EditInputDate from "../UI/EditInputDate";
+import ProtectedAmount from "../Utils/ProtectedAmount";
 
 const EditExpenseComponent = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const EditExpenseComponent = () => {
     onChangeUserName,
     onChangeNotes,
   ] = EditExpenseHook(id);
+  const [maxAddExpense, maxAddPayment, setUrl] = ProtectedAmount();
 
   return (
     <div className="row small-spacing">
@@ -70,6 +72,7 @@ const EditExpenseComponent = () => {
                     <input
                       type="number"
                       min={0}
+                      max={maxAddExpense}
                       name="amount"
                       className="form-control"
                       id="amount"
@@ -77,6 +80,7 @@ const EditExpenseComponent = () => {
                       value={amount}
                       placeholder="ادخل الكمية"
                     />
+                    <span className={amount > maxAddExpense ? "text-danger h5" : "text-success h5"}>{amount > maxAddExpense ? `لا يمكن إضافة مصروفات أكتر من ${maxAddExpense}` : `الحد الأقصى للإضافة ${maxAddExpense}`}</span>
                   </div>
                 </div>
               </div>
@@ -119,6 +123,7 @@ const EditExpenseComponent = () => {
                 <button
                   type="submit"
                   onClick={handleSubmit}
+                  disabled={amount > maxAddExpense ? true : false}
                   className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
                 >
                   تعديل

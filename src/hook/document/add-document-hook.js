@@ -24,8 +24,8 @@ const AddDocumentHook = () => {
     e.persist();
     if (e.target.files && e.target.files[0]) {
       const selectedDoc = e.target.files[0];
-      console.log(e.target.files[0]);
-      console.log(URL.createObjectURL(selectedDoc));
+      // console.log(e.target.files[0]);
+      // console.log(URL.createObjectURL(selectedDoc));
       setDocument(URL.createObjectURL(selectedDoc));
       setSelectedFile(selectedDoc);
     }

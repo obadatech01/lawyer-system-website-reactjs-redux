@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOnePayment, updatePayment } from "../../redux/actions/paymentAction";
 import notify from "../useNotification";
 import { useNavigate } from "react-router-dom";
+import ProtectedAmount from "../../Components/Utils/ProtectedAmount";
 
 const EditPaymentHook = (id) => {
+  const [maxAddExpense, maxAddPayment, setUrl] = ProtectedAmount();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -32,6 +34,7 @@ const EditPaymentHook = (id) => {
       setExchangeDate(item.data.exchangeDate);
       setExchangeMethod(item.data.exchangeMethod);
       setNotes(item.data.notes);
+      setUrl(`/api/v1/home/report?caseId=${item.data.case._id}`);
       setLoading(true);
     }
   }, [item]);
@@ -123,7 +126,7 @@ const EditPaymentHook = (id) => {
     }
   }, [loading, payment, navigate]);
 
-  return [title, amount, exchangeDate, exchangeMethod, notes, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeExchangeMethod, onChangeNotes];
+  return [title, maxAddPayment, amount, exchangeDate, exchangeMethod, notes, handleSubmit, onChangeTitle, onChangeAmount, onChangeExchangeDate, onChangeExchangeMethod, onChangeNotes];
 };
 
 export default EditPaymentHook;

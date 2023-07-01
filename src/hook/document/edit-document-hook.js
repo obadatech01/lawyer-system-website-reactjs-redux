@@ -48,7 +48,7 @@ const EditDocumentHook = (id) => {
   const onChangeDocument = (e) => {
     e.persist();
     if (e.target.files && e.target.files[0]) {
-      console.log(e.target.files[0]);
+      // console.log(e.target.files[0]);
       setDocument(URL.createObjectURL(e.target.files[0]));
       setSelectedFile(e.target.files[0]);
     }

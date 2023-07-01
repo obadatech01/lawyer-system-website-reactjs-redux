@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createExpense } from "../../redux/actions/expenseAction";
 import notify from "../useNotification";
+import { useGetDataToken } from "../../hooks/useGetData";
 
 const AddExpenseHook = () => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(0);
   const [exchangeDate, setExchangeDate] = useState("");
   const [exchangeMethod, setExchangeMethod] = useState("كاش");
   const [userName, setUserName] = useState("");
