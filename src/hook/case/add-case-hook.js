@@ -172,6 +172,9 @@ const AddCaseHook = () => {
       setTimeout(() => setIsPress(false), 1000);
       if (res.status === 201) {
         notify("تمت عملية الاضافة بنجاح", "success");
+        setTimeout(() => {
+          window.location.href = "/cases";
+        }, 1500);
       } else {
         // console.log("res",res);
         res.data.errors.map((err) => notify(err.msg, "error"));

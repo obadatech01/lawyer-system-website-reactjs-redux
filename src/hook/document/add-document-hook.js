@@ -64,6 +64,9 @@ const AddDocumentHook = () => {
       setTimeout(() => setIsPress(false), 1000);
       if (res.status === 201) {
         notify("تمت عملية الاضافة بنجاح", "success");
+        setTimeout(() => {
+          window.location.href = "/documents";
+        }, 1500);
       } else {
         res.data.errors.map((err) => notify(err.msg, "error"));
       }

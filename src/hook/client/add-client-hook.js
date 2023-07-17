@@ -36,7 +36,7 @@ const AddClientHook = () => {
     e.persist();
     setNationality(e.target.value)
   }
-  
+
   //to change identificationNumber state
   const onChangeIdentificationNumber = (e) => {
     e.persist();
@@ -75,8 +75,8 @@ const AddClientHook = () => {
 
   // save data in database
   const handleSubmit = async (e) => {
-    e.preventDefault();  
-    
+    e.preventDefault();
+
     const formData = {
       name,
       email,
@@ -109,6 +109,9 @@ const AddClientHook = () => {
       setTimeout(() => setIsPress(false), 1000);
       if (res.status === 201) {
         notify("تمت عملية الاضافة بنجاح", "success");
+        setTimeout(() => {
+          window.location.href = "/clients";
+        }, 1500);
       } else {
         res.data.errors.map(err => notify(err.msg, "error"));
       }
