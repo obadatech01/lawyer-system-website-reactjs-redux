@@ -79,6 +79,7 @@ const AllSessionsComponent = ({
                 <th className="h5 text-center">تاريخ الجلسة</th>
                 <th className="h5 text-center"> محامي الجلسة </th>
                 <th className="h5 text-center"> أضيف بواسطة</th>
+                <th className="h5 text-center"> الملاحظات</th>
                 <th className="h5 text-center"> أكشن</th>
               </tr>
             </thead>
@@ -89,6 +90,7 @@ const AllSessionsComponent = ({
                 <th className="h5 text-center">تاريخ الجلسة</th>
                 <th className="h5 text-center"> محامي الجلسة </th>
                 <th className="h5 text-center"> أضيف بواسطة</th>
+                <th className="h5 text-center"> الملاحظات</th>
                 <th className="h5 text-center"> أكشن</th>
               </tr>
             </tfoot>
@@ -105,6 +107,9 @@ const AllSessionsComponent = ({
                       <td className="h5 text-center">{session.lawyerName}</td>
                       <td className="h5 text-center">
                         {session.createdBy.name}
+                      </td>
+                      <td className="h5 text-center">
+                        {session.notes}
                       </td>
                       <td className="h5 text-center">
                         {(Auth.isOwner() ||
