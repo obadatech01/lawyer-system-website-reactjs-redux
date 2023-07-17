@@ -66,17 +66,16 @@ const EditCaseComponent = () => {
                     <h5>
                       <b>نوع القضية</b>
                     </h5>
-                    <select
-                    className="form-control select2_1"
-                    onChange={onChangeType}
-                    value={type}
-                  >
-                    <optgroup label="نوع القضية">
-                      <option value="">اختر نوع القضية</option>
-                      <option value="بداية">بداية</option>
-                      <option value="صلح">صلح</option>
-                    </optgroup>
-                  </select>
+                    <input
+                      type="text"
+                      maxLength={25}
+                      name="courtCaseNumber"
+                      className="form-control"
+                      id="courtCaseNumber"
+                      placeholder="نوع القضية"
+                      onChange={onChangeType}
+                      value={type}
+                    />
                   </div>
                   <div className="margin-top-20">
                     <h5>
