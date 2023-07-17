@@ -4,7 +4,7 @@ import AddClientHook from "../../hook/client/add-client-hook";
 
 const AddClientComponent = () => {
   const [name, email, nationality, identificationNumber, phone, gender, address, companyName, notes, loading, isPress, handleSubmit, onChangeName, onChangeEmail, onChangeNationality, onChangeIdentificationNumber, onChangePhone, onChangeGender, onChangeAddress, onChangeCompanyName, onChangeNotes] = AddClientHook();
-  
+
   return (
     <div className="row small-spacing">
       <div className="col-xs-12">
@@ -65,8 +65,10 @@ const AddClientComponent = () => {
                       <b>رقم الهوية</b>
                     </h5>
                     <input
-                      type="text"
-                      maxLength={9}
+                      type="number"
+                      // minLength={9}
+                      // maxLength={9}
+                      min={0}
                       name="identificationNumber"
                       className="form-control"
                       id="identificationNumber"
@@ -154,7 +156,7 @@ const AddClientComponent = () => {
                     />
                   </div>
                 </div>
-              </div> 
+              </div>
               <div className="col-md-12">
                 <button
                   type="submit"

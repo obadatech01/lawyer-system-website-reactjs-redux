@@ -173,9 +173,10 @@ const EditCaseComponent = () => {
                       <b>رقم هوية الخصم</b>
                     </h5>
                     <input
-                      type="text"
+                      type="number"
                       // minLength={9}
-                      maxLength={9}
+                      // maxLength={9}
+                      min={0}
                       name="opponentIdentificationNumber"
                       className="form-control"
                       id="opponentIdentificationNumber"
