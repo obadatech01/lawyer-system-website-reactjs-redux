@@ -87,10 +87,9 @@ const AllClientsComponent = ({
                 <th className="h5 text-center"> الهاتف</th>
                 <th className="h5 text-center"> الجنسية </th>
                 <th className="h5 text-center"> رقم الهوية </th>
-                <th className="h5 text-center">عدد القضايا </th>
-                <th className="h5 text-center"> اجمالي المبلغ</th>
-                <th className="h5 text-center"> المدفوع</th>
-                <th className="h5 text-center"> المتبقي</th>
+                <th className="h5 text-center">المسمى الوظيفي</th>
+                <th className="h5 text-center"> الجنس</th>
+                <th className="h5 text-center"> العنوان</th>
                 <th className="h5 text-center"> أكشن</th>
               </tr>
             </thead>
@@ -100,10 +99,9 @@ const AllClientsComponent = ({
                 <th className="h5 text-center"> الهاتف</th>
                 <th className="h5 text-center"> الجنسية </th>
                 <th className="h5 text-center"> رقم الهوية </th>
-                <th className="h5 text-center">عدد القضايا </th>
-                <th className="h5 text-center"> اجمالي المبلغ</th>
-                <th className="h5 text-center"> المدفوع</th>
-                <th className="h5 text-center"> المتبقي</th>
+                <th className="h5 text-center">المسمى الوظيفي</th>
+                <th className="h5 text-center"> الجنس</th>
+                <th className="h5 text-center"> العنوان</th>
                 <th className="h5 text-center"> أكشن</th>
               </tr>
             </tfoot>
@@ -118,10 +116,9 @@ const AllClientsComponent = ({
                       <td className="h5 text-center">
                         {client.identificationNumber}
                       </td>
-                      <td className="h5 text-center">{"2"}</td>
-                      <td className="h5 text-center">{"1500"}</td>
-                      <td className="h5 text-center">{"700"}</td>
-                      <td className="h5 text-center">{"800"}</td>
+                      <td className="h5 text-center">{client.companyName}</td>
+                      <td className="h5 text-center">{client.gender}</td>
+                      <td className="h5 text-center">{client.address}</td>
                       <td className="h5 text-center">
                         <Link
                           to={`/clients-profile/${client._id}`}
