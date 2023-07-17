@@ -123,7 +123,7 @@ const AllExpensesComponent = ({ data, loading, pageCount, limit, search, getPage
                       colSpan="9"
                       className="h4 text-center text-danger p-3"
                     >
-                      لا يوجد قضايا بعد!{" "}
+                      لا يوجد مصروفات بعد!{" "}
                     </td>
                   </tr>
                 )
