@@ -95,8 +95,8 @@ const ProfileClientComponent = () => {
                           <th className="h5 text-center"> اسم المحكمة </th>
                           <th className="h5 text-center"> اسم القاضي </th>
                           <th className="h5 text-center">اسم العميل</th>
-                          <th className="h5 text-center"> اجمالي المبلغ</th>
-                          <th className="h5 text-center"> المتبقي</th>
+                          <th className="h5 text-center"> اسم الخصم</th>
+                          <th className="h5 text-center"> محامي الخصم</th>
                           <th className="h5 text-center"> حالة القضية</th>
                           <th className="h5 text-center"> أكشن</th>
                         </tr>
@@ -108,8 +108,8 @@ const ProfileClientComponent = () => {
                           <th className="h5 text-center"> اسم المحكمة </th>
                           <th className="h5 text-center"> اسم القاضي </th>
                           <th className="h5 text-center">اسم العميل</th>
-                          <th className="h5 text-center"> اجمالي المبلغ</th>
-                          <th className="h5 text-center"> المتبقي</th>
+                          <th className="h5 text-center"> اسم الخصم</th>
+                          <th className="h5 text-center"> محامي الخصم</th>
                           <th className="h5 text-center"> حالة القضية</th>
                           <th className="h5 text-center"> أكشن</th>
                         </tr>
@@ -131,8 +131,8 @@ const ProfileClientComponent = () => {
                               <td className="h5 text-center">
                                 {cases.client.name}
                               </td>
-                              <td className="h5 text-center">{"1500"}</td>
-                              <td className="h5 text-center">{"700"}</td>
+                              <td className="h5 text-center">{cases.opponentName}</td>
+                              <td className="h5 text-center">{cases.opponentLawyerName}</td>
                               <td className="h5 text-center">
                                 <span className="label label-danger">
                                   {cases.status}
