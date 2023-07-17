@@ -1,6 +1,7 @@
 import React from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
+import ShowFormatDate from "../Utils/ShowFormatDate";
 
 const HomeComponent = ({ data, loading }) => {
   // console.log(data);
@@ -99,7 +100,7 @@ const HomeComponent = ({ data, loading }) => {
               <div className="box-content">
                 <h4 className="box-title">آخر القضايا</h4>
                 <div className="table-responsive table-purchases">
-                  <table className="table table-striped margin-bottom-10">
+                  <table className="table table-striped h5 margin-bottom-10">
                     <thead>
                       <tr>
                         <th style={{ width: "30%" }}>عنوان القضية</th>
@@ -146,7 +147,7 @@ const HomeComponent = ({ data, loading }) => {
               <div className="box-content">
                 <h4 className="box-title">آخر الجلسات</h4>
                 <div className="table-responsive table-purchases">
-                  <table className="table table-striped margin-bottom-10">
+                  <table className="table table-striped h5 margin-bottom-10">
                     <thead>
                       <tr>
                         <th>رقم القضية</th>
@@ -164,7 +165,7 @@ const HomeComponent = ({ data, loading }) => {
                             <td>{item.case.courtCaseNumber}</td>
                             <td>{item.case.title}</td>
                             <td>{item.title}</td>
-                            <td>{item.sessionDate}</td>
+                            <td>{ShowFormatDate(item.sessionDate)}</td>
                             <td className="text-danger">{item.lawyerName}</td>
                             <td>
                               <Link to={`/cases/${item._id}`}>
