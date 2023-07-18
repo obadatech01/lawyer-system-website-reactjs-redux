@@ -39,7 +39,7 @@ const ForgetPasswordPage = () => {
             <i className="fa fa-sign-in" />
             هل تذكرت كلمة السر؟ صفحة تسجيل الدخول.
           </Link>
-          <div className="frm-footer">obadatech01 © 2023.</div>
+          <div className="frm-footer">جميع الحقوق محفوظة لدى جامعة االأزهر - غزة</div>
           {/* /.footer */}
         </div>
         {/* .inside */}

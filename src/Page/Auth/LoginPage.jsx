@@ -62,7 +62,7 @@ const LoginPage = () => {
           <button type="submit" onClick={onSubmit} className="frm-submit">
             تسجيل دخول<i className="fa fa-arrow-circle-right"></i>
           </button>
-          <div className="frm-footer">obadatech01 © 2023.</div>
+          <div className="frm-footer">جميع الحقوق محفوظة لدى جامعة االأزهر - غزة</div>
         </div>
       </form>
       <ToastContainer rtl="true" />

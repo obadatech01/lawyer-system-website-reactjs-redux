@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getOneUser, updateUser } from "../../redux/actions/userAction";
 import notify from "../useNotification";
-import { useNavigate } from "react-router-dom";
 
 const EditUserHook = (id) => {
   const dispatch = useDispatch();
@@ -18,8 +18,10 @@ const EditUserHook = (id) => {
   const item = useSelector((state) => state.allUser.oneUser);
 
   // value state
-  const defaultDocument = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg";
+  const defaultDocument =
+    "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg";
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [identificationNumber, setIdentificationNumber] = useState("");
   const [profileImg, setProfileImg] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -33,6 +35,7 @@ const EditUserHook = (id) => {
   useEffect(() => {
     if (item.data) {
       setName(item.data.name);
+      setEmail(item.data.email);
       setIdentificationNumber(item.data.identificationNumber);
       setProfileImg(item.data.profileImg);
       setPhone(item.data.phone);
@@ -47,54 +50,60 @@ const EditUserHook = (id) => {
   //to change name state
   const onChangeName = (e) => {
     e.persist();
-    setName(e.target.value)
+    setName(e.target.value);
+  };
+
+  //to change email state
+  const onChangeEmail = (e) => {
+    e.persist();
+    setEmail(e.target.value)
   }
 
   //to change identificationNumber state
   const onChangeIdentificationNumber = (e) => {
     e.persist();
-    setIdentificationNumber(e.target.value)
-  }
+    setIdentificationNumber(e.target.value);
+  };
 
   //to change phone state
   const onChangePhone = (e) => {
     e.persist();
-    setPhone(e.target.value)
-  }
+    setPhone(e.target.value);
+  };
 
   //to change whatsApp state
   const onChangeWhatsApp = (e) => {
     e.persist();
-    setWhatsapp(e.target.value)
-  }
+    setWhatsapp(e.target.value);
+  };
 
   //to change address state
   const onChangeAddress = (e) => {
     e.persist();
-    setAddress(e.target.value)
-  }
+    setAddress(e.target.value);
+  };
 
   //to change gender state
   const onChangeGender = (e) => {
     e.persist();
-    setGender(e.target.value)
-  }
+    setGender(e.target.value);
+  };
 
   //to change role state
   const onChangeRole = (e) => {
     e.persist();
-    setRole(e.target.value)
-  }
+    setRole(e.target.value);
+  };
 
   //to change profileImg state
   const onChangeProfileImg = (e) => {
     e.persist();
     if (e.target.files && e.target.files[0]) {
       // console.log(e.target.files[0]);
-      setProfileImg(URL.createObjectURL(e.target.files[0]))
+      setProfileImg(URL.createObjectURL(e.target.files[0]));
       setSelectedFile(e.target.files[0]);
     }
-  }
+  };
 
   //to save data
   const handleSubmit = async (e) => {
@@ -114,9 +123,12 @@ const EditUserHook = (id) => {
 
     const formData = new FormData();
     formData.append("name", name);
+    if (email != null || email != "") {
+      formData.append("email", email);
+    }
     formData.append("identificationNumber", identificationNumber);
-    if(selectedFile != null) {
-      formData.append("profileImg", selectedFile)
+    if (selectedFile != null) {
+      formData.append("profileImg", selectedFile);
     }
     formData.append("phone", phone);
     formData.append("whatsapp", whatsapp);
@@ -137,6 +149,7 @@ const EditUserHook = (id) => {
   useEffect(() => {
     if (loading === false) {
       setName("");
+      setEmail("");
       setIdentificationNumber("");
       setProfileImg(defaultDocument);
       setSelectedFile(null);
@@ -147,13 +160,13 @@ const EditUserHook = (id) => {
       setRole("");
       setTimeout(() => setLoading(true), 1500);
 
-      if(user) {
+      if (user) {
         if (user.status === 200) {
           notify("تمت عملية التعديل بنجاح", "success");
-          window.location.replace('/users');
+          window.location.replace("/users");
           setTimeout(() => {
-            navigate('/users')
-        }, 2000);
+            navigate("/users");
+          }, 2000);
         } else {
           // console.log(user);
           // user.data.errors.map(err => notify(err.msg, "error"));
@@ -163,7 +176,27 @@ const EditUserHook = (id) => {
     }
   }, [loading, user, navigate]);
 
-  return [name, identificationNumber, profileImg, phone, whatsapp, address, gender, role, handleSubmit, onChangeName, onChangeIdentificationNumber, onChangeProfileImg, onChangePhone, onChangeWhatsApp, onChangeAddress, onChangeGender, onChangeRole];
+  return [
+    name,
+    email,
+    identificationNumber,
+    profileImg,
+    phone,
+    whatsapp,
+    address,
+    gender,
+    role,
+    handleSubmit,
+    onChangeName,
+    onChangeEmail,
+    onChangeIdentificationNumber,
+    onChangeProfileImg,
+    onChangePhone,
+    onChangeWhatsApp,
+    onChangeAddress,
+    onChangeGender,
+    onChangeRole,
+  ];
 };
 
 export default EditUserHook;

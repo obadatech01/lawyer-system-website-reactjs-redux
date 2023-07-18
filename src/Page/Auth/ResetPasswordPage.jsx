@@ -16,14 +16,14 @@ const ResetPasswordPage = () => {
           <div className="frm-title">أدخل كلمة السر الجديدة</div>
           {/* /.frm-title */}
           <div className="frm-input">
-            <input 
+            <input
             value={password}
             onChange={onChangePassword}
             type="password" placeholder="أدخل كلمة السر الجديدة" className="frm-inp" />
             <i className="fa fa-lock frm-ico" />
           </div>
           <div className="frm-input">
-            <input 
+            <input
             value={confirmPassword}
             onChange={onChangeConfirmPassword}
             type="password" placeholder="أعد كتابة كلمة السر الجديدة" className="frm-inp" />
@@ -34,7 +34,7 @@ const ResetPasswordPage = () => {
             حفظ
             <i className="fa fa-arrow-circle-right" />
           </button>
-          <div className="frm-footer">obadatech01 © 2023.</div>
+          <div className="frm-footer">جميع الحقوق محفوظة لدى جامعة االأزهر - غزة</div>
           {/* /.footer */}
         </div>
         {/* .inside */}

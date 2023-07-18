@@ -23,7 +23,7 @@ const VerifyPasswordPage = () => {
             أدخل رمز التفعيل الخاص بك للوصول إلى حسابك.
           </p>
           <div className="frm-input">
-            <input 
+            <input
             value={code}
             onChange={onChangeCode}
             type="text" placeholder="أدخل رمز التفعيل الخاص بك المكون من 6 أرقام" className="frm-inp" />
@@ -38,7 +38,7 @@ const VerifyPasswordPage = () => {
             <i className="fa fa-sign-in" />
             ليس انت؟ تسجيل الدخول.
           </Link>
-          <div className="frm-footer">obadatech01 © 2023.</div>
+          <div className="frm-footer">جميع الحقوق محفوظة لدى جامعة االأزهر - غزة</div>
           {/* /.footer */}
         </div>
         {/* .inside */}

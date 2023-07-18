@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const EditUserComponent = () => {
   const { id } = useParams();
-  const [name, identificationNumber, profileImg, phone, whatsapp, address, gender, role, handleSubmit, onChangeName, onChangeIdentificationNumber, onChangeProfileImg, onChangePhone, onChangeWhatsApp, onChangeAddress, onChangeGender, onChangeRole] = EditUserHook(id);
+  const [name, email, identificationNumber, profileImg, phone, whatsapp, address, gender, role, handleSubmit, onChangeName, onChangeEmail, onChangeIdentificationNumber, onChangeProfileImg, onChangePhone, onChangeWhatsApp, onChangeAddress, onChangeGender, onChangeRole] = EditUserHook(id);
 
   return (
     <div className="row small-spacing">
@@ -34,6 +34,22 @@ const EditUserComponent = () => {
                     onChange={onChangeName}
                     placeholder="اسم الموظف"
                   />
+                  <div className="margin-top-20">
+                    <h4>
+                      <b>البريد الإلكتروني</b>
+                    </h4>
+                    <input
+                      type="email"
+                      maxLength={25}
+                      name="email"
+                      style={{ fontSize: "1.8rem" }}
+                      className="form-control"
+                      id="email"
+                      value={email}
+                      onChange={onChangeEmail}
+                      placeholder="البريد الإلكتروني"
+                    />
+                  </div>
                   <div className="margin-top-20">
                     <h4>
                       <b>رقم الهوية</b>
