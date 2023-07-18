@@ -41,11 +41,12 @@ const AddDocumentComponent = () => {
               {/* <from> */}
                 <div className="col-md-6">
                   <div className="padding-20">
-                    <h5>
+                    <h4>
                       <b>اسم الملف</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       maxLength={25}
                       name="title"
@@ -55,10 +56,11 @@ const AddDocumentComponent = () => {
                       placeholder="اسم الملف"
                     />
                     <div className="margin-top-20">
-                      <h5>
+                      <h4>
                         <b>القضية</b>
-                      </h5>
+                      </h4>
                       <select
+                        style={{ fontSize: "1.8rem" }}
                         className="form-control select2_1"
                         value={caseId}
                         onChange={onChangeCaseId}
@@ -82,6 +84,7 @@ const AddDocumentComponent = () => {
                       {/* /.box-title */}
                       <input
                         type="file"
+                        style={{ fontSize: "1.8rem" }}
                         id="input-file-now-custom-1"
                         className="dropify"
                         onChange={onChangeDocument}
@@ -92,11 +95,12 @@ const AddDocumentComponent = () => {
                   </div>
                 </div>
                 <div className="col-md-12 d-flex justify-content-start">
-                  <button
-                    type="submit"
-                    onClick={handleSubmit}
-                    className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
-                  >
+                <button
+                  type="submit"
+                  style={{ fontSize: "2rem" }}
+                  onClick={handleSubmit}
+                  className="btn btn-primary mx-4 btn-sm waves-effect waves-light"
+                >
                     حفظ
                   </button>
                 </div>

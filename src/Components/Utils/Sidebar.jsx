@@ -16,7 +16,7 @@ const Sidebar = () => {
       localStorage.removeItem("user");
     }, 1000);
   };
-  
+
   return (
     <div className="main-menu">
       <header className="header">

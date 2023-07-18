@@ -30,11 +30,12 @@ const AddSessionComponent = () => {
               {/* <from> */}
                 <div className="col-md-6">
                   <div className="padding-20">
-                    <h5>
+                    <h4>
                       <b>عنوان الجلسة</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       maxLength={25}
                       name="title"
@@ -44,10 +45,11 @@ const AddSessionComponent = () => {
                       placeholder="عنوان الجلسة"
                     />
                     <div className="margin-top-20">
-                      <h5>
+                      <h4>
                         <b>القضية</b>
-                      </h5>
-                      <select className="form-control select2_1" value={caseId} onChange={onChangeCaseId}>
+                      </h4>
+                      <select style={{ fontSize: "1.8rem" }}
+                      className="form-control select2_1" value={caseId} onChange={onChangeCaseId}>
                         <optgroup label="اختر القضية">
                           <option value="">اختر القضية</option>
                           {
@@ -57,14 +59,15 @@ const AddSessionComponent = () => {
                       </select>
                     </div>
                     <div className="margin-top-20">
-                      <h5>
+                      <h4>
                         <b>تاريخ الجلسة</b>
-                      </h5>
+                      </h4>
                       <input
                         type="date"
                         maxLength={25}
                         name="sessionDate"
-                        className="form-control"
+                        style={{ fontSize: "1.8rem" }}
+                      className="form-control"
                         id="sessionDate"
                         value={sessionDate}
                         onChange={onChangeSessionDate}
@@ -76,14 +79,15 @@ const AddSessionComponent = () => {
                 <div className="col-md-6">
                   <div className="padding-20">
                     <div className="margin-top-9">
-                      <h5>
+                      <h4>
                         <b>اسم المحامي</b>
-                      </h5>
+                      </h4>
                       <input
                         type="text"
                         maxLength={25}
                         name="lawyerName"
-                        className="form-control"
+                        style={{ fontSize: "1.8rem" }}
+                      className="form-control"
                         id="lawyerName"
                         value={lawyerName}
                         onChange={onChangeLawyerName}
@@ -91,12 +95,13 @@ const AddSessionComponent = () => {
                       />
                     </div>
                     <div className="margin-top-20">
-                      <h5>
+                      <h4>
                         <b>الملاحظات</b>
-                      </h5>
+                      </h4>
                       <textarea
                         id="textarea"
-                        className="form-control"
+                        style={{ fontSize: "1.8rem" }}
+                      className="form-control"
                         maxLength={225}
                         rows={2}
                         placeholder="الملاحظات التي تخص الجلسة"
@@ -107,11 +112,12 @@ const AddSessionComponent = () => {
                   </div>
                 </div>
                 <div className="col-md-12 d-flex justify-content-start">
-                  <button
-                    type="submit"
-                    onClick={handleSubmit}
-                    className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
-                  >
+                <button
+                  type="submit"
+                  style={{ fontSize: "2rem" }}
+                  onClick={handleSubmit}
+                  className="btn btn-primary mx-4 btn-sm waves-effect waves-light"
+                >
                     حفظ
                   </button>
                 </div>

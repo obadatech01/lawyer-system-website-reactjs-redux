@@ -49,11 +49,12 @@ const EditCaseComponent = () => {
               {/* <from action="#"> */}
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>عنوان القضية</b>
-                  </h5>
+                  </h4>
                   <input
                     type="text"
+                    style={{fontSize: "1.8rem"}}
                     className="form-control"
                     maxLength={25}
                     name="title"
@@ -63,14 +64,15 @@ const EditCaseComponent = () => {
                     value={title}
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>نوع القضية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="courtCaseNumber"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       id="courtCaseNumber"
                       placeholder="نوع القضية"
                       onChange={onChangeType}
@@ -78,14 +80,15 @@ const EditCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم القضية في المحكمة</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="courtCaseNumber"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       id="courtCaseNumber"
                       placeholder="رقم القضية في المحكمة"
                       onChange={onChangeCourtCaseNumber}
@@ -93,13 +96,14 @@ const EditCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>اسم المحكمة</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       name="courtName"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       id="courtName"
                       placeholder="اسم المحكمة"
                       onChange={onChangeCourtName}
@@ -107,13 +111,14 @@ const EditCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>اسم القاضي</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       name="judgeName"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       id="judgeName"
                       placeholder="اسم القاضي"
                       onChange={onChangeJudgeName}
@@ -121,14 +126,15 @@ const EditCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>أتعاب القضية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="number"
                       min={1}
                       name="cost"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       id="cost"
                       placeholder="أتعاب القضية"
                       onChange={onChangeCost}
@@ -136,10 +142,11 @@ const EditCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>حالة القضية</b>
-                    </h5>
+                    </h4>
                     <select
+                    style={{fontSize: "1.8rem"}}
                     className="form-control select2_1"
                     onChange={onChangeStatus}
                     value={status}
@@ -155,29 +162,31 @@ const EditCaseComponent = () => {
               </div>
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>اسم الخصم</b>
-                  </h5>
+                  </h4>
                   <input
                       type="text"
                       name="opponentName"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       id="opponentName"
                       placeholder="اسم الخصم"
                       onChange={onChangeOpponentName}
                       value={opponentName}
                     />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم هوية الخصم</b>
-                    </h5>
+                    </h4>
                     <input
                       type="number"
                       // minLength={9}
                       // maxLength={9}
                       min={0}
                       name="opponentIdentificationNumber"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       id="opponentIdentificationNumber"
                       placeholder="رقم هوية الخصم"
                       onChange={onChangeOpponentIdentificationNumber}
@@ -185,14 +194,15 @@ const EditCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم جوال الخصم</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="opponentPhone"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       id="opponentPhone"
                       placeholder="رقم جوال الخصم"
                       onChange={onChangeOpponentPhone}
@@ -200,13 +210,14 @@ const EditCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>عنوان الخصم</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       name="opponentAddress"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       id="opponentAddress"
                       placeholder="عنوان الخصم"
                       onChange={onChangeOpponentAddress}
@@ -214,10 +225,11 @@ const EditCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>نوع الخصم</b>
-                    </h5>
+                    </h4>
                     <select
+                    style={{fontSize: "1.8rem"}}
                     className="form-control select2_1"
                     onChange={onChangeOpponentType}
                     value={opponentType}
@@ -230,13 +242,14 @@ const EditCaseComponent = () => {
                   </select>
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>اسم محامي الخصم</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       name="opponentLawyerName"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       id="opponentLawyerName"
                       placeholder="اسم محامي الخصم"
                       onChange={onChangeOpponentLawyerName}
@@ -244,12 +257,13 @@ const EditCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الملاحظات</b>
-                    </h5>
+                    </h4>
                     <textarea
                       id="textarea"
-                      className="form-control"
+                      style={{fontSize: "1.8rem"}}
+                    className="form-control"
                       maxLength={225}
                       rows={2}
                       placeholder="الملاحظات التي تخص العميل"
@@ -261,12 +275,13 @@ const EditCaseComponent = () => {
                 </div>
               </div>
               <div className="col-md-12">
-                <button
+              <button
                   type="submit"
+                  style={{ fontSize: "2rem" }}
                   onClick={handleSubmit}
-                  className="btn btn-primary mx-4 btn-xs waves-effect waves-light"
+                  className="btn btn-primary mx-4 btn-sm waves-effect waves-light"
                 >
-                  حفظ
+                  تحديث
                 </button>
               </div>
               {/* </from> */}

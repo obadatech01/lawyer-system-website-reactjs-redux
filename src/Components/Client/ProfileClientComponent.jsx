@@ -29,10 +29,10 @@ const ProfileClientComponent = () => {
                 الاسم: <strong>{item.name}</strong>
               </h3>
               <h4>الشركة: {item.companyName}</h4>
-              <p>الملاحظات: {item.notes}</p>
+              <h5>الملاحظات: {item.notes}</h5>
             </div>
             {/* .profile-avatar */}
-            <table className="table table-hover no-margin">
+            <table className="table table-hover no-margin h4">
               <tbody>
                 <tr>
                   <td>الجنسية</td>

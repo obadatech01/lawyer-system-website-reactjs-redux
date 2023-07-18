@@ -36,11 +36,12 @@ const AddExpenseComponent = () => {
               {/* <from> */}
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>عنوان الصرف</b>
-                  </h5>
+                  </h4>
                   <input
                     type="text"
+                    style={{ fontSize: "1.8rem" }}
                     className="form-control"
                     maxLength={25}
                     name="title"
@@ -50,10 +51,11 @@ const AddExpenseComponent = () => {
                     placeholder="عنوان الصرف"
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>طريقة الدفع</b>
-                    </h5>
+                    </h4>
                     <select
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control select2_1"
                       onChange={onChangeExchangeMethod}
                       value={exchangeMethod}
@@ -66,33 +68,35 @@ const AddExpenseComponent = () => {
                     </select>
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الكمية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="number"
                       min={0}
                       max={maxAddExpense}
                       name="amount"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="amount"
                       onChange={onChangeAmount}
                       value={amount}
                       placeholder="ادخل الكمية"
                     />
-                    <span className={amount > maxAddExpense ? "text-danger h5" : "text-success h5"}>{amount > maxAddExpense ? `لا يمكن إضافة مصروفات أكتر من ${maxAddExpense}` : `الحد الأقصى للإضافة ${maxAddExpense}`}</span>
+                    <span className={amount > maxAddExpense ? "text-danger h4" : "text-success h4"}>{amount > maxAddExpense ? `لا يمكن إضافة مصروفات أكتر من ${maxAddExpense}` : `الحد الأقصى للإضافة ${maxAddExpense}`}</span>
                   </div>
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>التاريخ</b>
-                  </h5>
+                  </h4>
                   <input
                     type="date"
                     maxLength={25}
                     name="expenseDate"
+                    style={{ fontSize: "1.8rem" }}
                     className="form-control"
                     id="expenseDate"
                     placeholder="تاريخ الصرف"
@@ -100,13 +104,14 @@ const AddExpenseComponent = () => {
                     value={exchangeDate}
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>اسم المصروف له</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="userName"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="userName"
                       onChange={onChangeUserName}
@@ -115,11 +120,12 @@ const AddExpenseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الملاحظات</b>
-                    </h5>
+                    </h4>
                     <textarea
                       id="textarea"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       maxLength={225}
                       rows={2}
@@ -134,6 +140,7 @@ const AddExpenseComponent = () => {
                 <button
                   type="submit"
                   onClick={handleSubmit}
+                  style={{fontSize: "2rem"}}
                   disabled={amount > maxAddExpense ? true : false}
                   className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
                 >

@@ -20,11 +20,12 @@ const EditSessionComponent = () => {
               {/* <from> */}
               <div className="col-md-6">
                   <div className="padding-20">
-                    <h5>
+                    <h4>
                       <b>عنوان الجلسة</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       maxLength={25}
                       name="title"
@@ -41,14 +42,15 @@ const EditSessionComponent = () => {
                 <div className="col-md-6">
                   <div className="padding-20">
                     <div className="margin-top-9">
-                      <h5>
+                      <h4>
                         <b>اسم المحامي</b>
-                      </h5>
+                      </h4>
                       <input
                         type="text"
                         maxLength={25}
                         name="lawyerName"
-                        className="form-control"
+                        style={{ fontSize: "1.8rem" }}
+                      className="form-control"
                         id="lawyerName"
                         value={lawyerName}
                         onChange={onChangeLawyerName}
@@ -56,12 +58,13 @@ const EditSessionComponent = () => {
                       />
                     </div>
                     <div className="margin-top-20">
-                      <h5>
+                      <h4>
                         <b>الملاحظات</b>
-                      </h5>
+                      </h4>
                       <textarea
                         id="textarea"
-                        className="form-control"
+                        style={{ fontSize: "1.8rem" }}
+                      className="form-control"
                         maxLength={225}
                         rows={2}
                         placeholder="الملاحظات التي تخص الجلسة"
@@ -72,12 +75,13 @@ const EditSessionComponent = () => {
                   </div>
                 </div>
                 <div className="col-md-12 d-flex justify-content-start">
-                  <button
-                    type="submit"
-                    onClick={handleSubmit}
-                    className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
-                  >
-                    تعديل
+                <button
+                  type="submit"
+                  style={{ fontSize: "2rem" }}
+                  onClick={handleSubmit}
+                  className="btn btn-primary mx-4 btn-sm waves-effect waves-light"
+                >
+                    تحديث
                   </button>
                 </div>
               {/* </from> */}

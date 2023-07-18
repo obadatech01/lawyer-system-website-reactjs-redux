@@ -33,11 +33,12 @@ const EditPaymentComponent = () => {
               {/* <from> */}
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>عنوان الدفعة</b>
-                  </h5>
+                  </h4>
                   <input
                     type="text"
+                    style={{ fontSize: "1.8rem" }}
                     className="form-control"
                     maxLength={25}
                     name="title"
@@ -47,11 +48,12 @@ const EditPaymentComponent = () => {
                     placeholder="عنوان الدفعة"
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>طريقة الدفع</b>
-                    </h5>
+                    </h4>
                     <select
-                      className="form-control select2_1"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control select2_1"
                       onChange={onChangeExchangeMethod}
                       value={exchangeMethod}
                     >
@@ -63,21 +65,22 @@ const EditPaymentComponent = () => {
                     </select>
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الكمية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="number"
                       min={0}
                       max={maxAddPayment}
                       name="amount"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="amount"
                       onChange={onChangeAmount}
                       value={amount}
                       placeholder="الكمية"
                     />
-                    <span className={amount > maxAddPayment ? "text-danger h5" : "text-success h5"}>{amount > maxAddPayment ? `لا يمكن إضافة مدفوعات أكتر من ${maxAddPayment}` : `الحد الأقصى للإضافة ${maxAddPayment}`}</span>
+                    <span className={amount > maxAddPayment ? "text-danger h4" : "text-success h4"}>{amount > maxAddPayment ? `لا يمكن إضافة مدفوعات أكتر من ${maxAddPayment}` : `الحد الأقصى للإضافة ${maxAddPayment}`}</span>
                   </div>
                 </div>
               </div>
@@ -87,12 +90,13 @@ const EditPaymentComponent = () => {
                     <EditInputDate labelName="تاريخ الدفع" value={exchangeDate} onChangeInput={onChangeExchangeDate} />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الملاحظات</b>
-                    </h5>
+                    </h4>
                     <textarea
                       id="textarea"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       maxLength={225}
                       rows={2}
                       placeholder="الملاحظات التي تخص الدفع"
@@ -106,10 +110,11 @@ const EditPaymentComponent = () => {
                 <button
                   type="submit"
                   onClick={handleSubmit}
+                  style={{fontSize: "2rem"}}
                   disabled={amount > maxAddPayment ? true : false}
                   className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
                 >
-                  تعديل
+                  تحديث
                 </button>
               </div>
               {/* </from> */}

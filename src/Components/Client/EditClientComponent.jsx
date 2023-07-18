@@ -18,12 +18,13 @@ const EditClientComponent = () => {
               {/* <from action="#"> */}
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>اسم العميل</b>
-                  </h5>
+                  </h4>
                   <input
                     type="text"
-                    className="form-control"
+                    style={{ fontSize: "1.8rem" }}
+                      className="form-control"
                     maxLength={25}
                     name="name"
                     id="name"
@@ -32,13 +33,14 @@ const EditClientComponent = () => {
                     value={name}
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>البريد الإلكتروني</b>
-                    </h5>
+                    </h4>
                     <input
                       type="email"
                       maxLength={25}
                       name="email"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="email"
                       placeholder="البريد الإلكتروني"
@@ -47,13 +49,14 @@ const EditClientComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الجنسية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="nationality"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="nationality"
                       placeholder="الجنسية"
@@ -62,15 +65,16 @@ const EditClientComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الهوية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="number"
                       // minLength={9}
                       // maxLength={9}
                       min={0}
                       name="identificationNumber"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="identificationNumber"
                       placeholder="رقم الهوية"
@@ -79,14 +83,15 @@ const EditClientComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الهاتف</b>
-                    </h5>
+                    </h4>
                     <input
                       type="number"
                       min={9}
                       max={9}
                       name="phone"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="phone"
                       placeholder="رقم الهاتف"
@@ -98,11 +103,12 @@ const EditClientComponent = () => {
               </div>
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>الجنس</b>
-                  </h5>
+                  </h4>
                   <select
-                    className="form-control select2_1"
+                    style={{ fontSize: "1.8rem" }}
+                      className="form-control select2_1"
                     onChange={onChangeGender}
                     value={gender}
                   >
@@ -112,13 +118,14 @@ const EditClientComponent = () => {
                     </optgroup>
                   </select>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>العنوان</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="address"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="address"
                       placeholder="العنوان"
@@ -127,13 +134,14 @@ const EditClientComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>اسم الوظيفة أو الشركة التابع لها</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="companyName"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="companyName"
                       placeholder="اسم الوظيفة أو الشركة التابع لها"
@@ -142,11 +150,12 @@ const EditClientComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الملاحظات</b>
-                    </h5>
+                    </h4>
                     <textarea
                       id="textarea"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       maxLength={225}
                       rows={2}
@@ -159,10 +168,11 @@ const EditClientComponent = () => {
                 </div>
               </div>
               <div className="col-md-12">
-                <button
+              <button
                   type="submit"
+                  style={{ fontSize: "2rem" }}
                   onClick={handleSubmit}
-                  className="btn btn-primary mx-4 btn-xs waves-effect waves-light"
+                  className="btn btn-primary mx-4 btn-sm waves-effect waves-light"
                 >
                   تحديث
                 </button>

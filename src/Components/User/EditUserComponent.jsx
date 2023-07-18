@@ -20,12 +20,13 @@ const EditUserComponent = () => {
               {/* <from> */}
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>اسم الموظف</b>
-                  </h5>
+                  </h4>
                   <input
                     type="text"
-                    className="form-control"
+                    style={{ fontSize: "1.8rem" }}
+                      className="form-control"
                     maxLength={25}
                     name="name"
                     id="name"
@@ -34,13 +35,14 @@ const EditUserComponent = () => {
                     placeholder="اسم الموظف"
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الهوية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="identificationNumber"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="identificationNumber"
                       value={identificationNumber}
@@ -49,13 +51,14 @@ const EditUserComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الهاتف</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="phone"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="phone"
                       value={phone}
@@ -64,13 +67,14 @@ const EditUserComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الواتساب</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="whatsapp"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="whatsapp"
                       value={whatsapp}
@@ -82,11 +86,12 @@ const EditUserComponent = () => {
               </div>
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>الجنس</b>
-                  </h5>
+                  </h4>
                   <select
-                    className="form-control select2_1"
+                    style={{ fontSize: "1.8rem" }}
+                      className="form-control select2_1"
                     value={gender}
                     onChange={onChangeGender}
                   >
@@ -96,13 +101,14 @@ const EditUserComponent = () => {
                     </optgroup>
                   </select>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>العنوان</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="address"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="address"
                       value={address}
@@ -111,17 +117,17 @@ const EditUserComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الصلاحية</b>
-                    </h5>
+                    </h4>
                     <select
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control select2_1"
                       value={role}
                       onChange={onChangeRole}
                     >
                       <optgroup label="اختر الصلاحية">
                         <option value="">اختر الصلاحية</option>
-                        <option value="نائب مدير">نائب مدير</option>
                         <option value="محامي">محامي</option>
                         <option value="سكرتير">سكرتير</option>
                         <option value="محاسب">محاسب</option>
@@ -146,12 +152,13 @@ const EditUserComponent = () => {
                 </div>
               </div>
               <div className="col-md-12 d-flex justify-content-start">
-                <button
+              <button
                   type="submit"
+                  style={{ fontSize: "2rem" }}
                   onClick={handleSubmit}
-                  className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
+                  className="btn btn-primary mx-4 btn-sm waves-effect waves-light"
                 >
-                  تعديل
+                  تحديث
                 </button>
               </div>
               {/* </from> */}

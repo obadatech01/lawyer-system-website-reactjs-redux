@@ -36,11 +36,12 @@ const EditExpenseComponent = () => {
               {/* <from> */}
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>عنوان الصرف</b>
-                  </h5>
+                  </h4>
                   <input
                     type="text"
+                    style={{ fontSize: "1.8rem" }}
                     className="form-control"
                     maxLength={25}
                     name="title"
@@ -50,11 +51,12 @@ const EditExpenseComponent = () => {
                     placeholder="عنوان الصرف"
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>طريقة الدفع</b>
-                    </h5>
+                    </h4>
                     <select
-                      className="form-control select2_1"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control select2_1"
                       onChange={onChangeExchangeMethod}
                       value={exchangeMethod}
                     >
@@ -66,21 +68,22 @@ const EditExpenseComponent = () => {
                     </select>
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الكمية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="number"
                       min={0}
                       max={maxAddExpense}
                       name="amount"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="amount"
                       onChange={onChangeAmount}
                       value={amount}
                       placeholder="ادخل الكمية"
                     />
-                    <span className={amount > maxAddExpense ? "text-danger h5" : "text-success h5"}>{amount > maxAddExpense ? `لا يمكن إضافة مصروفات أكتر من ${maxAddExpense}` : `الحد الأقصى للإضافة ${maxAddExpense}`}</span>
+                    <span className={amount > maxAddExpense ? "text-danger h4" : "text-success h4"}>{amount > maxAddExpense ? `لا يمكن إضافة مصروفات أكتر من ${maxAddExpense}` : `الحد الأقصى للإضافة ${maxAddExpense}`}</span>
                   </div>
                 </div>
               </div>
@@ -88,14 +91,15 @@ const EditExpenseComponent = () => {
                 <div className="padding-20">
                   <EditInputDate labelName="التاريخ" value={exchangeDate} onChangeInput={onChangeExchangeDate} />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>اسم المصروف له</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="userName"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="userName"
                       onChange={onChangeUserName}
                       value={userName}
@@ -103,12 +107,13 @@ const EditExpenseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الملاحظات</b>
-                    </h5>
+                    </h4>
                     <textarea
                       id="textarea"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       maxLength={225}
                       rows={2}
                       onChange={onChangeNotes}
@@ -123,10 +128,11 @@ const EditExpenseComponent = () => {
                 <button
                   type="submit"
                   onClick={handleSubmit}
+                  style={{fontSize: "2rem"}}
                   disabled={amount > maxAddExpense ? true : false}
                   className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
                 >
-                  تعديل
+                  تحديث
                 </button>
               </div>
               {/* </from> */}

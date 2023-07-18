@@ -40,11 +40,12 @@ const AddUserComponent = () => {
               {/* <from> */}
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>اسم الموظف</b>
-                  </h5>
+                  </h4>
                   <input
                     type="text"
+                    style={{ fontSize: "1.8rem" }}
                     className="form-control"
                     maxLength={25}
                     name="name"
@@ -54,14 +55,15 @@ const AddUserComponent = () => {
                     placeholder="اسم الموظف"
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>البريد الإلكتروني</b>
-                    </h5>
+                    </h4>
                     <input
                       type="email"
                       maxLength={25}
                       name="email"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="email"
                       value={email}
                       onChange={onChangeEmail}
@@ -69,14 +71,15 @@ const AddUserComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الهوية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="identificationNumber"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="identificationNumber"
                       value={identificationNumber}
                       onChange={onChangeIdentificationNumber}
@@ -84,14 +87,15 @@ const AddUserComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الهاتف</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="phone"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="phone"
                       value={phone}
                       onChange={onChangePhone}
@@ -99,14 +103,15 @@ const AddUserComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الواتساب</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="whatsapp"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="whatsapp"
                       value={whatsapp}
                       onChange={onChangeWhatsApp}
@@ -117,10 +122,11 @@ const AddUserComponent = () => {
               </div>
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>الجنس</b>
-                  </h5>
+                  </h4>
                   <select
+                    style={{ fontSize: "1.8rem" }}
                     className="form-control select2_1"
                     value={gender}
                     onChange={onChangeGender}
@@ -131,14 +137,15 @@ const AddUserComponent = () => {
                     </optgroup>
                   </select>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>العنوان</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="address"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="address"
                       value={address}
                       onChange={onChangeAddress}
@@ -146,14 +153,15 @@ const AddUserComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>كلمة المرور</b>
-                    </h5>
+                    </h4>
                     <input
                       type="password"
                       maxLength={25}
                       name="password"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="password"
                       value={password}
                       onChange={onChangePassword}
@@ -161,17 +169,17 @@ const AddUserComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الصلاحية</b>
-                    </h5>
+                    </h4>
                     <select
-                      className="form-control select2_1"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control select2_1"
                       value={role}
                       onChange={onChangeRole}
                     >
                       <optgroup label="اختر الصلاحية">
                         <option value="">اختر الصلاحية</option>
-                        <option value="نائب مدير">نائب مدير</option>
                         <option value="محامي">محامي</option>
                         <option value="سكرتير">سكرتير</option>
                         <option value="محاسب">محاسب</option>
@@ -181,10 +189,11 @@ const AddUserComponent = () => {
                 </div>
               </div>
               <div className="col-md-12 d-flex justify-content-start">
-                <button
+              <button
                   type="submit"
+                  style={{ fontSize: "2rem" }}
                   onClick={handleSubmit}
-                  className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
+                  className="btn btn-primary mx-4 btn-sm waves-effect waves-light"
                 >
                   حفظ
                 </button>

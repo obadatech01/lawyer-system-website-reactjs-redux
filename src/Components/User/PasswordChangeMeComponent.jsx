@@ -17,11 +17,12 @@ const PasswordChangeMeComponent = () => {
               {/* <from> */}
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>كلمة السر الجديدة</b>
-                  </h5>
+                  </h4>
                   <input
                     type="password"
+                    style={{ fontSize: "1.8rem" }}
                     className="form-control"
                     maxLength={25}
                     name="password"
@@ -31,13 +32,14 @@ const PasswordChangeMeComponent = () => {
                     placeholder="كلمة السر الجديدة"
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>مطابقة كلمة السر</b>
-                    </h5>
+                    </h4>
                     <input
                       type="password"
                       maxLength={25}
                       name="confirmPassword"
+                      style={{fontSize: "1.8rem"}}
                       className="form-control"
                       id="confirmPassword"
                       value={confirmPassword}
@@ -51,9 +53,10 @@ const PasswordChangeMeComponent = () => {
                 <button
                   type="submit"
                   onClick={onSubmit}
+                  style={{fontSize: "2rem"}}
                   className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
                 >
-                  تعديل
+                  تحديث
                 </button>
               </div>
               {/* </from> */}

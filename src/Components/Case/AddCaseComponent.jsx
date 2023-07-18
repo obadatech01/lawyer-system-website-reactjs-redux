@@ -64,11 +64,12 @@ const AddCaseComponent = () => {
               {/* <from action="#"> */}
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>عنوان القضية</b>
-                  </h5>
+                  </h4>
                   <input
                     type="text"
+                    style={{ fontSize: "1.8rem" }}
                     className="form-control"
                     maxLength={25}
                     name="title"
@@ -78,13 +79,14 @@ const AddCaseComponent = () => {
                     value={title}
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>نوع القضية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="courtCaseNumber"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="courtCaseNumber"
                       placeholder="نوع القضية"
@@ -93,13 +95,14 @@ const AddCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم القضية في المحكمة</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="courtCaseNumber"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="courtCaseNumber"
                       placeholder="رقم القضية في المحكمة"
@@ -108,12 +111,13 @@ const AddCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>اسم المحكمة</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       name="courtName"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="courtName"
                       placeholder="اسم المحكمة"
@@ -122,12 +126,13 @@ const AddCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>اسم القاضي</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       name="judgeName"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="judgeName"
                       placeholder="اسم القاضي"
@@ -136,44 +141,51 @@ const AddCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>اسم العميل</b>
-                    </h5>
+                    </h4>
                     <select
-                    className="form-control select2_1"
-                    onChange={onChangeClient}
-                    value={client}
-                  >
-                    <optgroup label="اختر اسم العميل">
-                      <option value="">اختر اسم العميل</option>
-                      {clients.map(item => <option value={item._id} key={item._id}>{item.name}</option>)}
-                    </optgroup>
-                  </select>
+                      style={{ fontSize: "1.8rem" }}
+                      className="form-control select2_1"
+                      onChange={onChangeClient}
+                      value={client}
+                    >
+                      <optgroup label="اختر اسم العميل">
+                        <option value="">اختر اسم العميل</option>
+                        {clients.map((item) => (
+                          <option value={item._id} key={item._id}>
+                            {item.name}
+                          </option>
+                        ))}
+                      </optgroup>
+                    </select>
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>نوع العميل</b>
-                    </h5>
+                    </h4>
                     <select
-                    className="form-control select2_1"
-                    onChange={onChangeClientType}
-                    value={clientType}
-                  >
-                    <optgroup label="نوع العميل">
-                      <option value="">اختر نوع العميل</option>
-                      <option value="مدعي">مدعي</option>
-                      <option value="مدعي عليه">مدعي عليه</option>
-                    </optgroup>
-                  </select>
+                      style={{ fontSize: "1.8rem" }}
+                      className="form-control select2_1"
+                      onChange={onChangeClientType}
+                      value={clientType}
+                    >
+                      <optgroup label="نوع العميل">
+                        <option value="">اختر نوع العميل</option>
+                        <option value="مدعي">مدعي</option>
+                        <option value="مدعي عليه">مدعي عليه</option>
+                      </optgroup>
+                    </select>
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>أتعاب القضية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="number"
                       min={1}
                       name="cost"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="cost"
                       placeholder="أتعاب القضية"
@@ -185,28 +197,30 @@ const AddCaseComponent = () => {
               </div>
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>اسم الخصم</b>
-                  </h5>
+                  </h4>
                   <input
-                      type="text"
-                      name="opponentName"
-                      className="form-control"
-                      id="opponentName"
-                      placeholder="اسم الخصم"
-                      onChange={onChangeOpponentName}
-                      value={opponentName}
-                    />
+                    type="text"
+                    name="opponentName"
+                    style={{ fontSize: "1.8rem" }}
+                    className="form-control"
+                    id="opponentName"
+                    placeholder="اسم الخصم"
+                    onChange={onChangeOpponentName}
+                    value={opponentName}
+                  />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم هوية الخصم</b>
-                    </h5>
+                    </h4>
                     <input
                       type="number"
                       // minLength={9}
                       // maxLength={9}
                       min={0}
                       name="opponentIdentificationNumber"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="opponentIdentificationNumber"
                       placeholder="رقم هوية الخصم"
@@ -215,13 +229,14 @@ const AddCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم جوال الخصم</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="opponentPhone"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="opponentPhone"
                       placeholder="رقم جوال الخصم"
@@ -230,12 +245,13 @@ const AddCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>عنوان الخصم</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       name="opponentAddress"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="opponentAddress"
                       placeholder="عنوان الخصم"
@@ -244,28 +260,30 @@ const AddCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>نوع الخصم</b>
-                    </h5>
+                    </h4>
                     <select
-                    className="form-control select2_1"
-                    onChange={onChangeOpponentType}
-                    value={opponentType}
-                  >
-                    <optgroup label="نوع الخصم">
-                      <option value="">اختر نوع الخصم</option>
-                      <option value="مدعي">مدعي</option>
-                      <option value="مدعي عليه">مدعي عليه</option>
-                    </optgroup>
-                  </select>
+                      style={{ fontSize: "1.8rem" }}
+                      className="form-control select2_1"
+                      onChange={onChangeOpponentType}
+                      value={opponentType}
+                    >
+                      <optgroup label="نوع الخصم">
+                        <option value="">اختر نوع الخصم</option>
+                        <option value="مدعي">مدعي</option>
+                        <option value="مدعي عليه">مدعي عليه</option>
+                      </optgroup>
+                    </select>
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>اسم محامي الخصم</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       name="opponentLawyerName"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       id="opponentLawyerName"
                       placeholder="اسم محامي الخصم"
@@ -274,27 +292,29 @@ const AddCaseComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>حالة القضية</b>
-                    </h5>
+                    </h4>
                     <select
-                    className="form-control select2_1"
-                    onChange={onChangeStatus}
-                    value={status}
-                  >
-                    <optgroup label="حالة القضية">
-                      <option value="">اختر حالة القضية</option>
-                      <option value="مكتملة">مكتملة</option>
-                      <option value="غير مكتملة">غير مكتملة</option>
-                    </optgroup>
-                  </select>
+                      style={{ fontSize: "1.8rem" }}
+                      className="form-control select2_1"
+                      onChange={onChangeStatus}
+                      value={status}
+                    >
+                      <optgroup label="حالة القضية">
+                        <option value="">اختر حالة القضية</option>
+                        <option value="مكتملة">مكتملة</option>
+                        <option value="غير مكتملة">غير مكتملة</option>
+                      </optgroup>
+                    </select>
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>الملاحظات</b>
-                    </h5>
+                    </h4>
                     <textarea
                       id="textarea"
+                      style={{ fontSize: "1.8rem" }}
                       className="form-control"
                       maxLength={225}
                       rows={2}
@@ -309,8 +329,9 @@ const AddCaseComponent = () => {
               <div className="col-md-12">
                 <button
                   type="submit"
+                  style={{ fontSize: "2rem" }}
                   onClick={handleSubmit}
-                  className="btn btn-primary mx-4 btn-xs waves-effect waves-light"
+                  className="btn btn-primary mx-4 btn-sm waves-effect waves-light"
                 >
                   حفظ
                 </button>

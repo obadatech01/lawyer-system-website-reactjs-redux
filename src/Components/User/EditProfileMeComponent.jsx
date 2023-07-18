@@ -19,11 +19,12 @@ const EditProfileMeComponent = () => {
               {/* <from> */}
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>اسم الموظف</b>
-                  </h5>
+                  </h4>
                   <input
                     type="text"
+                    style={{ fontSize: "1.8rem" }}
                     className="form-control"
                     maxLength={25}
                     name="name"
@@ -33,14 +34,15 @@ const EditProfileMeComponent = () => {
                     placeholder="اسم الموظف"
                   />
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الهوية</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="identificationNumber"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="identificationNumber"
                       value={identificationNumber}
                       onChange={onChangeIdentificationNumber}
@@ -48,14 +50,15 @@ const EditProfileMeComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الهاتف</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="phone"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="phone"
                       value={phone}
                       onChange={onChangePhone}
@@ -63,14 +66,15 @@ const EditProfileMeComponent = () => {
                     />
                   </div>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>رقم الواتساب</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="whatsapp"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="whatsapp"
                       value={whatsapp}
                       onChange={onChangeWhatsApp}
@@ -81,10 +85,11 @@ const EditProfileMeComponent = () => {
               </div>
               <div className="col-md-6">
                 <div className="padding-20">
-                  <h5>
+                  <h4>
                     <b>الجنس</b>
-                  </h5>
+                  </h4>
                   <select
+                    style={{ fontSize: "1.8rem" }}
                     className="form-control select2_1"
                     value={gender}
                     onChange={onChangeGender}
@@ -95,14 +100,15 @@ const EditProfileMeComponent = () => {
                     </optgroup>
                   </select>
                   <div className="margin-top-20">
-                    <h5>
+                    <h4>
                       <b>العنوان</b>
-                    </h5>
+                    </h4>
                     <input
                       type="text"
                       maxLength={25}
                       name="address"
-                      className="form-control"
+                      style={{ fontSize: "1.8rem" }}
+                    className="form-control"
                       id="address"
                       value={address}
                       onChange={onChangeAddress}
@@ -127,10 +133,11 @@ const EditProfileMeComponent = () => {
                 </div>
               </div>
               <div className="col-md-12 d-flex justify-content-start">
-                <button
+              <button
                   type="submit"
+                  style={{ fontSize: "2rem" }}
                   onClick={handleSubmit}
-                  className="btn mt-4 btn-primary btn-sm waves-effect waves-light"
+                  className="btn btn-primary mx-4 btn-sm waves-effect waves-light"
                 >
                   تعديل
                 </button>
